@@ -17,11 +17,11 @@ It speeds up agents by pointing at what was done previously and where to look. B
 
 ## Project meta
 
-- **Name:** {{PROJECT_NAME}}
-- **SOUPED.md created on:** {{CREATED_DATE}}
-- **Repo URL:** {{REPO_URL}}
-- **Souped project ID:** _pending — fill when the Souped project is created_
-- **Workspace slug:** _pending_
+- **Name:** Flower Ranch Hawaii
+- **SOUPED.md created on:** 2026-06-23
+- **Repo URL:** https://github.com/capicua-ai/flower-ranch-hawaii
+- **Souped project ID:** 5c68ad6f-b655-450e-9f71-cde30db3551c
+- **Workspace slug:** ws-blue-moss-N6xAsK (Pablo's Workspace)
 
 Anything else (Vercel project, primary domain, current auth scope, registered Chalk tables, Carte pages, Shelf buckets, design contract location, env-var names, etc.) lives in the Decisions log. Don't carve out subsystem sections here — let the log be the single timeline.
 
@@ -72,4 +72,10 @@ correction so future sessions see the current state.
 
 ### Entries
 
-- {{CREATED_DATE}} — meta — SOUPED.md initialized from boilerplate. Will track every Souped-suite decision on this project from now on.
+- 2026-06-23 — meta — SOUPED.md initialized from boilerplate. Will track every Souped-suite decision on this project from now on.
+- 2026-06-23 — scaffolder — initial scaffold. Cloned souped-boilerplate (Next.js 16 + Prisma 7 + Souped auth). Repo: capicua-ai/flower-ranch-hawaii (private). Local: /Users/capicua/Desktop/Claude/flower-ranch-hawaii.
+- 2026-06-23 — souped-mcp — Souped project created. ID 5c68ad6f-b655-450e-9f71-cde30db3551c (slug pj-kind-lake-zLSLSF) in workspace ws-blue-moss-N6xAsK. client_id/secret issued; not yet placed in env (auth wiring pending).
+- 2026-06-23 — spark — database created. Neon Postgres provisioned for the project. DATABASE_URL stored in local .env.local only.
+- 2026-06-23 — spark — deploy DEFERRED. create_vercel_project failed: Vercel token on Hobby plan can't deploy a private org-owned repo (capicua-ai). User chose to defer Vercel + deploy until billing is resolved. No Vercel project exists yet.
+- 2026-06-23 — design — design contract locked (see DESIGN.md). Palette: lime #8ED85F (action only), deep teal #004655 (dark surfaces/ink), pale teal wash #E8FCFF + neutral teal-gray border #CDE3E6 (structural — vivid never on structural tokens, per v2 retrospective). Fonts: Inter + JetBrains Mono (matching v1). Applied to src/app/globals.css + layout.tsx.
+- 2026-06-23 — environment — project lives in DEV Souped, not prod. The connected Souped/Spark MCP (e1f77d53) targets the dev environment, so project 5c68ad6f + its database are dev-only. Confirmed: visible in dev Souped dashboard, not prod. Fine while building locally (deploy deferred). When promoting to prod: connect the prod Souped plugin, recreate project + DB in prod, wire prod SOUPED_* creds. Do not assume the project ID/DB carry over to prod.
