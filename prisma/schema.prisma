@@ -23,6 +23,21 @@ datasource db {
 
 // Define your models below this line.
 
+// ── Auth ─────────────────────────────────────────────────────────────────────
+
+/// Local mirror of a Souped-authenticated user, lazy-synced from the JWT.
+model User {
+  id         String   @id @default(cuid())
+  soupedId   String   @unique // the `sub` claim from the Souped JWT
+  email      String   @unique
+  roles      String[] // mirrors the JWT `roles` claim
+  lastSyncAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("users")
+}
+
 // ── Storefront content (editable via Souped Chalk) ───────────────────────────
 
 /// Global site copy. Singleton — exactly one row (id = "singleton").

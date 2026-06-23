@@ -3,12 +3,14 @@ import Link from "next/link";
 import { Package, User } from "lucide-react";
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
+import { requireUser } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Your Account — Flower Ranch Hawaii",
 };
 
-export default function AccountPage() {
+export default async function AccountPage() {
+  const user = await requireUser();
   return (
     <>
       <SiteHeader />
@@ -19,7 +21,8 @@ export default function AccountPage() {
           </span>
           <h1 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink">Welcome back</h1>
           <p className="mt-3 text-lg text-fr-muted">
-            Manage your profile and track your orders. (Account features are wired with Souped auth.)
+            Signed in as <span className="font-medium text-fr-teal">{user.email}</span>. Manage your
+            profile and track your orders.
           </p>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
