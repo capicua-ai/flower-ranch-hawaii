@@ -46,7 +46,7 @@ export default function WholesalePage() {
       <SiteHeader />
       <main>
         {/* ── HERO ─────────────────────────────────────────────── */}
-        <section className="relative isolate overflow-hidden">
+        <section className="relative isolate -mt-[68px] overflow-hidden rounded-b-[2rem] sm:-mt-[72px] sm:rounded-b-[2.75rem]">
           <div className="absolute inset-0 -z-10">
             <video
               className="h-full w-full object-cover"
@@ -60,7 +60,7 @@ export default function WholesalePage() {
             </video>
             <div className="absolute inset-0 bg-gradient-to-b from-fr-forest/85 via-fr-forest/65 to-fr-forest-deep/95" />
           </div>
-          <div className="mx-auto max-w-7xl px-5 py-28 sm:px-8 sm:py-36">
+          <div className="mx-auto max-w-7xl px-5 pb-24 pt-36 sm:px-8 sm:pb-32 sm:pt-44">
             <span className="inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-1 font-mono text-xs uppercase tracking-widest text-white backdrop-blur">
               For Wholesale Buyers
             </span>

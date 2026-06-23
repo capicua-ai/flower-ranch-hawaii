@@ -16,8 +16,8 @@ export default async function ProductsPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="bg-fr-forest">
-          <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+        <section className="-mt-[68px] rounded-b-[2rem] bg-fr-forest sm:-mt-[72px] sm:rounded-b-[2.75rem]">
+          <div className="mx-auto max-w-7xl px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-36">
             <span className="font-mono text-xs uppercase tracking-widest text-fr-green">Shop</span>
             <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
               Fresh from the orchard
