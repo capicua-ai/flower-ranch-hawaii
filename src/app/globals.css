@@ -15,10 +15,10 @@
   --color-wf-orange:   var(--wf-orange);
 
   /* Flower Ranch brand tokens → Tailwind utilities (bg-fr-*, text-fr-*, border-fr-*) */
-  --color-fr-teal:      var(--fr-teal);
-  --color-fr-teal-deep: var(--fr-teal-deep);
-  --color-fr-lime:      var(--fr-lime);
-  --color-fr-lime-soft: var(--fr-lime-soft);
+  --color-fr-forest:      var(--fr-forest);
+  --color-fr-forest-deep: var(--fr-forest-deep);
+  --color-fr-green:      var(--fr-green);
+  --color-fr-green-soft: var(--fr-green-soft);
   --color-fr-wash:      var(--fr-wash);
   --color-fr-cream:     var(--fr-cream);
   --color-fr-ink:       var(--fr-ink);
@@ -74,15 +74,15 @@
      structural tokens (border/secondary). Lime = action only. Deep teal
      anchors dark surfaces + ink; pale teal wash + neutral teal-gray
      carry structure. */
-  --fr-teal:      #004655; /* deep teal — dark sections, footer */
-  --fr-teal-deep: #00343f; /* darker teal — ink / headings */
-  --fr-lime:      #8ed85f; /* lime — CTAs, links, active ONLY */
-  --fr-lime-soft: #b6e89a; /* lime tint — subtle accents on dark */
-  --fr-wash:      #e8fcff; /* pale teal wash — light section fills */
-  --fr-cream:     #fbfdf8; /* warm off-white — alt section */
-  --fr-ink:       #00343f; /* body + heading text */
-  --fr-muted:     #4a6b73; /* secondary text */
-  --fr-border:    #cde3e6; /* NEUTRAL teal-gray border (not a lime tint) */
+  --fr-forest:      #14431a; /* deep forest green — dark sections, footer */
+  --fr-forest-deep: #0c2e0a; /* darkest green — deepest surfaces */
+  --fr-green:       #3ba934; /* brand green — CTAs, links, accents (matches v1) */
+  --fr-green-soft:  #cdeebc; /* soft green — accents on dark surfaces */
+  --fr-wash:        #eef4e8; /* soft sage — light section fills (desaturated, not mint) */
+  --fr-cream:       #fbfaf4; /* warm off-white — alt section */
+  --fr-ink:         #1b2a16; /* deep green-charcoal — body + headings */
+  --fr-muted:       #5d6b59; /* green-gray — secondary text */
+  --fr-border:      #e3e3e3; /* NEUTRAL gray border (matches v1; vivid green stays off structure) */
 
   --background: #ffffff;
   --foreground: var(--fr-ink);
@@ -90,32 +90,32 @@
   --card-foreground: var(--fr-ink);
   --popover: #ffffff;
   --popover-foreground: var(--fr-ink);
-  --primary: var(--fr-lime);
-  --primary-foreground: var(--fr-teal-deep);
+  --primary: var(--fr-green);
+  --primary-foreground: #ffffff;
   --secondary: var(--fr-wash);
-  --secondary-foreground: var(--fr-teal);
-  --muted: #eef7f8;
+  --secondary-foreground: var(--fr-forest);
+  --muted: #f1f4ee;
   --muted-foreground: var(--fr-muted);
   --accent: var(--fr-wash);
-  --accent-foreground: var(--fr-teal);
+  --accent-foreground: var(--fr-forest);
   --destructive: oklch(0.577 0.245 27.325);
   --border: var(--fr-border);
   --input: var(--fr-border);
-  --ring: var(--fr-lime);
-  --chart-1: #8ed85f;
-  --chart-2: #4bb3a7;
-  --chart-3: #2d7d8a;
-  --chart-4: #1a5a66;
-  --chart-5: #004655;
+  --ring: var(--fr-green);
+  --chart-1: #3ba934;
+  --chart-2: #2f8c2a;
+  --chart-3: #236f20;
+  --chart-4: #195417;
+  --chart-5: #14431a;
   --radius: 0.75rem;
   --sidebar: var(--fr-wash);
   --sidebar-foreground: var(--fr-ink);
-  --sidebar-primary: var(--fr-lime);
-  --sidebar-primary-foreground: var(--fr-teal-deep);
+  --sidebar-primary: var(--fr-green);
+  --sidebar-primary-foreground: var(--fr-forest-deep);
   --sidebar-accent: #eef7f8;
-  --sidebar-accent-foreground: var(--fr-teal);
+  --sidebar-accent-foreground: var(--fr-forest);
   --sidebar-border: var(--fr-border);
-  --sidebar-ring: var(--fr-lime);
+  --sidebar-ring: var(--fr-green);
 }
 
 .dark {
@@ -255,24 +255,23 @@ button.wf-btn-secondary:hover:not(:disabled) {
   border-color: rgba(126, 200, 227, 0.55);
 }
 
-/* ── Scroll reveal (used by src/components/store/reveal.tsx) ────────────────
-   Hiding is scoped to `.js` so content stays visible without JS / before
-   hydration, and disabled entirely for reduced-motion users. */
+/* ── Entrance motion (used by src/components/store/reveal.tsx) ──────────────
+   On-load fade/rise with `both` fill so the element always ends visible —
+   cannot get stuck hidden (no JS-state or observer dependency). Scoped to
+   `.js` and disabled for reduced-motion. Stagger via inline animation-delay. */
+@keyframes fr-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 @media (prefers-reduced-motion: no-preference) {
   .js .reveal {
-    opacity: 0;
-    filter: blur(12px);
-    transform: translateY(16px);
-    transition:
-      opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-      filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, filter, transform;
-  }
-  .js .reveal.in {
-    opacity: 1;
-    filter: blur(0);
-    transform: none;
+    animation: fr-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 }
 

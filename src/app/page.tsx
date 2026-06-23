@@ -23,7 +23,7 @@ function PrimaryButton({ href, children }: { href: string; children: React.React
   return (
     <Link
       href={href}
-      className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-lime px-7 text-sm font-semibold text-fr-teal-deep shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-lime [&_svg]:transition-transform [&_svg]:duration-300 hover:[&_svg]:translate-x-1"
+      className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-green px-7 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-green [&_svg]:transition-transform [&_svg]:duration-300 hover:[&_svg]:translate-x-1"
     >
       {children}
     </Link>
@@ -57,7 +57,7 @@ export default async function Home() {
               >
                 <source src="/assets/Hero video-2.mp4" type="video/mp4" />
               </video>
-              <div className="absolute inset-0 bg-gradient-to-b from-fr-teal/80 via-fr-teal/55 to-fr-teal-deep/95" />
+              <div className="absolute inset-0 bg-gradient-to-b from-fr-forest/80 via-fr-forest/55 to-fr-forest-deep/95" />
             </div>
 
             {/* Badge stamp accent (decorative) */}
@@ -106,11 +106,11 @@ export default async function Home() {
         <section id="benefits" className="bg-fr-wash">
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <div className="max-w-2xl">
-              <span className="font-mono text-xs uppercase tracking-widest text-fr-teal/70">
+              <span className="font-mono text-xs uppercase tracking-widest text-fr-forest/70">
                 Benefits of Longan
               </span>
               <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
-                A little fruit with <em className="not-italic text-fr-teal">big</em> benefits
+                A little fruit with <em className="not-italic text-fr-forest">big</em> benefits
               </h2>
             </div>
 
@@ -123,7 +123,7 @@ export default async function Home() {
                       key={b.title}
                       className="flex gap-4 rounded-2xl border border-fr-border bg-white p-5"
                     >
-                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-fr-lime/20 text-fr-teal">
+                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-fr-green/20 text-fr-forest">
                         <Icon className="h-5 w-5" />
                       </span>
                       <div>
@@ -135,8 +135,8 @@ export default async function Home() {
                 })}
               </ul>
 
-              <div className="rounded-2xl bg-fr-teal p-7 text-white">
-                <h3 className="font-mono text-xs uppercase tracking-widest text-fr-lime">
+              <div className="rounded-2xl bg-fr-forest p-7 text-white">
+                <h3 className="font-mono text-xs uppercase tracking-widest text-fr-green">
                   Nutritional Profile
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-white/80">
@@ -165,7 +165,7 @@ export default async function Home() {
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-fr-teal/70">
+                <span className="font-mono text-xs uppercase tracking-widest text-fr-forest/70">
                   Shop
                 </span>
                 <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
@@ -174,7 +174,7 @@ export default async function Home() {
               </div>
               <Link
                 href="/products"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-fr-teal hover:text-fr-lime"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-fr-forest hover:text-fr-green"
               >
                 View all <ArrowRight className="h-4 w-4" />
               </Link>
@@ -185,7 +185,7 @@ export default async function Home() {
                 <Link
                   key={p.slug}
                   href={`/products/${p.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-3xl border border-fr-border bg-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-fr-teal/10"
+                  className="group flex flex-col overflow-hidden rounded-3xl border border-fr-border bg-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-fr-forest/10"
                 >
                   <div className="aspect-[4/3] overflow-hidden bg-fr-wash">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -201,8 +201,8 @@ export default async function Home() {
                     </span>
                     <h3 className="mt-1 text-xl font-bold text-fr-ink">{p.name}</h3>
                     <div className="mt-4 flex items-center justify-between">
-                      <span className="font-mono text-sm font-medium text-fr-teal">{p.price}</span>
-                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-fr-teal group-hover:text-fr-lime">
+                      <span className="font-mono text-sm font-medium text-fr-forest">{p.price}</span>
+                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-fr-forest group-hover:text-fr-green">
                         Shop <ArrowRight className="h-4 w-4" />
                       </span>
                     </div>
@@ -217,7 +217,7 @@ export default async function Home() {
         <section id="story" className="bg-fr-cream">
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <div className="mx-auto max-w-2xl text-center">
-              <span className="font-mono text-xs uppercase tracking-widest text-fr-teal/70">
+              <span className="font-mono text-xs uppercase tracking-widest text-fr-forest/70">
                 Our Orchard
               </span>
               <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
@@ -247,7 +247,7 @@ export default async function Home() {
         <section className="bg-white">
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <div className="max-w-2xl">
-              <span className="font-mono text-xs uppercase tracking-widest text-fr-teal/70">
+              <span className="font-mono text-xs uppercase tracking-widest text-fr-forest/70">
                 Delivered Fresh
               </span>
               <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
@@ -259,10 +259,10 @@ export default async function Home() {
                 const Icon = iconFor(step.icon);
                 return (
                   <li key={step.title} className="relative flex flex-col items-center text-center">
-                    <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-fr-wash text-fr-teal">
+                    <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-fr-wash text-fr-forest">
                       <Icon className="h-7 w-7" />
                     </span>
-                    <span className="mt-4 font-mono text-xs text-fr-lime">
+                    <span className="mt-4 font-mono text-xs text-fr-green">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3 className="mt-1 font-semibold text-fr-ink">{step.title}</h3>
@@ -276,7 +276,7 @@ export default async function Home() {
 
         {/* ── CTA BANNER ───────────────────────────────────────── */}
         <section className="bg-white px-5 pb-20 sm:px-8">
-          <div className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-3xl bg-fr-teal px-6 py-16 text-center sm:py-20">
+          <div className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-3xl bg-fr-forest px-6 py-16 text-center sm:py-20">
             <div className="absolute inset-0 -z-10 opacity-25">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/assets/banner.png" alt="" className="h-full w-full object-cover" />
@@ -300,7 +300,7 @@ export default async function Home() {
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-fr-teal/70">
+                <span className="font-mono text-xs uppercase tracking-widest text-fr-forest/70">
                   From the Blog
                 </span>
                 <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
@@ -309,7 +309,7 @@ export default async function Home() {
               </div>
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-fr-teal hover:text-fr-lime"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-fr-forest hover:text-fr-green"
               >
                 All articles <ArrowRight className="h-4 w-4" />
               </Link>
@@ -320,7 +320,7 @@ export default async function Home() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-3xl border border-fr-border bg-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-fr-teal/10"
+                  className="group flex flex-col overflow-hidden rounded-3xl border border-fr-border bg-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-fr-forest/10"
                 >
                   <div className="aspect-[16/10] overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -331,11 +331,11 @@ export default async function Home() {
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-6">
-                    <h3 className="text-lg font-bold leading-snug text-fr-ink group-hover:text-fr-teal">
+                    <h3 className="text-lg font-bold leading-snug text-fr-ink group-hover:text-fr-forest">
                       {post.title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-fr-muted">{post.excerpt}</p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-fr-teal group-hover:text-fr-lime">
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-fr-forest group-hover:text-fr-green">
                       Read more <ArrowRight className="h-4 w-4" />
                     </span>
                   </div>

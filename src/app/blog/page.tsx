@@ -16,9 +16,9 @@ export default async function BlogPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="bg-fr-teal">
+        <section className="bg-fr-forest">
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
-            <span className="font-mono text-xs uppercase tracking-widest text-fr-lime">
+            <span className="font-mono text-xs uppercase tracking-widest text-fr-green">
               From the Blog
             </span>
             <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
@@ -37,7 +37,7 @@ export default async function BlogPage() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-3xl border border-fr-border bg-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-fr-teal/10"
+                  className="group flex flex-col overflow-hidden rounded-3xl border border-fr-border bg-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-fr-forest/10"
                 >
                   <div className="aspect-[16/10] overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -51,11 +51,11 @@ export default async function BlogPage() {
                     <span className="font-mono text-[11px] uppercase tracking-widest text-fr-muted">
                       {post.date} · {post.readingTime}
                     </span>
-                    <h2 className="mt-2 text-lg font-bold leading-snug text-fr-ink group-hover:text-fr-teal">
+                    <h2 className="mt-2 text-lg font-bold leading-snug text-fr-ink group-hover:text-fr-forest">
                       {post.title}
                     </h2>
                     <p className="mt-2 text-sm leading-relaxed text-fr-muted">{post.excerpt}</p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-fr-teal group-hover:text-fr-lime">
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-fr-forest group-hover:text-fr-green">
                       Read more <ArrowRight className="h-4 w-4" />
                     </span>
                   </div>

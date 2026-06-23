@@ -37,7 +37,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-14">
           <Link
             href="/products"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-fr-muted transition-colors hover:text-fr-teal"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-fr-muted transition-colors hover:text-fr-forest"
           >
             <ArrowLeft className="h-4 w-4" /> All products
           </Link>
@@ -66,7 +66,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             {/* Detail */}
             <div className="lg:py-4">
-              <span className="font-mono text-xs uppercase tracking-widest text-fr-teal/70">
+              <span className="font-mono text-xs uppercase tracking-widest text-fr-forest/70">
                 {product.tagline}
               </span>
               <h1 className="mt-2 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
@@ -74,14 +74,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </h1>
 
               <div className="mt-4 flex items-baseline gap-2">
-                <span className="font-mono text-2xl font-bold text-fr-teal">{product.price}</span>
+                <span className="font-mono text-2xl font-bold text-fr-forest">{product.price}</span>
                 <span className="text-sm text-fr-muted">{product.priceNote}</span>
               </div>
 
               <p className="mt-5 text-lg leading-relaxed text-fr-ink/80">{product.description}</p>
 
               {product.inStock && (
-                <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-fr-teal">
+                <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-fr-forest">
                   <Check className="h-4 w-4" /> In season — shipping now
                 </p>
               )}
@@ -89,13 +89,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <div className="mt-7 flex flex-wrap gap-3">
                 <button
                   type="button"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-lime px-7 text-sm font-semibold text-fr-teal-deep shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-lime"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-green px-7 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-green"
                 >
                   <ShoppingBag className="h-4 w-4" /> Add to cart
                 </button>
                 <Link
                   href="/checkout"
-                  className="inline-flex h-12 items-center justify-center rounded-full border border-fr-border px-7 text-sm font-semibold text-fr-teal transition-colors hover:bg-fr-wash"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-fr-border px-7 text-sm font-semibold text-fr-forest transition-colors hover:bg-fr-wash"
                 >
                   Buy now
                 </Link>

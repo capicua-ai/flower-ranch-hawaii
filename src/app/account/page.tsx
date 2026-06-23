@@ -16,25 +16,25 @@ export default async function AccountPage() {
       <SiteHeader />
       <main className="bg-white">
         <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
-          <span className="font-mono text-xs uppercase tracking-widest text-fr-teal/70">
+          <span className="font-mono text-xs uppercase tracking-widest text-fr-forest/70">
             Your Account
           </span>
           <h1 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink">Welcome back</h1>
           <p className="mt-3 text-lg text-fr-muted">
-            Signed in as <span className="font-medium text-fr-teal">{user.email}</span>. Manage your
+            Signed in as <span className="font-medium text-fr-forest">{user.email}</span>. Manage your
             profile and track your orders.
           </p>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <div className="rounded-3xl border border-fr-border p-6">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-fr-wash text-fr-teal">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-fr-wash text-fr-forest">
                 <User className="h-5 w-5" />
               </span>
               <h2 className="mt-4 text-lg font-bold text-fr-ink">Profile</h2>
               <p className="mt-1 text-sm text-fr-muted">Your name, email, and shipping address.</p>
             </div>
             <div className="rounded-3xl border border-fr-border p-6">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-fr-wash text-fr-teal">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-fr-wash text-fr-forest">
                 <Package className="h-5 w-5" />
               </span>
               <h2 className="mt-4 text-lg font-bold text-fr-ink">Orders</h2>
@@ -44,7 +44,7 @@ export default async function AccountPage() {
 
           <Link
             href="/api/auth/logout"
-            className="mt-10 inline-flex h-11 items-center justify-center rounded-full border border-fr-border px-6 text-sm font-semibold text-fr-teal transition-colors hover:bg-fr-wash"
+            className="mt-10 inline-flex h-11 items-center justify-center rounded-full border border-fr-border px-6 text-sm font-semibold text-fr-forest transition-colors hover:bg-fr-wash"
           >
             Sign out
           </Link>

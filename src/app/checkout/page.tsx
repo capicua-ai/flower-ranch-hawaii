@@ -14,7 +14,7 @@ export default function CheckoutPage() {
       <SiteHeader />
       <main className="bg-white">
         <div className="mx-auto max-w-3xl px-5 py-20 text-center sm:px-8 sm:py-28">
-          <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-fr-wash text-fr-teal">
+          <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-fr-wash text-fr-forest">
             <ShoppingBag className="h-7 w-7" />
           </span>
           <h1 className="mt-6 text-4xl font-bold tracking-tight text-fr-ink">Your cart is empty</h1>
@@ -24,7 +24,7 @@ export default function CheckoutPage() {
           </p>
           <Link
             href="/products"
-            className="mt-7 inline-flex h-12 items-center justify-center rounded-full bg-fr-lime px-7 text-sm font-semibold text-fr-teal-deep transition-all hover:-translate-y-0.5 hover:brightness-105"
+            className="mt-7 inline-flex h-12 items-center justify-center rounded-full bg-fr-green px-7 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:brightness-105"
           >
             Shop products
           </Link>

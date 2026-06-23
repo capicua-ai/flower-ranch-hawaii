@@ -17,9 +17,9 @@ export default async function ProductsPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="bg-fr-teal">
+        <section className="bg-fr-forest">
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
-            <span className="font-mono text-xs uppercase tracking-widest text-fr-lime">Shop</span>
+            <span className="font-mono text-xs uppercase tracking-widest text-fr-green">Shop</span>
             <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
               Fresh from the orchard
             </h1>
@@ -36,7 +36,7 @@ export default async function ProductsPage() {
                 <Link
                   key={p.slug}
                   href={`/products/${p.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-3xl border border-fr-border bg-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-fr-teal/10"
+                  className="group flex flex-col overflow-hidden rounded-3xl border border-fr-border bg-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-fr-forest/10"
                 >
                   <div className="aspect-[4/3] overflow-hidden bg-fr-wash">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -55,10 +55,10 @@ export default async function ProductsPage() {
                       {p.description}
                     </p>
                     <div className="mt-4 flex items-center justify-between">
-                      <span className="font-mono text-sm font-medium text-fr-teal">
+                      <span className="font-mono text-sm font-medium text-fr-forest">
                         {p.price} <span className="text-fr-muted">/ {p.priceNote.split(" · ")[0].replace("per ", "")}</span>
                       </span>
-                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-fr-teal group-hover:text-fr-lime">
+                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-fr-forest group-hover:text-fr-green">
                         Shop <ArrowRight className="h-4 w-4" />
                       </span>
                     </div>

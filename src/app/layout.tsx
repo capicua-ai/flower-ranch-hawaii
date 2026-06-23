@@ -12,15 +12,29 @@ const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+const SITE_TITLE = "Flower Ranch Hawaii — Fresh Hawaiian Longan";
+const SITE_DESCRIPTION =
+  "Fresh, hand-harvested Hawaiian longan grown on the Hamakua Coast. Shop fresh longan and lychee, or partner with us for premium wholesale supply.";
+
 export const metadata: Metadata = {
-  title: "Flower Ranch Hawaii — Fresh Hawaiian Longan",
-  description:
-    "Fresh, hand-harvested Hawaiian longan grown on the Hamakua Coast. Shop fresh longan and lychee, or partner with us for premium wholesale supply.",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.png", type: "image/png" },
-    ],
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/assets/logo.png" }],
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Flower Ranch Hawaii",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [{ url: "/assets/Opengraph.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ["/assets/Opengraph.jpg"],
   },
 };
 

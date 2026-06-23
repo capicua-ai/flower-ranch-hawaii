@@ -40,6 +40,7 @@ export const proxy = withSoupedAuth(
       "/blog/:path*",
       "/wholesale",
       "/assets/:path*",
+      "/favicon.svg",
     ],
   },
   passthrough,
