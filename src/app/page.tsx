@@ -47,16 +47,8 @@ export default async function Home() {
         <div className="bg-fr-wash">
           <section className="relative isolate overflow-hidden rounded-b-[2rem] sm:rounded-b-[2.75rem]">
             <div className="absolute inset-0 -z-10">
-              <video
-                className="h-full w-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-                poster="/assets/hero-bg.png"
-              >
-                <source src="/assets/Hero video-2.mp4" type="video/mp4" />
-              </video>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/hero-bg.png" alt="" className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-b from-fr-forest/80 via-fr-forest/55 to-fr-forest-deep/95" />
             </div>
 
