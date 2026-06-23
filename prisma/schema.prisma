@@ -22,3 +22,76 @@ datasource db {
 }
 
 // Define your models below this line.
+
+// ── Storefront content (editable via Souped Chalk) ───────────────────────────
+
+/// Global site copy. Singleton — exactly one row (id = "singleton").
+model SiteSettings {
+  id           String   @id @default("singleton")
+  heroBadge    String
+  heroTitle    String
+  heroSubtitle String
+  contactEmail String
+  updatedAt    DateTime @updatedAt
+
+  @@map("site_settings")
+}
+
+/// Products in the storefront catalog.
+model Product {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  tagline     String
+  price       String
+  priceNote   String
+  image       String
+  description String
+  inStock     Boolean  @default(true)
+  order       Int      @default(0)
+  specs       Json // [{ label, value }] — rendered, not Chalk-edited in v1
+  gallery     Json // string[] of image URLs — rendered, not Chalk-edited in v1
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("products")
+}
+
+/// Blog articles.
+model BlogPost {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String
+  image       String
+  date        String
+  readingTime String
+  body        String // paragraphs separated by blank lines
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("blog_posts")
+}
+
+/// Health-benefit cards on the home page. Fixed count by design.
+model Benefit {
+  id    String @id @default(cuid())
+  title String
+  body  String
+  icon  String // lucide icon name
+  order Int    @default(0)
+
+  @@map("benefits")
+}
+
+/// "Delivered fresh" journey steps. Fixed count by design.
+model DeliveryStep {
+  id    String @id @default(cuid())
+  title String
+  body  String
+  icon  String // lucide icon name
+  order Int    @default(0)
+
+  @@map("delivery_steps")
+}

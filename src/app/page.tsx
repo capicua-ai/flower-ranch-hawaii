@@ -1,53 +1,21 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  Heart,
-  Home as HomeIcon,
-  Leaf,
-  MapPin,
-  Moon,
-  Package,
-  Plane,
-  Scissors,
-  Shield,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
-
-const BENEFITS = [
-  { icon: Shield, title: "Immune Support", body: "Vitamin C–rich fruit that helps support a healthy immune system." },
-  { icon: Sparkles, title: "Skin Health", body: "Antioxidants and hydration that support bright, healthy skin." },
-  { icon: Leaf, title: "Antioxidant Properties", body: "Naturally packed with polyphenols that fight oxidative stress." },
-  { icon: Moon, title: "Better Sleep", body: "Traditionally used to promote calm and restful sleep." },
-  { icon: Heart, title: "Heart Health", body: "Potassium and fiber that support healthy circulation." },
-];
+import { iconFor } from "@/lib/icon-map";
+import {
+  getBenefits,
+  getDeliverySteps,
+  getPosts,
+  getProducts,
+  getSiteSettings,
+} from "@/lib/store-data";
 
 const NUTRITION = [
   { label: "Calories", value: "~60" },
   { label: "Carbohydrates", value: "~15 g" },
   { label: "Vitamin C", value: "84–93% DV" },
   { label: "Potassium", value: "~8% DV" },
-];
-
-const PRODUCTS = [
-  { slug: "fresh-longan", name: "Fresh Longan", tag: "Grade A · Hand-harvested", img: "/assets/longan-fruit.png", price: "$24 / lb" },
-  { slug: "fresh-lychee", name: "Fresh Lychee", tag: "Seasonal · Sweet & floral", img: "/assets/story-img-2.png", price: "$26 / lb" },
-  { slug: "dried-longan", name: "Dried Longan", tag: "Pantry · Naturally sweet", img: "/assets/story-img-3.png", price: "$18 / bag" },
-];
-
-const DELIVERY = [
-  { icon: MapPin, title: "Grown in Hilo", body: "On the Hamakua Coast, Hawaiʻi." },
-  { icon: Scissors, title: "Hand Harvested", body: "Picked at peak ripeness for best quality." },
-  { icon: Package, title: "Packaged in 1 Day", body: "Boxed within 24 hours of harvest." },
-  { icon: Plane, title: "Shipped 2-Day", body: "FedEx air, cold-chain handled." },
-  { icon: HomeIcon, title: "Delivered Fresh", body: "Straight to your home." },
-];
-
-const POSTS = [
-  { slug: "what-is-longan", title: "What Is Longan? Hawaiʻi's Best-Kept Secret", excerpt: "Meet the dragon-eye fruit — sweet, floral, and grown in volcanic soil.", img: "/assets/story-img-1.png" },
-  { slug: "longan-vs-lychee", title: "Longan vs. Lychee: What's the Difference?", excerpt: "Two tropical cousins, two very different flavors. Here's how to tell them apart.", img: "/assets/story-img-2.png" },
-  { slug: "ways-to-eat-longan", title: "5 Delicious Ways to Enjoy Fresh Longan", excerpt: "From fresh off the cluster to desserts and teas — simple ideas to try.", img: "/assets/story-img-3.png" },
 ];
 
 function PrimaryButton({ href, children }: { href: string; children: React.ReactNode }) {
@@ -61,7 +29,15 @@ function PrimaryButton({ href, children }: { href: string; children: React.React
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const [settings, products, benefits, deliverySteps, posts] = await Promise.all([
+    getSiteSettings(),
+    getProducts(),
+    getBenefits(),
+    getDeliverySteps(),
+    getPosts(),
+  ]);
+
   return (
     <>
       <SiteHeader />
@@ -75,14 +51,13 @@ export default function Home() {
           </div>
           <div className="mx-auto flex max-w-7xl flex-col items-center px-5 py-24 text-center sm:px-8 sm:py-32 lg:py-40">
             <span className="mb-5 inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-1 font-mono text-xs uppercase tracking-widest text-white backdrop-blur">
-              Grown in Hilo, Hawaiʻi
+              {settings.heroBadge}
             </span>
             <h1 className="max-w-3xl text-balance text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
-              Fresh Hawaii Longan
+              {settings.heroTitle}
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/85">
-              Hand-harvested on our family orchard and shipped to your door within days of picking.
-              Taste the richness of volcanic-grown Hawaiian fruit.
+              {settings.heroSubtitle}
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <PrimaryButton href="/products">
@@ -112,20 +87,23 @@ export default function Home() {
 
             <div className="mt-12 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
               <ul className="grid gap-3 sm:grid-cols-2">
-                {BENEFITS.map(({ icon: Icon, title, body }) => (
-                  <li
-                    key={title}
-                    className="flex gap-4 rounded-2xl border border-fr-border bg-white p-5"
-                  >
-                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-fr-lime/20 text-fr-teal">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <h3 className="font-semibold text-fr-ink">{title}</h3>
-                      <p className="mt-1 text-sm leading-relaxed text-fr-muted">{body}</p>
-                    </div>
-                  </li>
-                ))}
+                {benefits.map((b) => {
+                  const Icon = iconFor(b.icon);
+                  return (
+                    <li
+                      key={b.title}
+                      className="flex gap-4 rounded-2xl border border-fr-border bg-white p-5"
+                    >
+                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-fr-lime/20 text-fr-teal">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <h3 className="font-semibold text-fr-ink">{b.title}</h3>
+                        <p className="mt-1 text-sm leading-relaxed text-fr-muted">{b.body}</p>
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
 
               <div className="rounded-2xl bg-fr-teal p-7 text-white">
@@ -174,7 +152,7 @@ export default function Home() {
             </div>
 
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {PRODUCTS.map((p) => (
+              {products.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/products/${p.slug}`}
@@ -183,14 +161,14 @@ export default function Home() {
                   <div className="aspect-[4/3] overflow-hidden bg-fr-wash">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={p.img}
+                      src={p.image}
                       alt={p.name}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <span className="font-mono text-[11px] uppercase tracking-widest text-fr-muted">
-                      {p.tag}
+                      {p.tagline}
                     </span>
                     <h3 className="mt-1 text-xl font-bold text-fr-ink">{p.name}</h3>
                     <div className="mt-4 flex items-center justify-between">
@@ -248,18 +226,21 @@ export default function Home() {
               </h2>
             </div>
             <ol className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
-              {DELIVERY.map(({ icon: Icon, title, body }, i) => (
-                <li key={title} className="relative flex flex-col items-center text-center">
-                  <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-fr-wash text-fr-teal">
-                    <Icon className="h-7 w-7" />
-                  </span>
-                  <span className="mt-4 font-mono text-xs text-fr-lime">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-1 font-semibold text-fr-ink">{title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-fr-muted">{body}</p>
-                </li>
-              ))}
+              {deliverySteps.map((step, i) => {
+                const Icon = iconFor(step.icon);
+                return (
+                  <li key={step.title} className="relative flex flex-col items-center text-center">
+                    <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-fr-wash text-fr-teal">
+                      <Icon className="h-7 w-7" />
+                    </span>
+                    <span className="mt-4 font-mono text-xs text-fr-lime">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-1 font-semibold text-fr-ink">{step.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-fr-muted">{step.body}</p>
+                  </li>
+                );
+              })}
             </ol>
           </div>
         </section>
@@ -306,7 +287,7 @@ export default function Home() {
             </div>
 
             <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {POSTS.map((post) => (
+              {posts.map((post) => (
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
@@ -315,7 +296,7 @@ export default function Home() {
                   <div className="aspect-[16/10] overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={post.img}
+                      src={post.image}
                       alt=""
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />

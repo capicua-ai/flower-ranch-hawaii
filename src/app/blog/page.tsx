@@ -3,14 +3,15 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
-import { BLOG_POSTS } from "@/lib/store-data";
+import { getPosts } from "@/lib/store-data";
 
 export const metadata: Metadata = {
   title: "Blog — Flower Ranch Hawaii",
   description: "Stories, recipes, and guides about Hawaiian longan from our family orchard.",
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const posts = await getPosts();
   return (
     <>
       <SiteHeader />
@@ -32,7 +33,7 @@ export default function BlogPage() {
         <section className="bg-fr-wash">
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
             <div className="grid gap-6 md:grid-cols-3">
-              {BLOG_POSTS.map((post) => (
+              {posts.map((post) => (
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
-import { PRODUCTS } from "@/lib/store-data";
+import { getProducts } from "@/lib/store-data";
 
 export const metadata: Metadata = {
   title: "Shop Fresh Hawaiian Longan & Lychee — Flower Ranch Hawaii",
@@ -11,7 +11,8 @@ export const metadata: Metadata = {
     "Shop hand-harvested fresh longan, fresh lychee, and dried longan grown on the Hamakua Coast and shipped fresh to your door.",
 };
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const products = await getProducts();
   return (
     <>
       <SiteHeader />
@@ -31,7 +32,7 @@ export default function ProductsPage() {
         <section className="bg-white">
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {PRODUCTS.map((p) => (
+              {products.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/products/${p.slug}`}
