@@ -3,6 +3,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
 import { Reveal } from "@/components/store/reveal";
+import { ProductCard } from "@/components/store/product-card";
 import { iconFor } from "@/lib/icon-map";
 import {
   getBenefits,
@@ -210,34 +211,9 @@ export default async function Home() {
               </Link>
             </div>
 
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
               {products.map((p) => (
-                <Link
-                  key={p.slug}
-                  href={`/products/${p.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-3xl border border-fr-border bg-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-fr-forest/10"
-                >
-                  <div className="aspect-[4/3] overflow-hidden bg-fr-wash">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-fr-muted">
-                      {p.tagline}
-                    </span>
-                    <h3 className="mt-1 text-xl font-bold text-fr-ink">{p.name}</h3>
-                    <div className="mt-4 flex items-center justify-between">
-                      <span className="font-mono text-sm font-medium text-fr-forest">{p.price}</span>
-                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-fr-forest group-hover:text-fr-green">
-                        Shop <ArrowRight className="h-4 w-4" />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
+                <ProductCard key={p.slug} product={p} />
               ))}
             </div>
           </div>
