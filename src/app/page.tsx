@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
 import { Reveal } from "@/components/store/reveal";
@@ -44,12 +44,27 @@ export default async function Home() {
       <SiteHeader />
       <main>
         {/* ── HERO ─────────────────────────────────────────────── */}
-        <div className="bg-fr-wash">
-          <section className="relative isolate overflow-hidden rounded-b-[2rem] sm:rounded-b-[2.75rem]">
+        {/* Negative margin pulls the hero up under the floating nav so the
+            photo bleeds to the very top edge. */}
+        <div className="-mt-[68px] bg-fr-wash sm:-mt-[72px]">
+          <section className="relative isolate flex min-h-[92vh] items-center overflow-hidden rounded-b-[2rem] sm:rounded-b-[2.75rem]">
             <div className="absolute inset-0 -z-10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/hero-bg.png" alt="" className="h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-b from-fr-forest/80 via-fr-forest/55 to-fr-forest-deep/95" />
+              <img
+                src="/assets/hero-bg.png"
+                alt=""
+                className="h-full w-full scale-105 object-cover"
+              />
+              {/* Cinematic gradient: dark top (nav legibility), open middle, deep bottom */}
+              <div className="absolute inset-0 bg-gradient-to-b from-fr-forest-deep/80 via-fr-forest/25 to-fr-forest-deep/95" />
+              {/* Soft centered scrim so the headline stays crisp over busy imagery */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(62% 55% at 50% 48%, rgba(12,46,10,0.55), transparent 76%)",
+                }}
+              />
             </div>
 
             {/* Badge stamp accent (decorative) */}
@@ -58,39 +73,62 @@ export default async function Home() {
               src="/assets/badge.svg"
               alt=""
               aria-hidden="true"
-              className="pointer-events-none absolute right-6 top-24 hidden w-28 rotate-[-14deg] opacity-90 drop-shadow-lg lg:block xl:w-36"
+              className="pointer-events-none absolute right-6 top-28 hidden w-28 rotate-[-14deg] opacity-90 drop-shadow-xl lg:block xl:right-12 xl:w-36"
             />
 
-            <div className="mx-auto flex max-w-7xl flex-col items-center px-5 py-24 text-center sm:px-8 sm:py-32 lg:py-40">
+            <div className="mx-auto flex w-full max-w-7xl flex-col items-center px-5 pb-16 pt-28 text-center sm:px-8">
               <Reveal>
-                <span className="inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-1 font-mono text-xs uppercase tracking-widest text-white backdrop-blur">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-white backdrop-blur">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-fr-green" />
                   {settings.heroBadge}
                 </span>
               </Reveal>
               <Reveal delay={120}>
-                <h1 className="mt-5 max-w-3xl text-balance text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+                <h1 className="mt-6 max-w-4xl text-balance text-[2.75rem] font-bold leading-[1.02] tracking-tight text-white drop-shadow-sm sm:text-6xl lg:text-7xl xl:text-[5.25rem]">
                   {settings.heroTitle}
                 </h1>
               </Reveal>
               <Reveal delay={240}>
-                <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/85">
+                <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/85">
                   {settings.heroSubtitle}
                 </p>
               </Reveal>
               <Reveal delay={360}>
-                <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
                   <PrimaryButton href="/products">
                     Shop now <ArrowRight className="h-4 w-4" />
                   </PrimaryButton>
                   <Link
                     href="/#benefits"
-                    className="inline-flex h-12 items-center justify-center rounded-full border border-white/40 px-7 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                    className="inline-flex h-12 items-center justify-center rounded-full border border-white/40 bg-white/5 px-7 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/15"
                   >
                     Health benefits
                   </Link>
                 </div>
               </Reveal>
+              <Reveal delay={480}>
+                <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white/75 sm:gap-x-5">
+                  <li>Hand-harvested</li>
+                  <li aria-hidden className="text-fr-green">
+                    •
+                  </li>
+                  <li>USDA Grade A</li>
+                  <li aria-hidden className="text-fr-green">
+                    •
+                  </li>
+                  <li>Ships in 2 days</li>
+                </ul>
+              </Reveal>
             </div>
+
+            {/* Scroll cue */}
+            <a
+              href="/#benefits"
+              aria-label="Scroll to benefits"
+              className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 text-white/70 transition-colors hover:text-white sm:block"
+            >
+              <ChevronDown className="h-6 w-6 motion-safe:animate-bounce" />
+            </a>
           </section>
         </div>
 
