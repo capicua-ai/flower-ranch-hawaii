@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
+import { PostCard } from "@/components/store/post-card";
 import { getPosts } from "@/lib/store-data";
 
 export const metadata: Metadata = {
@@ -34,32 +33,7 @@ export default async function BlogPage() {
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
             <div className="grid gap-6 md:grid-cols-3">
               {posts.map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-3xl border border-fr-border bg-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-fr-forest/10"
-                >
-                  <div className="aspect-[16/10] overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={post.image}
-                      alt=""
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-fr-muted">
-                      {post.date} · {post.readingTime}
-                    </span>
-                    <h2 className="mt-2 text-lg font-bold leading-snug text-fr-ink group-hover:text-fr-forest">
-                      {post.title}
-                    </h2>
-                    <p className="mt-2 text-sm leading-relaxed text-fr-muted">{post.excerpt}</p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-fr-forest group-hover:text-fr-green">
-                      Read more <ArrowRight className="h-4 w-4" />
-                    </span>
-                  </div>
-                </Link>
+                <PostCard key={post.slug} post={post} />
               ))}
             </div>
           </div>

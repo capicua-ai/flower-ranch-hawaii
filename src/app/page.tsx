@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
 import { Reveal } from "@/components/store/reveal";
 import { ProductCard } from "@/components/store/product-card";
+import { PostCard } from "@/components/store/post-card";
 import { iconFor } from "@/lib/icon-map";
 import {
   getBenefits,
@@ -259,24 +260,43 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ── ORCHARD VIDEO ────────────────────────────────────── */}
+        {/* ── ORCHARD STORY ────────────────────────────────────── */}
         <section id="story" className="bg-fr-cream">
-          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
-            <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-2 lg:gap-16">
+            <div>
               <span className="font-mono text-xs uppercase tracking-widest text-fr-forest/70">
                 Our Orchard
               </span>
-              <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
+              <h2 className="mt-4 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
                 Five decades on the same volcanic ridge
               </h2>
-              <p className="mt-4 text-lg leading-relaxed text-fr-muted">
+              <p className="mt-5 text-lg leading-relaxed text-fr-muted">
                 What you taste is volcanic mineral, ocean trade winds, and the patience of a family
                 that refuses to scale beyond what the land can carry.
               </p>
+              <p className="mt-4 leading-relaxed text-fr-muted">
+                Every cluster is picked by hand at peak ripeness, then packed and shipped within a
+                day — so it reaches you tasting like the ridge it grew on.
+              </p>
+              <dl className="mt-8 grid max-w-md grid-cols-3 gap-6">
+                {[
+                  { v: "50+", l: "Years family farming" },
+                  { v: "1", l: "Single orchard, Hilo" },
+                  { v: "100%", l: "Hand-harvested" },
+                ].map((s) => (
+                  <div key={s.l}>
+                    <dd className="font-heading text-3xl font-semibold text-fr-forest sm:text-4xl">
+                      {s.v}
+                    </dd>
+                    <dt className="mt-1 text-xs leading-snug text-fr-muted">{s.l}</dt>
+                  </div>
+                ))}
+              </dl>
             </div>
-            <div className="mt-12 overflow-hidden rounded-3xl border border-fr-border shadow-sm">
+
+            <div className="relative overflow-hidden rounded-[1.75rem] ring-1 ring-fr-border/70 shadow-lg shadow-fr-forest/10">
               <video
-                className="aspect-video w-full object-cover"
+                className="aspect-[4/5] w-full object-cover sm:aspect-square lg:aspect-[4/5]"
                 autoPlay
                 muted
                 loop
@@ -285,6 +305,9 @@ export default async function Home() {
               >
                 <source src="/assets/Hero video-2.mp4" type="video/mp4" />
               </video>
+              <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-fr-forest shadow-sm backdrop-blur">
+                Hāmākua Coast · Hawaiʻi
+              </span>
             </div>
           </div>
         </section>
@@ -300,19 +323,26 @@ export default async function Home() {
                 From our tree to your table
               </h2>
             </div>
-            <ol className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+            <ol className="relative mt-16 grid gap-y-12 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-6">
+              {/* Connector line through the icons (desktop) */}
+              <div
+                aria-hidden
+                className="absolute inset-x-[10%] top-8 hidden border-t border-dashed border-fr-border lg:block"
+              />
               {deliverySteps.map((step, i) => {
                 const Icon = iconFor(step.icon);
                 return (
                   <li key={step.title} className="relative flex flex-col items-center text-center">
-                    <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-fr-wash text-fr-forest">
+                    <span className="relative z-10 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-fr-green text-white shadow-sm shadow-fr-forest/20 ring-4 ring-white">
                       <Icon className="h-7 w-7" />
                     </span>
-                    <span className="mt-4 font-mono text-xs text-fr-green">
+                    <span className="mt-5 font-heading text-3xl font-semibold leading-none text-fr-forest/85">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="mt-1 font-semibold text-fr-ink">{step.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-fr-muted">{step.body}</p>
+                    <h3 className="mt-2 font-semibold text-fr-ink">{step.title}</h3>
+                    <p className="mx-auto mt-1.5 max-w-[13rem] text-sm leading-relaxed text-fr-muted">
+                      {step.body}
+                    </p>
                   </li>
                 );
               })}
@@ -363,29 +393,7 @@ export default async function Home() {
 
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {posts.map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-3xl border border-fr-border bg-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-fr-forest/10"
-                >
-                  <div className="aspect-[16/10] overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={post.image}
-                      alt=""
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="text-lg font-bold leading-snug text-fr-ink group-hover:text-fr-forest">
-                      {post.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-fr-muted">{post.excerpt}</p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-fr-forest group-hover:text-fr-green">
-                      Read more <ArrowRight className="h-4 w-4" />
-                    </span>
-                  </div>
-                </Link>
+                <PostCard key={post.slug} post={post} />
               ))}
             </div>
           </div>
