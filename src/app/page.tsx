@@ -13,13 +13,6 @@ import {
   getSiteSettings,
 } from "@/lib/store-data";
 
-const NUTRITION = [
-  { label: "Calories", value: "~60" },
-  { label: "Carbohydrates", value: "~15 g" },
-  { label: "Vitamin C", value: "84–93% DV" },
-  { label: "Potassium", value: "~8% DV" },
-];
-
 function PrimaryButton({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <Link
@@ -145,43 +138,90 @@ export default async function Home() {
               </h2>
             </div>
 
-            <div className="mt-12 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
-              <ul className="grid gap-3 sm:grid-cols-2">
-                {benefits.map((b) => {
-                  const Icon = iconFor(b.icon);
+            <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:auto-rows-[minmax(170px,1fr)] lg:grid-flow-dense lg:grid-cols-6">
+              {/* Photo anchor */}
+              <div className="relative col-span-2 min-h-[210px] overflow-hidden rounded-3xl bg-fr-cream ring-1 ring-fr-border/60 lg:col-span-2 lg:row-span-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/longan-fruit.png"
+                  alt="Fresh Hawaiian longan"
+                  className="h-full w-full object-cover"
+                />
+                <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-fr-forest shadow-sm backdrop-blur">
+                  Single-orchard · Hilo
+                </span>
+              </div>
+
+              {/* Feature benefit */}
+              {benefits[0] &&
+                (() => {
+                  const Icon = iconFor(benefits[0].icon);
                   return (
-                    <li
-                      key={b.title}
-                      className="flex gap-4 rounded-2xl border border-fr-border bg-white p-5"
-                    >
-                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-fr-green/20 text-fr-forest">
-                        <Icon className="h-5 w-5" />
+                    <div className="col-span-2 flex flex-col justify-between gap-5 rounded-3xl bg-fr-forest p-7 text-white lg:col-span-4">
+                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-fr-green-soft">
+                        <Icon className="h-6 w-6" />
                       </span>
                       <div>
-                        <h3 className="font-semibold text-fr-ink">{b.title}</h3>
-                        <p className="mt-1 text-sm leading-relaxed text-fr-muted">{b.body}</p>
+                        <h3 className="font-heading text-2xl font-semibold sm:text-3xl">
+                          {benefits[0].title}
+                        </h3>
+                        <p className="mt-2 max-w-md leading-relaxed text-white/80">
+                          {benefits[0].body}
+                        </p>
                       </div>
-                    </li>
-                  );
-                })}
-              </ul>
-
-              <div className="rounded-2xl bg-fr-forest p-7 text-white">
-                <h3 className="font-mono text-xs uppercase tracking-widest text-fr-green">
-                  Nutritional Profile
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/80">
-                  Fresh longan is light and hydrating. A typical 100 g serving offers roughly:
-                </p>
-                <dl className="mt-5 divide-y divide-white/15">
-                  {NUTRITION.map(({ label, value }) => (
-                    <div key={label} className="flex items-center justify-between py-3">
-                      <dt className="text-sm text-white/75">{label}</dt>
-                      <dd className="font-mono text-sm font-medium">{value}</dd>
                     </div>
-                  ))}
-                </dl>
+                  );
+                })()}
+
+              {/* Supporting benefit tiles */}
+              {benefits.slice(1, 3).map((b) => {
+                const Icon = iconFor(b.icon);
+                return (
+                  <div
+                    key={b.title}
+                    className="col-span-1 rounded-3xl bg-white p-6 ring-1 ring-fr-border/60 lg:col-span-2"
+                  >
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-fr-green/15 text-fr-forest">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="mt-4 font-semibold text-fr-ink">{b.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-fr-muted">{b.body}</p>
+                  </div>
+                );
+              })}
+
+              {/* Nutrition reborn as a bold stat tile */}
+              <div className="col-span-2 flex flex-col justify-between gap-4 rounded-3xl bg-fr-green p-6 text-white lg:col-span-2">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-white/85">
+                  Nutrition · per 100 g
+                </span>
+                <div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-heading text-5xl font-semibold leading-none">93%</span>
+                    <span className="text-sm font-medium text-white/90">Daily Vitamin C</span>
+                  </div>
+                  <p className="mt-3 text-xs leading-relaxed text-white/85">
+                    ~60 cal · ~15 g carbs · ~8% potassium — light &amp; hydrating.
+                  </p>
+                </div>
               </div>
+
+              {/* Remaining benefit tiles */}
+              {benefits.slice(3).map((b) => {
+                const Icon = iconFor(b.icon);
+                return (
+                  <div
+                    key={b.title}
+                    className="col-span-1 rounded-3xl bg-white p-6 ring-1 ring-fr-border/60 lg:col-span-2"
+                  >
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-fr-green/15 text-fr-forest">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="mt-4 font-semibold text-fr-ink">{b.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-fr-muted">{b.body}</p>
+                  </div>
+                );
+              })}
             </div>
 
             <p className="mt-6 max-w-3xl text-xs leading-relaxed text-fr-muted">
