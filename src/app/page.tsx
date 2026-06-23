@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
+import { Reveal } from "@/components/store/reveal";
 import { iconFor } from "@/lib/icon-map";
 import {
   getBenefits,
@@ -22,7 +23,7 @@ function PrimaryButton({ href, children }: { href: string; children: React.React
   return (
     <Link
       href={href}
-      className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-lime px-7 text-sm font-semibold text-fr-teal-deep shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-lime"
+      className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-lime px-7 text-sm font-semibold text-fr-teal-deep shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-lime [&_svg]:transition-transform [&_svg]:duration-300 hover:[&_svg]:translate-x-1"
     >
       {children}
     </Link>
@@ -43,35 +44,63 @@ export default async function Home() {
       <SiteHeader />
       <main>
         {/* ── HERO ─────────────────────────────────────────────── */}
-        <section className="relative isolate overflow-hidden">
-          <div className="absolute inset-0 -z-10">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/hero-bg.png" alt="" className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-b from-fr-teal/80 via-fr-teal/55 to-fr-teal-deep/90" />
-          </div>
-          <div className="mx-auto flex max-w-7xl flex-col items-center px-5 py-24 text-center sm:px-8 sm:py-32 lg:py-40">
-            <span className="mb-5 inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-1 font-mono text-xs uppercase tracking-widest text-white backdrop-blur">
-              {settings.heroBadge}
-            </span>
-            <h1 className="max-w-3xl text-balance text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
-              {settings.heroTitle}
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/85">
-              {settings.heroSubtitle}
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <PrimaryButton href="/products">
-                Shop now <ArrowRight className="h-4 w-4" />
-              </PrimaryButton>
-              <Link
-                href="/#benefits"
-                className="inline-flex h-12 items-center justify-center rounded-full border border-white/40 px-7 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+        <div className="bg-fr-wash">
+          <section className="relative isolate overflow-hidden rounded-b-[2rem] sm:rounded-b-[2.75rem]">
+            <div className="absolute inset-0 -z-10">
+              <video
+                className="h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/assets/hero-bg.png"
               >
-                Health benefits
-              </Link>
+                <source src="/assets/Hero video-2.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-b from-fr-teal/80 via-fr-teal/55 to-fr-teal-deep/95" />
             </div>
-          </div>
-        </section>
+
+            {/* Badge stamp accent (decorative) */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/badge.svg"
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute right-6 top-24 hidden w-28 rotate-[-14deg] opacity-90 drop-shadow-lg lg:block xl:w-36"
+            />
+
+            <div className="mx-auto flex max-w-7xl flex-col items-center px-5 py-24 text-center sm:px-8 sm:py-32 lg:py-40">
+              <Reveal>
+                <span className="inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-1 font-mono text-xs uppercase tracking-widest text-white backdrop-blur">
+                  {settings.heroBadge}
+                </span>
+              </Reveal>
+              <Reveal delay={120}>
+                <h1 className="mt-5 max-w-3xl text-balance text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+                  {settings.heroTitle}
+                </h1>
+              </Reveal>
+              <Reveal delay={240}>
+                <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/85">
+                  {settings.heroSubtitle}
+                </p>
+              </Reveal>
+              <Reveal delay={360}>
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                  <PrimaryButton href="/products">
+                    Shop now <ArrowRight className="h-4 w-4" />
+                  </PrimaryButton>
+                  <Link
+                    href="/#benefits"
+                    className="inline-flex h-12 items-center justify-center rounded-full border border-white/40 px-7 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                  >
+                    Health benefits
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        </div>
 
         {/* ── BENEFITS ─────────────────────────────────────────── */}
         <section id="benefits" className="bg-fr-wash">
