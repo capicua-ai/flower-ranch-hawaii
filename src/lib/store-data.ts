@@ -87,9 +87,9 @@ export async function getProducts(): Promise<Product[]> {
     price: r.price,
     priceNote: r.priceNote,
     image: r.image,
-    gallery: (r.gallery as string[]) ?? [r.image],
+    gallery: (r.gallery as unknown as string[]) ?? [r.image],
     description: r.description,
-    specs: (r.specs as ProductSpec[]) ?? [],
+    specs: (r.specs as unknown as ProductSpec[]) ?? [],
     inStock: r.inStock,
   }));
 }
@@ -104,9 +104,9 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
     price: r.price,
     priceNote: r.priceNote,
     image: r.image,
-    gallery: (r.gallery as string[]) ?? [r.image],
+    gallery: (r.gallery as unknown as string[]) ?? [r.image],
     description: r.description,
-    specs: (r.specs as ProductSpec[]) ?? [],
+    specs: (r.specs as unknown as ProductSpec[]) ?? [],
     inStock: r.inStock,
   };
 }
