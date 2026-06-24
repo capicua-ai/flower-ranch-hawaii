@@ -1,51 +1,56 @@
 import Link from "next/link";
-import { Plus } from "lucide-react";
 import type { Product } from "@/lib/store-data";
+import { CardAddButton } from "./card-add-button";
 
 /**
- * DTC-style product card: tall editorial image on a warm surface, a hand-set
- * "In season" sticker, prominent price, and an add-to-cart affordance that
- * fills on hover. Shared by the home grid and the /products catalog.
+ * Product card (synthesized from atomic-inspiration: lookup.design product-card
+ * pattern + godly/lapa food-DTC execution). The image dominates and the card
+ * stays calm: a quiet two-line meta block (Fraunces name + confident price,
+ * mono micro-label beneath) and an "Add to cart" bar that reveals on hover —
+ * and stays visible on touch devices where there is no hover. The add bar sits
+ * outside the link so it adds to the cart instead of navigating.
  */
 export function ProductCard({ product }: { product: Product }) {
+  const cartProduct = {
+    slug: product.slug,
+    name: product.name,
+    price: product.price,
+    priceNote: product.priceNote,
+    image: product.image,
+  };
+
   return (
-    <Link
-      href={`/products/${product.slug}`}
-      className="group flex flex-col focus-visible:outline-none"
-    >
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-fr-cream ring-1 ring-fr-border/70 transition-shadow duration-300 group-hover:shadow-xl group-hover:shadow-fr-forest/10 group-focus-visible:ring-2 group-focus-visible:ring-fr-green">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={product.image}
-          alt={product.name}
-          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-        />
-
-        {product.inStock && (
-          <span className="absolute left-4 top-4 -rotate-[5deg] rounded-full bg-fr-green px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-white shadow-md">
-            In season
-          </span>
-        )}
-
-        <span
-          aria-hidden
-          className="absolute bottom-4 right-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-fr-forest shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:bg-fr-green group-hover:text-white"
+    <div className="group flex flex-col">
+      <div className="relative aspect-square overflow-hidden rounded-[1.75rem] bg-fr-cream shadow-[0_18px_40px_-24px_rgba(0,70,85,0.45)] ring-1 ring-fr-border/70 transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_28px_50px_-22px_rgba(0,70,85,0.5),0_0_36px_-6px_rgba(142,216,95,0.55)] group-hover:ring-fr-lime/60 group-focus-within:ring-2 group-focus-within:ring-fr-lime">
+        <Link
+          href={`/products/${product.slug}`}
+          aria-label={product.name}
+          className="block h-full w-full focus-visible:outline-none"
         >
-          <Plus className="h-5 w-5" />
-        </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={product.image}
+            alt={product.name}
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+          />
+        </Link>
+
+        <CardAddButton product={cartProduct} />
       </div>
 
-      <div className="mt-4 flex items-start justify-between gap-3 px-0.5">
-        <div className="min-w-0">
-          <h3 className="truncate text-lg font-bold text-fr-ink transition-colors group-hover:text-fr-forest">
+      <Link href={`/products/${product.slug}`} className="focus-visible:outline-none">
+        <div className="mt-4 flex items-baseline justify-between gap-3 px-0.5">
+          <h3 className="truncate font-heading text-xl font-semibold text-fr-ink transition-colors group-hover:text-fr-teal">
             {product.name}
           </h3>
-          <p className="mt-0.5 truncate text-sm text-fr-muted">{product.tagline}</p>
+          <span className="shrink-0 font-mono text-base font-semibold text-fr-teal">
+            {product.price}
+          </span>
         </div>
-        <span className="shrink-0 font-mono text-base font-semibold text-fr-forest">
-          {product.price}
-        </span>
-      </div>
-    </Link>
+        <p className="mt-1 px-0.5 font-mono text-[11px] uppercase tracking-wider text-fr-muted">
+          {product.tagline}
+        </p>
+      </Link>
+    </div>
   );
 }

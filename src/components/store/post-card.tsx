@@ -11,7 +11,7 @@ export function PostCard({ post }: { post: BlogPost }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-fr-border/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-fr-forest/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fr-green"
+      className="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-[0_18px_40px_-24px_rgba(0,70,85,0.4)] ring-1 ring-fr-border/70 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_50px_-22px_rgba(0,70,85,0.5),0_0_36px_-6px_rgba(142,216,95,0.5)] hover:ring-fr-lime/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fr-lime"
     >
       <div className="aspect-[16/10] overflow-hidden bg-fr-cream">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -25,11 +25,11 @@ export function PostCard({ post }: { post: BlogPost }) {
         <span className="font-mono text-[10px] uppercase tracking-wider text-fr-muted">
           {post.date} · {post.readingTime}
         </span>
-        <h3 className="mt-2 font-heading text-xl font-semibold leading-snug text-fr-ink transition-colors group-hover:text-fr-forest">
+        <h3 className="mt-2 font-heading text-xl font-semibold leading-snug text-fr-ink transition-colors group-hover:text-fr-teal">
           {post.title}
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-fr-muted">{post.excerpt}</p>
-        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-fr-forest transition-colors group-hover:text-fr-green [&_svg]:transition-transform group-hover:[&_svg]:translate-x-0.5">
+        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-fr-teal transition-colors group-hover:text-fr-lime [&_svg]:transition-transform group-hover:[&_svg]:translate-x-0.5">
           Read more <ArrowRight className="h-4 w-4" />
         </span>
       </div>

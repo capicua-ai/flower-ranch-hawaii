@@ -1,0 +1,8 @@
+{
+  "section_type": "Product detail — commerce buy actions (add-to-cart / buy-now) reusing the existing product-card action language",
+  "section_law_quote": "If designing a specific UI component → lookup.design first for pattern decisions, 21st.dev for implementation.",
+  "primary_reference_site_url": "https://lookup.design/",
+  "secondary_reference_site_url": "https://21st.dev/home",
+  "synthesis_principle_extracted": "The buy section is a commerce action pair, not new visual direction: one dominant filled primary (Add to cart, brand-lime) beside one quiet outline secondary (Buy now). The primary gives immediate in-context feedback by opening the cart drawer instead of navigating away, keeping the shopper on the product. The same affordance and styling is mirrored across product card, detail page, and the slide-over drawer so the buy gesture feels identical everywhere; empty/confirmation states reuse one calm icon-tile + single-CTA layout. This change wires existing buttons to cart logic — it does not alter the established visual direction.",
+  "note": "This edit is functional cart wiring (client buttons replacing static ones with identical styling). Principle reused from the product-card synthesis done earlier this session via the same lookup.design component pattern."
+}

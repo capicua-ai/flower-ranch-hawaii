@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
+import { SectionLabel } from "@/components/store/section-label";
 import { getPostBySlug, getPosts } from "@/lib/store-data";
 
 interface BlogPostPageProps {
@@ -34,14 +35,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <article className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-fr-muted transition-colors hover:text-fr-forest"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-fr-muted transition-colors hover:text-fr-teal"
           >
             <ArrowLeft className="h-4 w-4" /> All articles
           </Link>
 
-          <span className="mt-8 block font-mono text-xs uppercase tracking-widest text-fr-forest/70">
-            {post.date} · {post.readingTime}
-          </span>
+          <SectionLabel>{post.date} · {post.readingTime}</SectionLabel>
           <h1 className="mt-3 text-balance text-4xl font-bold leading-tight tracking-tight text-fr-ink sm:text-5xl">
             {post.title}
           </h1>
@@ -64,7 +63,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </p>
             <Link
               href="/products"
-              className="mt-5 inline-flex h-12 items-center justify-center rounded-full bg-fr-green px-7 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:brightness-105"
+              className="mt-5 inline-flex h-12 items-center justify-center rounded-full bg-fr-lime px-7 text-sm font-semibold text-fr-teal-deep transition-all hover:-translate-y-0.5 hover:brightness-105"
             >
               Shop fresh longan
             </Link>

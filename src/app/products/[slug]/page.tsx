@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Check, ShoppingBag, Truck } from "lucide-react";
+import { ArrowLeft, Check, Truck } from "lucide-react";
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
+import { SectionLabel } from "@/components/store/section-label";
+import { ProductBuyButtons } from "@/components/store/product-buy-buttons";
 import { getProductBySlug, getProducts } from "@/lib/store-data";
 
 interface ProductPageProps {
@@ -37,7 +39,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-14">
           <Link
             href="/products"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-fr-muted transition-colors hover:text-fr-forest"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-fr-muted transition-colors hover:text-fr-teal"
           >
             <ArrowLeft className="h-4 w-4" /> All products
           </Link>
@@ -66,39 +68,34 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             {/* Detail */}
             <div className="lg:py-4">
-              <span className="font-mono text-xs uppercase tracking-widest text-fr-forest/70">
-                {product.tagline}
-              </span>
+              <SectionLabel>{product.tagline}</SectionLabel>
               <h1 className="mt-2 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
                 {product.name}
               </h1>
 
               <div className="mt-4 flex items-baseline gap-2">
-                <span className="font-mono text-2xl font-bold text-fr-forest">{product.price}</span>
+                <span className="font-mono text-2xl font-bold text-fr-teal">{product.price}</span>
                 <span className="text-sm text-fr-muted">{product.priceNote}</span>
               </div>
 
               <p className="mt-5 text-lg leading-relaxed text-fr-ink/80">{product.description}</p>
 
               {product.inStock && (
-                <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-fr-forest">
+                <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-fr-teal">
                   <Check className="h-4 w-4" /> In season — shipping now
                 </p>
               )}
 
-              <div className="mt-7 flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-green px-7 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-green"
-                >
-                  <ShoppingBag className="h-4 w-4" /> Add to cart
-                </button>
-                <Link
-                  href="/checkout"
-                  className="inline-flex h-12 items-center justify-center rounded-full border border-fr-border px-7 text-sm font-semibold text-fr-forest transition-colors hover:bg-fr-wash"
-                >
-                  Buy now
-                </Link>
+              <div className="mt-7">
+                <ProductBuyButtons
+                  product={{
+                    slug: product.slug,
+                    name: product.name,
+                    price: product.price,
+                    priceNote: product.priceNote,
+                    image: product.image,
+                  }}
+                />
               </div>
 
               <p className="mt-4 inline-flex items-center gap-1.5 text-sm text-fr-muted">

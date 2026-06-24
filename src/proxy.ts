@@ -27,9 +27,14 @@ const passthrough = () => NextResponse.next();
 // The Souped auth-scaffolder agent tunes `publicRoutes` when it wires
 // per-route protection — only edit it manually if you know what you want.
 // Public surfaces of the storefront. The protected routes — `/account`,
-// `/checkout`, `/orders` — are intentionally NOT listed, so the wide matcher
-// keeps them behind a session. The auth-scaffolder finalizes this when it
-// wires per-route protection.
+// `/orders` — are intentionally NOT listed, so the wide matcher keeps them
+// behind a session. The auth-scaffolder finalizes this when it wires per-route
+// protection.
+//
+// NOTE: `/checkout` is currently PUBLIC. It's a preview cart review with no
+// payment and no sensitive data (cart lives in client localStorage). When a
+// real payment/account flow is added, move `/checkout` back behind auth by
+// removing it from this list.
 export const proxy = withSoupedAuth(
   {
     publicRoutes: [
@@ -39,6 +44,7 @@ export const proxy = withSoupedAuth(
       "/blog",
       "/blog/:path*",
       "/wholesale",
+      "/checkout",
       "/assets/:path*",
       "/favicon.svg",
     ],

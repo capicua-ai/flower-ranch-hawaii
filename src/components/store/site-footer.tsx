@@ -16,7 +16,6 @@ const FOOTER_COLS = [
       { label: "Our Story", href: "/#story" },
       { label: "Benefits", href: "/#benefits" },
       { label: "Blog", href: "/blog" },
-      { label: "Wholesale", href: "/wholesale" },
     ],
   },
 ];
@@ -30,7 +29,7 @@ const SOCIALS = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-fr-forest text-white">
+    <footer className="bg-fr-teal text-white">
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
         <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
           <div className="max-w-xs">
@@ -44,7 +43,7 @@ export function SiteFooter() {
           <div className="flex flex-wrap gap-10 sm:gap-16">
             {FOOTER_COLS.map((col) => (
               <div key={col.title}>
-                <h3 className="font-mono text-xs uppercase tracking-widest text-fr-green">
+                <h3 className="font-mono text-xs uppercase tracking-widest text-fr-lime">
                   {col.title}
                 </h3>
                 <ul className="mt-4 flex flex-col gap-2.5">
@@ -63,7 +62,7 @@ export function SiteFooter() {
             ))}
 
             <div>
-              <h3 className="font-mono text-xs uppercase tracking-widest text-fr-green">Follow</h3>
+              <h3 className="font-mono text-xs uppercase tracking-widest text-fr-lime">Follow</h3>
               <div className="mt-4 flex gap-3">
                 {SOCIALS.map((s) => (
                   <a

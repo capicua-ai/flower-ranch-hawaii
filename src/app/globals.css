@@ -15,10 +15,10 @@
   --color-wf-orange:   var(--wf-orange);
 
   /* Flower Ranch brand tokens → Tailwind utilities (bg-fr-*, text-fr-*, border-fr-*) */
-  --color-fr-forest:      var(--fr-forest);
-  --color-fr-forest-deep: var(--fr-forest-deep);
-  --color-fr-green:      var(--fr-green);
-  --color-fr-green-soft: var(--fr-green-soft);
+  --color-fr-teal:      var(--fr-teal);
+  --color-fr-teal-deep: var(--fr-teal-deep);
+  --color-fr-lime:      var(--fr-lime);
+  --color-fr-lime-soft: var(--fr-lime-soft);
   --color-fr-wash:      var(--fr-wash);
   --color-fr-cream:     var(--fr-cream);
   --color-fr-ink:       var(--fr-ink);
@@ -69,20 +69,21 @@
 }
 
 :root {
-  /* ── Flower Ranch brand palette (Hawaiian Host inspired) ──────────────
-     Rule (per retrospective): the VIVID color (lime) never lands on
-     structural tokens (border/secondary). Lime = action only. Deep teal
+  /* ── Flower Ranch brand palette (Hawaiian Host: teal + lime) ──────────
+     Hybrid per client: Hawaiian Host teal/lime is the system; Flower Ranch
+     green is kept as a brand nod via the logo. Retrospective rule holds:
+     the VIVID color (lime) never lands on structural tokens — deep teal
      anchors dark surfaces + ink; pale teal wash + neutral teal-gray
      carry structure. */
-  --fr-forest:      #14431a; /* deep forest green — dark sections, footer */
-  --fr-forest-deep: #0c2e0a; /* darkest green — deepest surfaces */
-  --fr-green:       #3ba934; /* brand green — CTAs, links, accents (matches v1) */
-  --fr-green-soft:  #cdeebc; /* soft green — accents on dark surfaces */
-  --fr-wash:        #eef4e8; /* soft sage — light section fills (desaturated, not mint) */
-  --fr-cream:       #fbfaf4; /* warm off-white — alt section */
-  --fr-ink:         #1b2a16; /* deep green-charcoal — body + headings */
-  --fr-muted:       #5d6b59; /* green-gray — secondary text */
-  --fr-border:      #e3e3e3; /* NEUTRAL gray border (matches v1; vivid green stays off structure) */
+  --fr-teal:      #004655; /* deep teal — dark sections, footer, anchors */
+  --fr-teal-deep: #00323d; /* darkest teal — deepest surfaces + text on lime */
+  --fr-lime:      #8ed85f; /* lime — CTAs, links, accents (Hawaiian Host) */
+  --fr-lime-soft: #c7ecaa; /* soft lime — accents on dark surfaces */
+  --fr-wash:      #e8fcff; /* pale teal wash — light section fills */
+  --fr-cream:     #f4fafa; /* cool off-white — alt section */
+  --fr-ink:       #04313a; /* deep teal ink — body + headings */
+  --fr-muted:     #4f6a70; /* teal-gray — secondary text */
+  --fr-border:    #cfe1e3; /* NEUTRAL teal-gray border (vivid lime stays off structure) */
 
   --background: #ffffff;
   --foreground: var(--fr-ink);
@@ -90,32 +91,32 @@
   --card-foreground: var(--fr-ink);
   --popover: #ffffff;
   --popover-foreground: var(--fr-ink);
-  --primary: var(--fr-green);
-  --primary-foreground: #ffffff;
+  --primary: var(--fr-lime);
+  --primary-foreground: var(--fr-teal-deep);
   --secondary: var(--fr-wash);
-  --secondary-foreground: var(--fr-forest);
+  --secondary-foreground: var(--fr-teal);
   --muted: #f1f4ee;
   --muted-foreground: var(--fr-muted);
   --accent: var(--fr-wash);
-  --accent-foreground: var(--fr-forest);
+  --accent-foreground: var(--fr-teal);
   --destructive: oklch(0.577 0.245 27.325);
   --border: var(--fr-border);
   --input: var(--fr-border);
-  --ring: var(--fr-green);
-  --chart-1: #3ba934;
-  --chart-2: #2f8c2a;
-  --chart-3: #236f20;
-  --chart-4: #195417;
-  --chart-5: #14431a;
+  --ring: var(--fr-lime);
+  --chart-1: #8ed85f;
+  --chart-2: #4bbf8a;
+  --chart-3: #2f9aa0;
+  --chart-4: #1a6f7a;
+  --chart-5: #004655;
   --radius: 0.75rem;
   --sidebar: var(--fr-wash);
   --sidebar-foreground: var(--fr-ink);
-  --sidebar-primary: var(--fr-green);
-  --sidebar-primary-foreground: var(--fr-forest-deep);
+  --sidebar-primary: var(--fr-lime);
+  --sidebar-primary-foreground: var(--fr-teal-deep);
   --sidebar-accent: #eef7f8;
-  --sidebar-accent-foreground: var(--fr-forest);
+  --sidebar-accent-foreground: var(--fr-teal);
   --sidebar-border: var(--fr-border);
-  --sidebar-ring: var(--fr-green);
+  --sidebar-ring: var(--fr-lime);
 }
 
 .dark {
@@ -273,6 +274,39 @@ button.wf-btn-secondary:hover:not(:disabled) {
   .js .reveal {
     animation: fr-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
+  /* Smooth in-page anchor scrolling (nav links, scroll cue, #benefits, etc.) */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ── Film grain / warmth overlay ────────────────────────────────────────────
+   A faint fractal-noise texture that takes the "flat" feel off solid fills.
+   Render <Grain /> (an absolutely-positioned, aria-hidden layer) inside a
+   `relative` section. `soft-light` keeps it subtle on both light and dark
+   surfaces; tune strength with opacity on the element itself. */
+.fr-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  mix-blend-mode: soft-light;
+}
+
+/* ── Juicy card hover: brand-lime glow + lift ───────────────────────────────
+   Apply `fr-card-glow` alongside the card's own classes. The glow rides in on
+   hover/focus only, so resting cards stay calm. */
+.fr-card-glow {
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fr-card-glow:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 28px 50px -22px rgba(0, 70, 85, 0.5),
+      0 0 0 1px rgba(142, 216, 95, 0.45),
+      0 0 34px -6px rgba(142, 216, 95, 0.45);
+  }
 }
 
 @layer base {
@@ -284,6 +318,8 @@ button.wf-btn-secondary:hover:not(:disabled) {
   }
   html {
     @apply font-sans;
+    /* Offset anchored sections so they land below the floating nav. */
+    scroll-padding-top: 6rem;
   }
   /* Editorial display serif for the big headings; smaller h3/h4 stay sans. */
   h1,

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
+import { SectionLabel } from "@/components/store/section-label";
 import { ProductCard } from "@/components/store/product-card";
 import { getProducts } from "@/lib/store-data";
 
@@ -16,11 +17,11 @@ export default async function ProductsPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="-mt-[68px] rounded-b-[2rem] bg-fr-forest sm:-mt-[72px] sm:rounded-b-[2.75rem]">
+        <section className="-mt-[68px] bg-fr-teal sm:-mt-[72px]">
           <div className="mx-auto max-w-7xl px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-36">
-            <span className="font-mono text-xs uppercase tracking-widest text-fr-green">Shop</span>
+            <SectionLabel dark>Shop</SectionLabel>
             <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              Fresh from the orchard
+              Fresh from the <em className="font-medium not-italic text-fr-lime">orchard</em>
             </h1>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/80">
               Hand-harvested in Hilo, Hawaiʻi and shipped within a day of picking. Choose your fruit.
