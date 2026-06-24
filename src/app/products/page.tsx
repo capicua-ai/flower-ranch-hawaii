@@ -31,6 +31,7 @@ export default async function ProductsPage() {
 
         <section className="bg-white">
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+            <h2 className="sr-only">All products</h2>
             <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
               {products.map((p) => (
                 <ProductCard key={p.slug} product={p} />

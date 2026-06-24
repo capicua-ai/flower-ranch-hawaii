@@ -17,7 +17,7 @@ export function SectionLabel({
         dark ? "text-fr-lime" : "text-fr-teal"
       }`}
     >
-      <Leaf className={`h-3.5 w-3.5 ${dark ? "text-fr-lime" : "text-[#3ba934]"}`} aria-hidden />
+      <Leaf className={`h-3.5 w-3.5 ${dark ? "text-fr-lime" : "text-[#33971f]"}`} aria-hidden />
       {children}
     </span>
   );

@@ -1,0 +1,8 @@
+{
+  "section_type": "Blog article header — back link + meta eyebrow (reuses the existing SectionLabel component); a spacing/hierarchy fix, not a new visual direction",
+  "section_law_quote": "If designing a specific UI component → lookup.design first for pattern decisions, 21st.dev for implementation.",
+  "primary_reference_site_url": "https://lookup.design/",
+  "secondary_reference_site_url": "https://21st.dev/home",
+  "synthesis_principle_extracted": "An article header reads top-down as discrete tiers: a quiet back affordance, then the meta eyebrow (date · reading time) on its own line, then the title — never inline-collided. The bug was two inline-level elements (back Link + eyebrow span) sharing a line so the leaf glyph touched 'articles'. Fix: give the back link its own line and drop the eyebrow to a block below with vertical rhythm (mt-7), matching the SectionLabel eyebrow language already used across the storefront.",
+  "note": "Layout/spacing correction on an existing component pattern. Principle reused from the SectionLabel eyebrow synthesis done earlier this session."
+}

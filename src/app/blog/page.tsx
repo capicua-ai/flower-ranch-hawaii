@@ -30,6 +30,7 @@ export default async function BlogPage() {
 
         <section className="bg-fr-wash">
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+            <h2 className="sr-only">All articles</h2>
             <div className="grid gap-6 md:grid-cols-3">
               {posts.map((post) => (
                 <PostCard key={post.slug} post={post} />

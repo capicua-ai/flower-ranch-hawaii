@@ -157,7 +157,7 @@ export default async function Home() {
             <div className="max-w-2xl">
               <SectionLabel>Benefits of Longan</SectionLabel>
               <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
-                A little fruit with <em className="font-medium not-italic text-[#3ba934]">big</em> benefits
+                A little fruit with <em className="font-medium not-italic text-[#33971f]">big</em> benefits
               </h2>
             </div>
 
@@ -198,7 +198,7 @@ export default async function Home() {
 
               {/* Nutrition reborn as a bold stat tile */}
               <div className="col-span-2 flex flex-col justify-between gap-4 rounded-3xl bg-fr-lime p-6 text-fr-teal-deep shadow-[0_18px_40px_-24px_rgba(0,70,85,0.4)] lg:col-span-2">
-                <span className="font-mono text-[10px] uppercase tracking-wider text-fr-teal-deep/70">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-fr-teal-deep">
                   Nutrition · per 100 g
                 </span>
                 <div>
@@ -210,7 +210,7 @@ export default async function Home() {
                     />
                     <span className="text-sm font-medium text-fr-teal-deep/80">Daily Vitamin C</span>
                   </div>
-                  <p className="mt-3 text-xs leading-relaxed text-fr-teal-deep/75">
+                  <p className="mt-3 text-xs leading-relaxed text-fr-teal-deep/90">
                     ~60 cal · ~15 g carbs · ~8% potassium — light &amp; hydrating.
                   </p>
                 </div>
@@ -242,7 +242,7 @@ export default async function Home() {
               <div>
                 <SectionLabel>Shop</SectionLabel>
                 <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
-                  Fresh from the <em className="font-medium not-italic text-[#3ba934]">orchard</em>
+                  Fresh from the <em className="font-medium not-italic text-[#33971f]">orchard</em>
                 </h2>
               </div>
               <Link
@@ -297,31 +297,43 @@ export default async function Home() {
         </section>
 
         {/* ── DELIVERY JOURNEY ─────────────────────────────────── */}
-        <section className="bg-white">
-          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
+        <section
+          className="relative isolate overflow-hidden"
+          style={{
+            background:
+              "radial-gradient(60% 60% at 50% -10%, rgba(142,216,95,0.12), transparent 62%), radial-gradient(55% 65% at 100% 110%, rgba(0,118,140,0.12), transparent 60%), #f4fafa",
+          }}
+        >
+          <Grain opacity={0.4} />
+          <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <div className="max-w-2xl">
               <SectionLabel>Delivered Fresh</SectionLabel>
               <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
-                From our tree to your <em className="font-medium not-italic text-[#3ba934]">table</em>
+                From our tree to your <em className="font-medium not-italic text-[#33971f]">table</em>
               </h2>
             </div>
-            <ol className="relative mt-16 grid gap-y-12 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-6">
-              {/* Connector line through the icons (desktop) */}
+            <ol className="relative mt-20 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-5">
+              {/* Gradient connector running through the icon nodes (desktop) */}
               <div
                 aria-hidden
-                className="absolute inset-x-[10%] top-8 hidden border-t border-dashed border-fr-border lg:block"
+                className="absolute left-[10%] right-[10%] top-10 hidden h-0.5 rounded-full bg-gradient-to-r from-fr-lime via-[#33971f] to-fr-teal lg:block"
               />
               {deliverySteps.map((step, i) => {
                 const Icon = iconFor(step.icon);
                 return (
-                  <li key={step.title} className="relative flex flex-col items-center text-center">
-                    <span className="relative z-10 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-fr-lime text-fr-teal-deep shadow-sm shadow-fr-teal/20 ring-4 ring-white">
-                      <Icon className="h-7 w-7" />
+                  <li key={step.title} className="group relative flex flex-col items-center text-center">
+                    {/* Icon node sitting on the connector line */}
+                    <div className="relative flex h-20 w-full items-center justify-center">
+                      <span className="relative z-10 inline-flex h-14 w-14 items-center justify-center rounded-full bg-white text-fr-teal shadow-[0_12px_26px_-12px_rgba(0,70,85,0.5)] ring-1 ring-fr-border transition-all duration-300 group-hover:-translate-y-1 group-hover:text-[#33971f] group-hover:shadow-[0_18px_30px_-12px_rgba(0,70,85,0.55),0_0_22px_-6px_rgba(142,216,95,0.6)] group-hover:ring-fr-lime">
+                        <Icon className="h-6 w-6" />
+                      </span>
+                    </div>
+                    <span className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-fr-teal/70">
+                      Step {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="mt-5 font-heading text-3xl font-semibold leading-none text-fr-teal/85">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="mt-2 font-semibold text-fr-ink">{step.title}</h3>
+                    <h3 className="mt-1.5 font-heading text-lg font-semibold text-fr-ink">
+                      {step.title}
+                    </h3>
                     <p className="mx-auto mt-1.5 max-w-[13rem] text-sm leading-relaxed text-fr-muted">
                       {step.body}
                     </p>
@@ -349,10 +361,10 @@ export default async function Home() {
               }}
             />
             <Grain opacity={0.6} />
-            <h2 className="mx-auto max-w-2xl text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            <h2 className="mx-auto text-balance text-4xl font-bold tracking-tight text-white sm:whitespace-nowrap sm:text-5xl">
               Taste Hawaiʻi's freshest <em className="font-medium not-italic text-fr-lime">longan</em>
             </h2>
-            <p className="mx-auto mt-4 max-w-lg text-lg text-white/80">
+            <p className="mx-auto mt-4 max-w-lg text-lg text-white/80 sm:max-w-none sm:whitespace-nowrap">
               Limited seasonal harvest. Order now and we ship within days of picking.
             </p>
             <div className="mt-8 flex justify-center">
@@ -377,7 +389,7 @@ export default async function Home() {
               <div>
                 <SectionLabel>From the Blog</SectionLabel>
                 <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
-                  Longan, the <em className="font-medium not-italic text-[#3ba934]">Hawaiian way</em>
+                  Longan, the <em className="font-medium not-italic text-[#33971f]">Hawaiian way</em>
                 </h2>
               </div>
               <Link

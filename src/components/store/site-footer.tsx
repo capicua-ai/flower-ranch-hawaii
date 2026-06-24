@@ -43,9 +43,9 @@ export function SiteFooter() {
           <div className="flex flex-wrap gap-10 sm:gap-16">
             {FOOTER_COLS.map((col) => (
               <div key={col.title}>
-                <h3 className="font-mono text-xs uppercase tracking-widest text-fr-lime">
+                <h2 className="font-mono text-xs uppercase tracking-widest text-fr-lime">
                   {col.title}
-                </h3>
+                </h2>
                 <ul className="mt-4 flex flex-col gap-2.5">
                   {col.links.map((link) => (
                     <li key={link.href}>
@@ -62,7 +62,7 @@ export function SiteFooter() {
             ))}
 
             <div>
-              <h3 className="font-mono text-xs uppercase tracking-widest text-fr-lime">Follow</h3>
+              <h2 className="font-mono text-xs uppercase tracking-widest text-fr-lime">Follow</h2>
               <div className="mt-4 flex gap-3">
                 {SOCIALS.map((s) => (
                   <a

@@ -98,7 +98,7 @@ export default function WholesalePage() {
                 <SectionLabel>The Opportunity</SectionLabel>
                 <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
                   There's a business opportunity in{" "}
-                  <em className="font-medium not-italic text-[#3ba934]">longan</em>
+                  <em className="font-medium not-italic text-[#33971f]">longan</em>
                 </h2>
               </div>
               <div>
@@ -114,17 +114,17 @@ export default function WholesalePage() {
               </div>
             </div>
 
-            <dl className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-fr-border bg-fr-border sm:grid-cols-3">
+            <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-fr-border bg-fr-border sm:grid-cols-3">
               {STATS.map((s) => (
                 <div key={s.label} className="flex flex-col items-center gap-2 bg-white px-6 py-10">
-                  <div className="flex items-baseline gap-1">
-                    <dd className="text-5xl font-bold text-fr-teal">{s.value}</dd>
+                  <p className="flex items-baseline gap-1">
+                    <span className="text-5xl font-bold text-fr-teal">{s.value}</span>
                     <span className="font-mono text-sm font-medium text-fr-teal">{s.unit}</span>
-                  </div>
-                  <dt className="text-sm text-fr-muted">{s.label}</dt>
+                  </p>
+                  <p className="text-sm text-fr-muted">{s.label}</p>
                 </div>
               ))}
-            </dl>
+            </div>
           </div>
         </section>
 
@@ -174,7 +174,7 @@ export default function WholesalePage() {
             <div className="max-w-2xl">
               <SectionLabel>The Quality</SectionLabel>
               <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
-                Every step is visible and <em className="font-medium not-italic text-[#3ba934]">accountable</em>
+                Every step is visible and <em className="font-medium not-italic text-[#33971f]">accountable</em>
               </h2>
             </div>
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
@@ -184,7 +184,7 @@ export default function WholesalePage() {
                     <Icon className="h-6 w-6" />
                   </span>
                   <div>
-                    <span className="font-mono text-xs text-fr-lime">{n}</span>
+                    <span className="font-mono text-xs font-medium text-fr-teal">{n}</span>
                     <h3 className="mt-0.5 text-lg font-bold text-fr-ink">{title}</h3>
                     <p className="mt-1.5 text-sm leading-relaxed text-fr-muted">{body}</p>
                   </div>
@@ -201,7 +201,7 @@ export default function WholesalePage() {
               <div>
                 <SectionLabel>The Values</SectionLabel>
                 <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
-                  Why choose <em className="font-medium not-italic text-[#3ba934]">Flower Ranch Hawaii</em>?
+                  Why choose <em className="font-medium not-italic text-[#33971f]">Flower Ranch Hawaii</em>?
                 </h2>
                 <p className="mt-4 leading-relaxed text-fr-muted">
                   Our longan is organically grown and carefully harvested, ensuring every piece
@@ -227,7 +227,7 @@ export default function WholesalePage() {
             <div>
               <SectionLabel>The Next Step</SectionLabel>
               <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
-                Let's cultivate something lasting <em className="font-medium not-italic text-[#3ba934]">together</em>
+                Let's cultivate something lasting <em className="font-medium not-italic text-[#33971f]">together</em>
               </h2>
               <p className="mt-4 max-w-md text-lg leading-relaxed text-fr-muted">
                 Tell us about your buying program and we'll route you to Hawaiʻi's premier longan

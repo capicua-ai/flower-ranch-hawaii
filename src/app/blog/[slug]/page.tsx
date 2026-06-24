@@ -35,12 +35,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <article className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-fr-muted transition-colors hover:text-fr-teal"
+            className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-fr-muted transition-colors hover:text-fr-teal"
           >
             <ArrowLeft className="h-4 w-4" /> All articles
           </Link>
 
-          <SectionLabel>{post.date} · {post.readingTime}</SectionLabel>
+          <div className="mt-7">
+            <SectionLabel>
+              {post.date} · {post.readingTime}
+            </SectionLabel>
+          </div>
           <h1 className="mt-3 text-balance text-4xl font-bold leading-tight tracking-tight text-fr-ink sm:text-5xl">
             {post.title}
           </h1>
