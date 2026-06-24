@@ -1,7 +1,5 @@
-import { Leaf } from "lucide-react";
-
 /**
- * Section eyebrow/kicker: a small leaf glyph + mono uppercase label.
+ * Section eyebrow/kicker: a mono uppercase label in a pill.
  * Use `dark` on dark-teal section backgrounds so the label reads as lime.
  */
 export function SectionLabel({
@@ -13,11 +11,12 @@ export function SectionLabel({
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest ${
-        dark ? "text-fr-lime" : "text-fr-teal"
+      className={`inline-flex items-center rounded-full px-3.5 py-1.5 font-mono text-[13px] uppercase tracking-widest ring-1 ${
+        dark
+          ? "bg-white/10 text-fr-lime ring-white/20"
+          : "bg-white text-fr-teal shadow-sm ring-fr-border"
       }`}
     >
-      <Leaf className={`h-3.5 w-3.5 ${dark ? "text-fr-lime" : "text-[#33971f]"}`} aria-hidden />
       {children}
     </span>
   );

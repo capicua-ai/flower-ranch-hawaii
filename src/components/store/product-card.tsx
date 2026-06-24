@@ -21,24 +21,19 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="group flex flex-col">
-      <div className="relative aspect-square overflow-hidden rounded-[1.75rem] bg-fr-cream shadow-[0_18px_40px_-24px_rgba(0,70,85,0.45)] ring-1 ring-fr-border/70 transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_28px_50px_-22px_rgba(0,70,85,0.5),0_0_36px_-6px_rgba(142,216,95,0.55)] group-hover:ring-fr-lime/60 group-focus-within:ring-2 group-focus-within:ring-fr-lime">
-        <Link
-          href={`/products/${product.slug}`}
-          aria-label={product.name}
-          className="block h-full w-full focus-visible:outline-none"
-        >
+      <Link
+        href={`/products/${product.slug}`}
+        className="flex flex-col focus-visible:outline-none"
+      >
+        <div className="relative aspect-square overflow-hidden rounded-[1.75rem] bg-fr-cream shadow-[0_18px_40px_-24px_rgba(0,70,85,0.45)] ring-1 ring-fr-border/70 transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_28px_50px_-22px_rgba(0,70,85,0.5),0_0_36px_-6px_rgba(142,216,95,0.55)] group-hover:ring-fr-lime/60 group-focus-within:ring-2 group-focus-within:ring-fr-lime">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={product.image}
             alt={product.name}
             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
           />
-        </Link>
+        </div>
 
-        <CardAddButton product={cartProduct} />
-      </div>
-
-      <Link href={`/products/${product.slug}`} className="focus-visible:outline-none">
         <div className="mt-4 flex items-baseline justify-between gap-3 px-0.5">
           <h3 className="truncate font-heading text-xl font-semibold text-fr-ink transition-colors group-hover:text-fr-teal">
             {product.name}
@@ -51,6 +46,8 @@ export function ProductCard({ product }: { product: Product }) {
           {product.tagline}
         </p>
       </Link>
+
+      <CardAddButton product={cartProduct} />
     </div>
   );
 }

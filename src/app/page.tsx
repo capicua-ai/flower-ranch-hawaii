@@ -170,9 +170,12 @@ export default async function Home() {
                   alt="Fresh Hawaiian longan"
                   className="h-full w-full object-cover"
                 />
-                <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-fr-teal shadow-sm backdrop-blur">
-                  Single-orchard · Hilo
-                </span>
+                <Link
+                  href="/products"
+                  className="group/cta absolute inset-x-4 bottom-4 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-lime px-6 text-sm font-semibold text-fr-teal-deep shadow-lg transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-lime [&_svg]:transition-transform group-hover/cta:[&_svg]:translate-x-1"
+                >
+                  Shop now <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
 
               {/* Feature benefit */}
@@ -197,8 +200,8 @@ export default async function Home() {
               ))}
 
               {/* Nutrition reborn as a bold stat tile */}
-              <div className="col-span-2 flex flex-col justify-between gap-4 rounded-3xl bg-fr-lime p-6 text-fr-teal-deep shadow-[0_18px_40px_-24px_rgba(0,70,85,0.4)] lg:col-span-2">
-                <span className="font-mono text-[10px] uppercase tracking-wider text-fr-teal-deep">
+              <div className="col-span-2 flex flex-col justify-between gap-4 rounded-3xl bg-fr-teal p-6 text-white shadow-[0_18px_40px_-24px_rgba(0,70,85,0.4)] lg:col-span-2">
+                <span className="font-mono text-xs uppercase tracking-wider text-fr-lime">
                   Nutrition · per 100 g
                 </span>
                 <div>
@@ -208,9 +211,9 @@ export default async function Home() {
                       suffix="%"
                       className="font-heading text-5xl font-semibold leading-none"
                     />
-                    <span className="text-sm font-medium text-fr-teal-deep/80">Daily Vitamin C</span>
+                    <span className="text-sm font-medium text-white/80">Daily Vitamin C</span>
                   </div>
-                  <p className="mt-3 text-xs leading-relaxed text-fr-teal-deep/90">
+                  <p className="mt-3 text-xs leading-relaxed text-white/80">
                     ~60 cal · ~15 g carbs · ~8% potassium — light &amp; hydrating.
                   </p>
                 </div>
@@ -228,7 +231,7 @@ export default async function Home() {
               ))}
             </div>
 
-            <p className="mt-6 max-w-3xl text-xs leading-relaxed text-fr-muted">
+            <p className="mt-8 text-xs leading-relaxed text-fr-muted lg:whitespace-nowrap">
               Disclaimer: Not intended to diagnose, treat, cure, or prevent any disease. Nutritional
               values are approximate. Sources: WebMD, Health.com.
             </p>
