@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { Product } from "@/lib/store-data";
 import { CardAddButton } from "./card-add-button";
 
@@ -48,6 +49,13 @@ export function ProductCard({ product }: { product: Product }) {
       </Link>
 
       <CardAddButton product={cartProduct} />
+
+      <Link
+        href={`/products/${product.slug}`}
+        className="group/details mt-2.5 inline-flex items-center justify-center gap-1.5 text-sm font-medium text-fr-muted transition-colors hover:text-fr-teal focus-visible:outline-none [&_svg]:transition-transform group-hover/details:[&_svg]:translate-x-0.5"
+      >
+        View details <ArrowRight className="h-3.5 w-3.5" />
+      </Link>
     </div>
   );
 }
