@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, ShoppingBag, User, X } from "lucide-react";
 import { useCart } from "./cart-context";
@@ -16,6 +17,12 @@ const NAV_LINKS = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const { count, openCart } = useCart();
+  const pathname = usePathname();
+
+  // Active = real-page links matching the current route. In-page anchors
+  // (Our Story / Benefits, which are "/#…") are not marked active.
+  const isActive = (href: string) =>
+    !href.startsWith("/#") && href !== "/" && (pathname === href || pathname.startsWith(`${href}/`));
 
   return (
     <header className="sticky top-0 z-50 px-4 pt-3 sm:pt-4">
@@ -29,19 +36,27 @@ export function SiteHeader() {
           </Link>
 
           <div
-            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 lg:flex"
+            className="hidden items-center gap-7 lg:ml-auto lg:mr-6 lg:flex"
             role="navigation"
             aria-label="Primary"
           >
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-fr-ink/75 transition-colors hover:text-fr-lime"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`text-sm transition-colors ${
+                    active
+                      ? "font-semibold text-fr-teal"
+                      : "font-medium text-fr-ink/75 hover:text-fr-teal"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-1">
@@ -89,17 +104,25 @@ export function SiteHeader() {
             aria-label="Mobile"
           >
             <ul className="flex flex-col gap-1">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-xl px-3 py-3 text-base font-medium text-fr-ink/90 transition-colors hover:bg-fr-wash hover:text-fr-lime"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const active = isActive(link.href);
+                return (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={`block rounded-xl px-3 py-3 text-base transition-colors hover:bg-fr-wash ${
+                        active
+                          ? "font-semibold text-fr-teal"
+                          : "font-medium text-fr-ink/90 hover:text-fr-teal"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
               <li>
                 <Link
                   href="/products"
