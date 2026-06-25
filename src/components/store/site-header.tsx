@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Menu, ShoppingBag, User, X } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { useRef, useState } from "react";
+import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { useCart } from "./cart-context";
 
 const NAV_LINKS = [
@@ -16,13 +16,35 @@ const NAV_LINKS = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const searchRef = useRef<HTMLInputElement>(null);
   const { count, openCart } = useCart();
   const pathname = usePathname();
+  const router = useRouter();
 
   // Active = real-page links matching the current route. In-page anchors
   // (Our Story / Benefits, which are "/#…") are not marked active.
   const isActive = (href: string) =>
     !href.startsWith("/#") && href !== "/" && (pathname === href || pathname.startsWith(`${href}/`));
+
+  const toggleSearch = () => {
+    setOpen(false);
+    setSearchOpen((v) => {
+      const next = !v;
+      if (next) requestAnimationFrame(() => searchRef.current?.focus());
+      return next;
+    });
+  };
+
+  const submitSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = query.trim();
+    if (!q) return;
+    router.push(`/products?q=${encodeURIComponent(q)}`);
+    setSearchOpen(false);
+    setQuery("");
+  };
 
   return (
     <header className="sticky top-0 z-50 px-4 pt-3 sm:pt-4">
@@ -60,6 +82,15 @@ export function SiteHeader() {
           </div>
 
           <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={toggleSearch}
+              aria-label="Search products"
+              aria-expanded={searchOpen}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full text-fr-ink/75 transition-colors hover:bg-fr-wash hover:text-fr-lime"
+            >
+              <Search className="h-5 w-5" />
+            </button>
             <Link
               href="/account"
               aria-label="Account"
@@ -90,12 +121,52 @@ export function SiteHeader() {
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
-              onClick={() => setOpen((v) => !v)}
+              onClick={() => {
+                setSearchOpen(false);
+                setOpen((v) => !v);
+              }}
               className="inline-flex h-10 w-10 items-center justify-center rounded-full text-fr-ink/75 transition-colors hover:bg-fr-wash lg:hidden"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
+
+          {/* Search takeover — animates in over the nav contents within the pill */}
+          {searchOpen && (
+            <form
+              onSubmit={submitSearch}
+              role="search"
+              className="fr-search-in absolute inset-1.5 z-20 flex items-center gap-2 rounded-full bg-white pl-4 pr-1.5"
+            >
+              <Search className="h-4 w-4 shrink-0 text-fr-muted" />
+              <input
+                ref={searchRef}
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") setSearchOpen(false);
+                }}
+                placeholder="Search products…"
+                aria-label="Search products"
+                className="h-9 flex-1 bg-transparent text-sm text-fr-ink placeholder:text-fr-muted focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="hidden h-9 shrink-0 items-center rounded-full bg-fr-lime px-5 text-sm font-semibold text-fr-teal-deep transition-all hover:brightness-105 sm:inline-flex"
+              >
+                Search
+              </button>
+              <button
+                type="button"
+                onClick={() => setSearchOpen(false)}
+                aria-label="Close search"
+                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-fr-ink/70 transition-colors hover:bg-fr-wash"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </form>
+          )}
         </nav>
 
         {open && (

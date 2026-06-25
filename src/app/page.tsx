@@ -8,7 +8,8 @@ import { PostCard } from "@/components/store/post-card";
 import { SectionLabel } from "@/components/store/section-label";
 import { Grain } from "@/components/store/botanical";
 import { CountUp } from "@/components/store/count-up";
-import { DeliveryJourney } from "@/components/store/delivery-journey";
+import { OurStory } from "@/components/store/our-story";
+import { HeroVideo } from "@/components/store/hero-video";
 import {
   getBenefits,
   getDeliverySteps,
@@ -60,17 +61,6 @@ function HeroHeadline({ title }: { title: string }) {
   );
 }
 
-function PrimaryButton({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <Link
-      href={href}
-      className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-lime px-7 text-sm font-semibold text-fr-teal-deep shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-lime [&_svg]:transition-transform [&_svg]:duration-300 hover:[&_svg]:translate-x-1"
-    >
-      {children}
-    </Link>
-  );
-}
-
 export default async function Home() {
   const [settings, products, benefits, deliverySteps, posts] = await Promise.all([
     getSiteSettings(),
@@ -90,16 +80,12 @@ export default async function Home() {
         <div className="-mt-[68px] sm:-mt-[72px]">
           <section className="relative isolate flex min-h-[112vh] flex-col overflow-hidden">
             <div className="absolute inset-0 -z-10">
-              <video
-                className="h-full w-full object-cover object-right"
-                autoPlay
-                muted
-                loop
-                playsInline
+              <HeroVideo
+                className="h-full w-full scale-105 object-cover object-right blur-[0.25px]"
+                src="/assets/hero_video2.mp4"
                 poster="/assets/heroimage2.png"
-              >
-                <source src="/assets/hero_video.mp4" type="video/mp4" />
-              </video>
+                rate={0.65}
+              />
               {/* Left-weighted scrim keeps the oversized headline legible over the scene.
                   Deep teal-green (pine) keeps the foliage lush but regains teal depth/contrast. */}
               <div
@@ -165,7 +151,7 @@ export default async function Home() {
               </h2>
             </div>
 
-            <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:auto-rows-[minmax(170px,1fr)] lg:grid-flow-dense lg:grid-cols-6">
+            <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:auto-rows-[minmax(140px,1fr)] lg:grid-flow-dense lg:grid-cols-6">
               {/* Photo anchor */}
               <div className="relative col-span-2 min-h-[210px] overflow-hidden rounded-3xl bg-fr-cream shadow-[0_18px_40px_-24px_rgba(0,70,85,0.35)] ring-1 ring-fr-border/60 lg:col-span-2 lg:row-span-2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -188,7 +174,10 @@ export default async function Home() {
                   <h3 className="font-heading text-2xl font-semibold sm:text-3xl">
                     {benefits[0].title}
                   </h3>
-                  <p className="max-w-md leading-relaxed text-white/80">{benefits[0].body}</p>
+                        <p className="mt-3 max-w-md leading-relaxed text-white/80">
+                          {/* glue the last two words so the line never ends on a lone word (widow) */}
+                          {benefits[0].body.replace(/\s+(\S+)\s*$/, " $1")}
+                  </p>
                 </div>
               )}
 
@@ -203,30 +192,33 @@ export default async function Home() {
                 </div>
               ))}
 
-              {/* Nutrition reborn as a bold stat tile */}
-              <div className="col-span-2 flex flex-col gap-5 rounded-3xl bg-fr-teal p-6 text-white shadow-[0_18px_40px_-24px_rgba(0,70,85,0.4)] lg:col-span-2">
+              {/* Nutrition — four equal stats, each counts up on view */}
+              <div className="col-span-2 flex flex-col gap-4 rounded-3xl bg-fr-teal p-6 text-white shadow-[0_18px_40px_-24px_rgba(0,70,85,0.4)] lg:col-span-2">
                 <span className="font-mono text-xs uppercase tracking-wider text-fr-lime">
                   Nutrition · per 100 g
                 </span>
-                <div className="flex items-baseline gap-2">
-                  <CountUp
-                    to={93}
-                    suffix="%"
-                    className="font-heading text-5xl font-semibold leading-none"
-                  />
-                  <span className="text-sm font-medium text-white/80">Daily Vitamin C</span>
-                </div>
-                <div className="mt-auto grid grid-cols-3 gap-3 border-t border-white/15 pt-4">
+                <div className="grid flex-1 grid-cols-2 gap-y-1">
                   {[
-                    { value: "~60", label: "Calories" },
-                    { value: "15g", label: "Carbs" },
-                    { value: "8%", label: "Potassium" },
-                  ].map((s) => (
-                    <div key={s.label}>
-                      <div className="font-heading text-2xl font-semibold leading-none">
-                        {s.value}
-                      </div>
-                      <div className="mt-1.5 font-mono text-[10px] uppercase tracking-wider text-white/60">
+                    { to: 93, suffix: "%", label: "Daily Vitamin C" },
+                    { to: 60, prefix: "~", label: "Calories" },
+                    { to: 15, suffix: "g", label: "Carbs" },
+                    { to: 8, suffix: "%", label: "Potassium DV" },
+                  ].map((s, i) => (
+                    <div
+                      key={s.label}
+                      className="flex flex-col items-center py-2.5 text-center"
+                      style={{
+                        borderLeft:
+                          i % 2 === 1 ? "1px solid rgba(255,255,255,0.15)" : undefined,
+                      }}
+                    >
+                      <CountUp
+                        to={s.to}
+                        prefix={s.prefix}
+                        suffix={s.suffix}
+                        className="font-heading text-4xl font-semibold leading-none"
+                      />
+                      <div className="mt-2 font-mono text-[10px] uppercase tracking-wider text-white/60">
                         {s.label}
                       </div>
                     </div>
@@ -279,75 +271,8 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ── ORCHARD VIDEO (per PDF: "video of Orchard & Fruit") ── */}
-        <section
-          id="story"
-          className="relative isolate overflow-hidden bg-fr-teal"
-          style={{
-            background:
-              "radial-gradient(75% 80% at 12% 0%, rgba(59,169,52,0.28), transparent 55%), radial-gradient(70% 80% at 95% 8%, rgba(142,216,95,0.14), transparent 55%), radial-gradient(80% 90% at 92% 100%, rgba(0,38,46,0.75), transparent 60%), #004655",
-          }}
-        >
-          <Grain opacity={0.7} />
-          <div className="relative mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-24">
-            <div className="mb-8 text-center">
-              <SectionLabel dark>Our Orchard</SectionLabel>
-              <h2 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                See where your longan <em className="font-medium not-italic text-fr-lime">grows</em>
-              </h2>
-            </div>
-            <div className="relative overflow-hidden rounded-[1.75rem] ring-1 ring-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]">
-              <video
-                className="aspect-video w-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-                poster="/assets/hero-bg.png"
-              >
-                <source src="/assets/Hero video-2.mp4" type="video/mp4" />
-              </video>
-              <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-fr-teal shadow-sm backdrop-blur">
-                Hāmākua Coast · Hawaiʻi
-              </span>
-            </div>
-          </div>
-        </section>
-
-        {/* ── DELIVERY JOURNEY ─────────────────────────────────── */}
-        <section className="bg-white">
-          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
-            <DeliveryJourney steps={deliverySteps} />
-          </div>
-        </section>
-
-        {/* ── CTA BANNER ───────────────────────────────────────── */}
-        <section className="bg-white px-5 pb-20 sm:px-8">
-          <div className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-3xl bg-fr-teal px-6 py-16 text-center shadow-[0_30px_60px_-30px_rgba(0,70,85,0.5)] sm:py-20">
-            <div className="absolute inset-0 -z-10 opacity-20">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/banner.png" alt="" className="h-full w-full object-cover" />
-            </div>
-            {/* Subtle on-brand gradient glow (teal → lime), low-key for depth */}
-            <div
-              aria-hidden
-              className="absolute inset-0 -z-10"
-              style={{
-                background:
-                  "radial-gradient(110% 120% at 85% 5%, rgba(142,216,95,0.30), transparent 55%), radial-gradient(90% 120% at 10% 100%, rgba(0,118,140,0.45), transparent 60%)",
-              }}
-            />
-            <Grain opacity={0.6} />
-            <h2 className="mx-auto text-balance text-4xl font-bold tracking-tight text-white sm:whitespace-nowrap sm:text-5xl">
-              The <em className="font-medium not-italic text-fr-lime">best</em> longan you'll ever taste
-            </h2>
-            <div className="mt-9 flex justify-center">
-              <PrimaryButton href="/products">
-                Shop now <ArrowRight className="h-4 w-4" />
-              </PrimaryButton>
-            </div>
-          </div>
-        </section>
+        {/* ── OUR STORY (orchard video + journey, unified) ─────── */}
+        <OurStory steps={deliverySteps} />
 
         {/* ── BLOG TEASER ──────────────────────────────────────── */}
         <section

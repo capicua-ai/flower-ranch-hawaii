@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 type CountUpProps = {
   /** target value to count to */
   to: number;
+  /** text prepended before the number, e.g. "~" */
+  prefix?: string;
   /** text appended after the number, e.g. "%" */
   suffix?: string;
   /** animation duration in ms */
@@ -16,7 +18,7 @@ type CountUpProps = {
  * Counts from 0 → `to` the first time it scrolls into view. Respects
  * prefers-reduced-motion (and SSR) by rendering the final value immediately.
  */
-export function CountUp({ to, suffix = "", duration = 1400, className = "" }: CountUpProps) {
+export function CountUp({ to, prefix = "", suffix = "", duration = 1400, className = "" }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const [value, setValue] = useState(0);
   const [done, setDone] = useState(false);
@@ -61,6 +63,7 @@ export function CountUp({ to, suffix = "", duration = 1400, className = "" }: Co
 
   return (
     <span ref={ref} className={className}>
+      {prefix}
       {value}
       {suffix}
     </span>
