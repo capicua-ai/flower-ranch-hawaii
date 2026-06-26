@@ -299,6 +299,46 @@ button.wf-btn-secondary:hover:not(:disabled) {
   animation: fr-search-in 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* ── Roadmap motion ─────────────────────────────────────────────────────────
+   1) Flowing connector: the dashed line's dots march toward the destination.
+   2) Staggered reveal: each step rises/fades in sequence once the list scrolls
+   into view (the `fr-steps-in` class is toggled by RoadmapSteps; per-node
+   transition-delay does the 01→05 stagger). Hidden state is gated behind `.js`
+   so content stays visible without JS, and disabled for reduced-motion. */
+@keyframes fr-flow {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fr-flow {
+    animation: fr-flow 0.7s linear infinite;
+  }
+  .js .fr-step {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .js .fr-steps-in .fr-step {
+    opacity: 1;
+    transform: none;
+  }
+  /* Generic subtle scroll-reveal (InView) */
+  .js .fr-inview {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .js .fr-inview.is-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ── Film grain / warmth overlay ────────────────────────────────────────────
    A faint fractal-noise texture that takes the "flat" feel off solid fills.
    Render <Grain /> (an absolutely-positioned, aria-hidden layer) inside a

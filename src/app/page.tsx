@@ -1,15 +1,16 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
 import { Reveal } from "@/components/store/reveal";
 import { ProductCard } from "@/components/store/product-card";
 import { PostCard } from "@/components/store/post-card";
 import { SectionLabel } from "@/components/store/section-label";
-import { Grain } from "@/components/store/botanical";
 import { CountUp } from "@/components/store/count-up";
 import { OurStory } from "@/components/store/our-story";
 import { HeroVideo } from "@/components/store/hero-video";
+import { InView } from "@/components/store/in-view";
+import { MeshBackground } from "@/components/store/mesh-background";
 import {
   getBenefits,
   getDeliverySteps,
@@ -82,7 +83,7 @@ export default async function Home() {
             <div className="absolute inset-0 -z-10">
               <HeroVideo
                 className="h-full w-full scale-105 object-cover object-right blur-[0.25px]"
-                src="/assets/hero_video2.mp4"
+                src="/assets/hero_video2_loop.mp4"
                 poster="/assets/heroimage2.png"
                 rate={0.65}
               />
@@ -119,7 +120,7 @@ export default async function Home() {
                     href="/products"
                     className="group inline-flex h-14 items-center gap-2 rounded-full bg-fr-lime px-8 text-base font-semibold text-fr-teal-deep shadow-xl shadow-fr-teal-deep/30 transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-teal-deep [&_svg]:transition-transform group-hover:[&_svg]:-translate-y-0.5 group-hover:[&_svg]:translate-x-0.5"
                   >
-                    Shop now <ArrowUpRight className="h-5 w-5" />
+                    Shop now
                   </Link>
                   <Link
                     href="/#benefits"
@@ -136,22 +137,19 @@ export default async function Home() {
         {/* ── BENEFITS ─────────────────────────────────────────── */}
         <section
           id="benefits"
-          className="relative isolate overflow-hidden bg-fr-wash"
-          style={{
-            background:
-              "radial-gradient(50% 45% at 10% 8%, rgba(142,216,95,0.20), transparent 60%), radial-gradient(48% 55% at 92% 16%, rgba(0,118,140,0.18), transparent 58%), radial-gradient(55% 55% at 72% 108%, rgba(59,169,52,0.16), transparent 62%), #ffffff",
-          }}
+          className="relative isolate overflow-hidden"
+          style={{ backgroundColor: "#f7faf0" }}
         >
-          <Grain opacity={0.45} />
+          <MeshBackground />
           <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
-            <div className="max-w-2xl">
+            <InView className="max-w-2xl">
               <SectionLabel>Benefits of Longan</SectionLabel>
               <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
                 A little fruit with <em className="font-medium not-italic text-[#33971f]">big</em> benefits
               </h2>
-            </div>
+            </InView>
 
-            <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:auto-rows-[minmax(140px,1fr)] lg:grid-flow-dense lg:grid-cols-6">
+            <InView delay={120} className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:auto-rows-[minmax(140px,1fr)] lg:grid-flow-dense lg:grid-cols-6">
               {/* Photo anchor */}
               <div className="relative col-span-2 min-h-[210px] overflow-hidden rounded-3xl bg-fr-cream shadow-[0_18px_40px_-24px_rgba(0,70,85,0.35)] ring-1 ring-fr-border/60 lg:col-span-2 lg:row-span-2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -164,7 +162,7 @@ export default async function Home() {
                   href="/products"
                   className="group/cta absolute inset-x-4 bottom-4 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-lime px-6 text-sm font-semibold text-fr-teal-deep shadow-lg transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-lime [&_svg]:transition-transform group-hover/cta:[&_svg]:translate-x-1"
                 >
-                  Shop now <ArrowRight className="h-4 w-4" />
+                  Shop now
                 </Link>
               </div>
 
@@ -185,7 +183,8 @@ export default async function Home() {
               {benefits.slice(1, 3).map((b) => (
                 <div
                   key={b.title}
-                  className="fr-card-glow col-span-1 flex flex-col justify-center rounded-3xl bg-white p-6 shadow-[0_18px_40px_-24px_rgba(0,70,85,0.35)] ring-1 ring-fr-border/60 lg:col-span-2"
+                  className="fr-card-glow col-span-1 flex flex-col justify-center rounded-3xl p-6 shadow-[0_18px_40px_-24px_rgba(0,70,85,0.35)] ring-1 ring-fr-border/60 lg:col-span-2"
+                  style={{ background: "linear-gradient(155deg, #ffffff 0%, #eef6e4 100%)" }}
                 >
                   <h3 className="font-heading text-2xl font-semibold text-fr-teal">{b.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-fr-muted">{b.body}</p>
@@ -230,13 +229,14 @@ export default async function Home() {
               {benefits.slice(3).map((b) => (
                 <div
                   key={b.title}
-                  className="fr-card-glow col-span-1 flex flex-col justify-center rounded-3xl bg-white p-6 shadow-[0_18px_40px_-24px_rgba(0,70,85,0.35)] ring-1 ring-fr-border/60 lg:col-span-2"
+                  className="fr-card-glow col-span-1 flex flex-col justify-center rounded-3xl p-6 shadow-[0_18px_40px_-24px_rgba(0,70,85,0.35)] ring-1 ring-fr-border/60 lg:col-span-2"
+                  style={{ background: "linear-gradient(155deg, #ffffff 0%, #eef6e4 100%)" }}
                 >
                   <h3 className="font-heading text-2xl font-semibold text-fr-teal">{b.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-fr-muted">{b.body}</p>
                 </div>
               ))}
-            </div>
+            </InView>
 
             <p className="mt-8 text-xs leading-relaxed text-fr-muted lg:whitespace-nowrap">
               Disclaimer: Not intended to diagnose, treat, cure, or prevent any disease. Nutritional
@@ -248,7 +248,7 @@ export default async function Home() {
         {/* ── PRODUCTS ─────────────────────────────────────────── */}
         <section className="bg-white">
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
-            <div className="flex flex-wrap items-end justify-between gap-4">
+            <InView className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <SectionLabel>Shop</SectionLabel>
                 <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
@@ -261,13 +261,13 @@ export default async function Home() {
               >
                 View all <ArrowRight className="h-4 w-4" />
               </Link>
-            </div>
+            </InView>
 
-            <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            <InView delay={120} className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
               {products.map((p) => (
                 <ProductCard key={p.slug} product={p} />
               ))}
-            </div>
+            </InView>
           </div>
         </section>
 
@@ -275,16 +275,9 @@ export default async function Home() {
         <OurStory steps={deliverySteps} />
 
         {/* ── BLOG TEASER ──────────────────────────────────────── */}
-        <section
-          className="relative isolate overflow-hidden bg-fr-wash"
-          style={{
-            background:
-              "radial-gradient(48% 50% at 90% 10%, rgba(142,216,95,0.20), transparent 58%), radial-gradient(52% 55% at 8% 30%, rgba(0,118,140,0.18), transparent 58%), radial-gradient(55% 55% at 30% 108%, rgba(59,169,52,0.16), transparent 62%), #ffffff",
-          }}
-        >
-          <Grain opacity={0.45} />
+        <section className="bg-white">
           <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
-            <div className="flex flex-wrap items-end justify-between gap-4">
+            <InView className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <SectionLabel>From the Blog</SectionLabel>
                 <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
@@ -297,13 +290,13 @@ export default async function Home() {
               >
                 All articles <ArrowRight className="h-4 w-4" />
               </Link>
-            </div>
+            </InView>
 
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
+            <InView delay={120} className="mt-12 grid gap-6 md:grid-cols-3">
               {posts.map((post) => (
                 <PostCard key={post.slug} post={post} />
               ))}
-            </div>
+            </InView>
           </div>
         </section>
       </main>
