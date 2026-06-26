@@ -11,6 +11,7 @@ import { OurStory } from "@/components/store/our-story";
 import { HeroVideo } from "@/components/store/hero-video";
 import { InView } from "@/components/store/in-view";
 import { MeshBackground } from "@/components/store/mesh-background";
+import { CornerBotanical } from "@/components/store/corner-botanical";
 import {
   getBenefits,
   getDeliverySteps,
@@ -141,6 +142,17 @@ export default async function Home() {
           style={{ backgroundColor: "#f7faf0" }}
         >
           <MeshBackground />
+          {/* Subtle botanical accents in the corners (desktop) */}
+          <CornerBotanical
+            src="/assets/bg-asset-1.png"
+            className="left-0 top-0 hidden lg:block"
+            style={{ width: "15%", maxWidth: "220px", opacity: 0.85, transform: "translate(-16%, -24%)" }}
+          />
+          <CornerBotanical
+            src="/assets/bg-asset-2.png"
+            className="bottom-0 right-0 hidden lg:block"
+            style={{ width: "15%", maxWidth: "220px", opacity: 0.85, transform: "translate(16%, 22%)" }}
+          />
           <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <InView className="max-w-2xl">
               <SectionLabel>Benefits of Longan</SectionLabel>
@@ -271,11 +283,67 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* ── ROOTED IN HAWAII (botanical editorial band) ──────── */}
+        <section className="relative isolate overflow-hidden bg-fr-wash">
+          {/* Botanicals bleeding from the corners (desktop) */}
+          <CornerBotanical
+            src="/assets/bg-asset-2.png"
+            className="right-0 top-0 hidden w-[34%] max-w-[540px] md:block"
+            style={{ transform: "translate(10%, -14%)" }}
+          />
+          <CornerBotanical
+            src="/assets/bg-asset-1.png"
+            className="bottom-0 left-0 hidden w-[30%] max-w-[480px] md:block"
+            style={{ transform: "translate(-8%, 16%)" }}
+          />
+          <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
+            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+              <InView className="overflow-hidden rounded-3xl ring-1 ring-fr-border/60 shadow-[0_24px_60px_-32px_rgba(0,70,85,0.4)]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/farm-bg.png"
+                  alt="A longan tree on our Hāmākua Coast orchard"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+              </InView>
+              <InView delay={120} className="max-w-md lg:justify-self-end">
+                <SectionLabel>Rooted in Hawaiʻi</SectionLabel>
+                <h2 className="mt-3 font-heading text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
+                  Grown on the{" "}
+                  <em className="font-medium not-italic text-[#33971f]">Hāmākua Coast</em>
+                </h2>
+                <p className="mt-4 text-lg leading-relaxed text-fr-muted">
+                  Our longan is grown, hand-harvested and packed on a single family orchard in
+                  Hilo, Hawaiʻi — picked at peak ripeness and shipped within a day so it reaches
+                  you exactly as the islands intended.
+                </p>
+                <Link
+                  href="/#story"
+                  className="mt-8 inline-flex h-12 items-center rounded-full bg-fr-lime px-7 text-sm font-semibold text-fr-teal-deep transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-lime"
+                >
+                  Our story
+                </Link>
+              </InView>
+            </div>
+          </div>
+        </section>
+
         {/* ── OUR STORY (orchard video + journey, unified) ─────── */}
         <OurStory steps={deliverySteps} />
 
         {/* ── BLOG TEASER ──────────────────────────────────────── */}
-        <section className="bg-white">
+        <section className="relative isolate overflow-hidden bg-white">
+          {/* Botanical accents (desktop) */}
+          <CornerBotanical
+            src="/assets/bg-asset-3.png"
+            className="right-0 top-0 hidden md:block"
+            style={{ width: "13%", maxWidth: "190px", transform: "translate(18%, -24%)" }}
+          />
+          <CornerBotanical
+            src="/assets/bg-asset-4.png"
+            className="bottom-0 left-0 hidden md:block"
+            style={{ width: "19%", maxWidth: "270px", transform: "translate(-12%, 24%)" }}
+          />
           <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <InView className="flex flex-wrap items-end justify-between gap-4">
               <div>
