@@ -57,7 +57,7 @@ export function RoadmapSteps({ steps }: { steps: DeliveryStep[] }) {
             >
               {/* Card */}
               <div className="relative flex w-full flex-1 flex-col overflow-hidden rounded-2xl bg-white text-left shadow-[0_10px_30px_-18px_rgba(0,70,85,0.32)] ring-1 ring-fr-border transition-all duration-300 group-hover:-translate-y-1.5 group-hover:ring-2 group-hover:ring-fr-lime group-hover:shadow-[0_22px_44px_-22px_rgba(0,70,85,0.4)]">
-                <div className="flex flex-1 flex-col p-5">
+                <div className="flex flex-col p-6">
                   <div className="flex items-center justify-between">
                     <div
                       className="fr-step-icon flex items-center justify-center rounded-full text-fr-teal ring-1 ring-black/5 transition-colors duration-300 group-hover:text-[#33971f]"
@@ -69,22 +69,25 @@ export function RoadmapSteps({ steps }: { steps: DeliveryStep[] }) {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <h3 className="mt-3 font-heading text-lg font-bold text-fr-teal">{step.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-fr-muted">{step.body}</p>
+                  <h3 className="mt-6 font-heading text-lg font-bold text-fr-teal">{step.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-fr-muted">{step.body}</p>
                 </div>
-                <div className="relative overflow-hidden">
+                <div className="relative flex-1 overflow-hidden" style={{ minHeight: "15rem" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={`/assets/step${i + 1}.png`}
                     alt={step.title}
-                    className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     style={{ objectPosition: STEP_FOCUS[i] ?? "50% 50%" }}
                   />
                   {/* Top fade so the photo blends into the white card */}
                   <span
                     aria-hidden
-                    className="pointer-events-none absolute inset-x-0 top-0 h-16"
-                    style={{ background: "linear-gradient(to bottom, #ffffff, transparent)" }}
+                    className="pointer-events-none absolute inset-x-0 top-0 h-44"
+                    style={{
+                      background:
+                        "linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0.85) 35%, transparent 100%)",
+                    }}
                   />
                 </div>
               </div>
