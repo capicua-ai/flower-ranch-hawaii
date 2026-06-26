@@ -77,7 +77,7 @@ export function RoadmapSteps({ steps }: { steps: DeliveryStep[] }) {
                   <img
                     src={`/assets/step${i + 1}.png`}
                     alt={step.title}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-cover"
                     style={{ objectPosition: STEP_FOCUS[i] ?? "50% 50%" }}
                   />
                   {/* Top fade so the photo blends into the white card */}
