@@ -316,14 +316,11 @@ button.wf-btn-secondary:hover:not(:disabled) {
   }
   .js .fr-step {
     opacity: 0;
-    transform: translateY(22px);
-    transition:
-      opacity 0.6s ease,
-      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
+  /* Keyframe (not transition) so the reveal can't get stuck mid-flight when
+     constant repaints — playing video, blurred mesh — interrupt transitions. */
   .js .fr-steps-in .fr-step {
-    opacity: 1;
-    transform: none;
+    animation: fr-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   /* Generic subtle scroll-reveal (InView) */
   .js .fr-inview {
@@ -336,6 +333,19 @@ button.wf-btn-secondary:hover:not(:disabled) {
   .js .fr-inview.is-in {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Step icon disc — tints toward lime when its card is hovered. */
+.fr-step-icon {
+  background-color: #eef7e1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fr-step-icon {
+    transition: background-color 0.3s ease;
+  }
+  .fr-step:hover .fr-step-icon {
+    background-color: #dcefc2;
   }
 }
 
