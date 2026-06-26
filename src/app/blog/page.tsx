@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
 import { SectionLabel } from "@/components/store/section-label";
 import { PostCard } from "@/components/store/post-card";
+import { CornerBotanical } from "@/components/store/corner-botanical";
 import { getPosts } from "@/lib/store-data";
 
 export const metadata: Metadata = {
@@ -16,8 +17,13 @@ export default async function BlogPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="-mt-[68px] bg-fr-teal sm:-mt-[72px]">
-          <div className="mx-auto max-w-7xl px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-36">
+        <section className="relative isolate -mt-[68px] overflow-hidden bg-fr-teal sm:-mt-[72px]">
+          <CornerBotanical
+            src="/assets/bg-asset-2.png"
+            className="right-0 top-1/2 hidden md:block"
+            style={{ width: "34%", maxWidth: "500px", transform: "translate(12%, -38%)" }}
+          />
+          <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-36">
             <SectionLabel dark>From the Blog</SectionLabel>
             <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
               Longan, the <em className="font-medium not-italic text-fr-lime">Hawaiian way</em>
