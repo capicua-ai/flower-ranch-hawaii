@@ -39,6 +39,7 @@ export const proxy = withSoupedAuth(
   {
     publicRoutes: [
       "/",
+      "/account/login",
       "/products",
       "/products/:path*",
       "/blog",

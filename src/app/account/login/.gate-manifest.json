@@ -1,0 +1,7 @@
+{
+  "section_type": "auth / login (account sign-in screen)",
+  "section_law_quote": "If designing onboarding, auth, or checkout flows → mobbin.com first — these flows have established UX conventions that must be respected.",
+  "primary_reference_site_url": "https://mobbin.com/",
+  "secondary_reference_site_url": "https://minimal.gallery/",
+  "synthesis_principle_extracted": "Auth screens converge on a single centered card with one primary action, the brand mark on top, and minimal chrome (mobbin). Our brand is premium/airy, so use generous whitespace and a single accent color for the action (minimal.gallery). Synthesis: keep the familiar centered-card login hierarchy (logo → headline → one primary CTA → secondary create-account link → escape hatch back to store), but because auth is delegated to Souped OAuth, collapse the email/password form into one trusted 'Sign in' action wrapped in our soft-mesh brand with lime as the sole action color — a real account-login page without owning a credential form. Concrete user reference: Hawaiian Host /account/login."
+}

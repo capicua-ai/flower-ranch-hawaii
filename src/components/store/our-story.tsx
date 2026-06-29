@@ -42,13 +42,38 @@ export function OurStory({ steps }: { steps: DeliveryStep[] }) {
           className="relative mt-12 overflow-hidden rounded-3xl ring-1 ring-fr-border/60 shadow-[0_24px_60px_-32px_rgba(0,70,85,0.4)]"
         >
           <HeroVideo
-            src="/assets/placeholdervideo_v2.mp4"
+            src="/assets/placeholdervideo_v3.mp4"
             poster="/assets/hero-bg.png"
             className="aspect-[16/8] w-full object-cover"
             rate={0.9}
             playOnView
             replayDelayMs={15000}
           />
+          {/* Soft-focus blur in each corner — a gentle, symmetric vignette
+              that reads as intentional. The bottom-right one also dissolves the
+              burned-in Gemini watermark. */}
+          {[
+            { k: "tl", pos: { top: 0, left: 0 }, at: "top left", blur: 7, solid: 12 },
+            { k: "tr", pos: { top: 0, right: 0 }, at: "top right", blur: 7, solid: 12 },
+            { k: "bl", pos: { bottom: 0, left: 0 }, at: "bottom left", blur: 7, solid: 12 },
+            // Bottom-right is stronger — it has to dissolve the burned-in watermark.
+            { k: "br", pos: { bottom: 0, right: 0 }, at: "bottom right", blur: 13, solid: 26 },
+          ].map((c) => (
+            <span
+              key={c.k}
+              aria-hidden
+              className="pointer-events-none absolute"
+              style={{
+                ...c.pos,
+                width: "26%",
+                height: "52%",
+                backdropFilter: `blur(${c.blur}px)`,
+                WebkitBackdropFilter: `blur(${c.blur}px)`,
+                maskImage: `radial-gradient(at ${c.at}, #000 ${c.solid}%, transparent 100%)`,
+                WebkitMaskImage: `radial-gradient(at ${c.at}, #000 ${c.solid}%, transparent 100%)`,
+              }}
+            />
+          ))}
           <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-fr-teal shadow-sm backdrop-blur">
             <Leaf className="h-3.5 w-3.5 text-[#33971f]" /> Hawaiʻi, USA · Sustainably grown
           </span>

@@ -6,6 +6,8 @@ interface HeroVideoProps {
   src: string;
   poster: string;
   className?: string;
+  /** Inline styles forwarded to the <video> (e.g. a transform to crop). */
+  style?: React.CSSProperties;
   /** Playback speed multiplier (1 = normal). */
   rate?: number;
   /**
@@ -34,6 +36,7 @@ export function HeroVideo({
   src,
   poster,
   className,
+  style,
   rate = 1,
   playOnView = false,
   replayDelayMs,
@@ -131,6 +134,7 @@ export function HeroVideo({
     <video
       ref={ref}
       className={className}
+      style={style}
       autoPlay={!playOnView}
       muted
       loop={shouldLoop}
