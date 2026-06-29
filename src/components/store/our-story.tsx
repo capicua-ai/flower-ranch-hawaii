@@ -45,9 +45,9 @@ export function OurStory({ steps }: { steps: DeliveryStep[] }) {
             src="/assets/placeholdervideo_v3.mp4"
             poster="/assets/hero-bg.png"
             className="aspect-[16/8] w-full object-cover"
+            style={{ transform: "scale(1.07)" }}
             rate={0.9}
             playOnView
-            replayDelayMs={15000}
           />
           {/* Soft-focus blur in each corner — a gentle, symmetric vignette
               that reads as intentional. The bottom-right one also dissolves the
