@@ -53,9 +53,9 @@ export function OurStory({ steps }: { steps: DeliveryStep[] }) {
               that reads as intentional. The bottom-right one also dissolves the
               burned-in Gemini watermark. */}
           {[
-            { k: "tl", pos: { top: 0, left: 0 }, at: "top left", blur: 7, solid: 12 },
-            { k: "tr", pos: { top: 0, right: 0 }, at: "top right", blur: 7, solid: 12 },
-            { k: "bl", pos: { bottom: 0, left: 0 }, at: "bottom left", blur: 7, solid: 12 },
+            { k: "tl", pos: { top: 0, left: 0 }, at: "top left", blur: 4, solid: 10 },
+            { k: "tr", pos: { top: 0, right: 0 }, at: "top right", blur: 4, solid: 10 },
+            { k: "bl", pos: { bottom: 0, left: 0 }, at: "bottom left", blur: 4, solid: 10 },
             // Bottom-right is stronger — it has to dissolve the burned-in watermark.
             { k: "br", pos: { bottom: 0, right: 0 }, at: "bottom right", blur: 13, solid: 26 },
           ].map((c) => (
