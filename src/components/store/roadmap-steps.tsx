@@ -7,7 +7,7 @@ import { iconFor } from "@/lib/icon-map";
 // Per-step photo focus (object-position) — the subjects sit at different
 // heights in each shot (truck/fruit low in the portrait frames, harvest
 // centred in the landscape one), so each gets its own crop anchor.
-const STEP_FOCUS = ["50% 82%", "50% 50%", "50% 66%", "50% 80%", "50% 72%"];
+const STEP_FOCUS = ["50% 58%", "50% 50%", "50% 66%", "50% 80%", "50% 72%"];
 
 /**
  * The 5-step "journey" — a horizontal row of cards (stacks on mobile). Each card
