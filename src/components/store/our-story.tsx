@@ -6,6 +6,7 @@ import { Grain } from "./botanical";
 import { RoadmapSteps } from "./roadmap-steps";
 import { InView } from "./in-view";
 import { MeshBackground } from "./mesh-background";
+import { HeroVideo } from "./hero-video";
 
 /**
  * "From our orchard to your table" — a unified story section: heading + a
@@ -40,16 +41,13 @@ export function OurStory({ steps }: { steps: DeliveryStep[] }) {
           delay={100}
           className="relative mt-12 overflow-hidden rounded-3xl ring-1 ring-fr-border/60 shadow-[0_24px_60px_-32px_rgba(0,70,85,0.4)]"
         >
-          <video
-            className="aspect-[16/8] w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
+          <HeroVideo
+            src="/assets/placeholdervideo_v2.mp4"
             poster="/assets/hero-bg.png"
-          >
-            <source src="/assets/placeholder_video.mp4" type="video/mp4" />
-          </video>
+            className="aspect-[16/8] w-full object-cover"
+            rate={0.9}
+            playOnView
+          />
           <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-fr-teal shadow-sm backdrop-blur">
             <Leaf className="h-3.5 w-3.5 text-[#33971f]" /> Hawaiʻi, USA · Sustainably grown
           </span>
