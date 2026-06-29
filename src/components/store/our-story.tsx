@@ -47,6 +47,7 @@ export function OurStory({ steps }: { steps: DeliveryStep[] }) {
             className="aspect-[16/8] w-full object-cover"
             rate={0.9}
             playOnView
+            replayDelayMs={15000}
           />
           <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-fr-teal shadow-sm backdrop-blur">
             <Leaf className="h-3.5 w-3.5 text-[#33971f]" /> Hawaiʻi, USA · Sustainably grown
