@@ -69,8 +69,11 @@ export function OurStory({ steps }: { steps: DeliveryStep[] }) {
                 height: "52%",
                 backdropFilter: `blur(${c.blur}px)`,
                 WebkitBackdropFilter: `blur(${c.blur}px)`,
-                maskImage: `radial-gradient(at ${c.at}, #000 ${c.solid}%, transparent 100%)`,
-                WebkitMaskImage: `radial-gradient(at ${c.at}, #000 ${c.solid}%, transparent 100%)`,
+                // Fade fully to transparent BEFORE the box edges (~68% of the
+                // farthest-corner radius) so the rectangular patch boundary
+                // never shows as a seam — visible on wide monitors otherwise.
+                maskImage: `radial-gradient(at ${c.at}, #000 ${c.solid}%, transparent 68%)`,
+                WebkitMaskImage: `radial-gradient(at ${c.at}, #000 ${c.solid}%, transparent 68%)`,
               }}
             />
           ))}
