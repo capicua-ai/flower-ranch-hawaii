@@ -49,41 +49,36 @@ export function HowToEat() {
           </p>
         </InView>
 
-        <InView
-          delay={120}
-          className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
-        >
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((step, i) => (
-            <div
-              key={step.title}
-              className="flex flex-col rounded-2xl bg-white p-6 text-left shadow-[0_10px_30px_-18px_rgba(0,70,85,0.32)] ring-1 ring-fr-border"
-            >
-              {/* Step photo */}
-              <div
-                className="mb-5 overflow-hidden rounded-xl ring-1 ring-fr-border/60"
-                style={{ aspectRatio: "4 / 3" }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`/assets/use${i + 1}.png`}
-                  alt={step.title}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="flex items-center gap-3">
-                <span
-                  className="flex shrink-0 items-center justify-center rounded-full font-heading text-base font-bold text-[#33971f]"
-                  style={{ width: "2.25rem", height: "2.25rem", backgroundColor: "#eef7e1" }}
+            <InView key={step.title} delay={i * 90} className="h-full">
+              <div className="group flex h-full flex-col rounded-2xl bg-white p-6 text-left shadow-[0_10px_30px_-18px_rgba(0,70,85,0.32)] ring-1 ring-fr-border transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_44px_-22px_rgba(0,70,85,0.4)] hover:ring-2 hover:ring-fr-lime">
+                {/* Step photo */}
+                <div
+                  className="mb-5 overflow-hidden rounded-xl ring-1 ring-fr-border/60"
+                  style={{ aspectRatio: "4 / 3" }}
                 >
-                  {i + 1}
-                </span>
-                <h3 className="font-heading text-lg font-bold text-fr-teal">{step.title}</h3>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/assets/use${i + 1}.png`}
+                    alt={step.title}
+                    className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex items-center gap-3">
+                  <span
+                    className="flex shrink-0 items-center justify-center rounded-full font-heading text-base font-bold text-[#33971f]"
+                    style={{ width: "2.25rem", height: "2.25rem", backgroundColor: "#eef7e1" }}
+                  >
+                    {i + 1}
+                  </span>
+                  <h3 className="font-heading text-lg font-bold text-fr-teal">{step.title}</h3>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-fr-muted">{step.body}</p>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-fr-muted">{step.body}</p>
-            </div>
+            </InView>
           ))}
-        </InView>
-
+        </div>
       </div>
     </section>
   );
