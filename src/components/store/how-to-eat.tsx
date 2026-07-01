@@ -1,8 +1,8 @@
-import { Play } from "lucide-react";
 import { SectionLabel } from "./section-label";
 import { InView } from "./in-view";
+import { VideoModalButton } from "./video-modal-button";
 
-const VIDEO_URL = "https://www.youtube.com/watch?v=Ts7RPpYbi8c";
+const VIDEO_ID = "Ts7RPpYbi8c";
 
 const STEPS = [
   {
@@ -74,15 +74,7 @@ export function HowToEat() {
         </InView>
 
         <div className="mt-12 flex justify-center">
-          <a
-            href={VIDEO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex h-12 items-center gap-2 rounded-full bg-fr-lime px-7 text-sm font-semibold text-fr-teal-deep shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-lime"
-          >
-            <Play className="h-4 w-4" />
-            Watch how to open &amp; eat
-          </a>
+          <VideoModalButton videoId={VIDEO_ID} />
         </div>
       </div>
     </section>
