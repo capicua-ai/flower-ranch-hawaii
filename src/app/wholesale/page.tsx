@@ -4,6 +4,7 @@ import { ArrowRight, ClipboardCheck, Leaf, ShieldCheck, Snowflake, Truck } from 
 import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
 import { SectionLabel } from "@/components/store/section-label";
+import { CountUp } from "@/components/store/count-up";
 
 export const metadata: Metadata = {
   title: "Wholesale Longan — Flower Ranch Hawaii",
@@ -12,9 +13,9 @@ export const metadata: Metadata = {
 };
 
 const STATS = [
-  { value: "300K", unit: "LBS", label: "Annual capacity" },
-  { value: "50+", unit: "YEARS", label: "Family farming" },
-  { value: "+$20", unit: "/ LB", label: "Retail ceiling" },
+  { to: 300, suffix: "K", unit: "LBS", label: "Annual capacity" },
+  { to: 50, suffix: "+", unit: "YEARS", label: "Family farming" },
+  { to: 20, prefix: "+$", unit: "/ LB", label: "Retail ceiling" },
 ];
 
 const SPECS = [
@@ -25,7 +26,7 @@ const SPECS = [
   { label: "Irradiation", value: "USDA APHIS approved" },
   { label: "MOQ", value: "10 cases (120 lb)" },
   { label: "Lead time", value: "5–9 days post-harvest" },
-  { label: "Origin", value: "Kona, Hawaiʻi · single-orchard" },
+  { label: "Origin", value: "Hilo, Hawaiʻi · single-orchard" },
 ];
 
 const QUALITY = [
@@ -49,16 +50,8 @@ export default function WholesalePage() {
         {/* ── HERO ─────────────────────────────────────────────── */}
         <section className="relative isolate -mt-[68px] overflow-hidden sm:-mt-[72px]">
           <div className="absolute inset-0 -z-10">
-            <video
-              className="h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster="/assets/hero-bg.png"
-            >
-              <source src="/assets/Hero video-2.mp4" type="video/mp4" />
-            </video>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/assets/hero-bg.png" alt="" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-fr-teal/85 via-fr-teal/65 to-fr-teal-deep/95" />
           </div>
           <div className="mx-auto max-w-7xl px-5 pb-24 pt-36 sm:px-8 sm:pb-32 sm:pt-44">
@@ -118,7 +111,12 @@ export default function WholesalePage() {
               {STATS.map((s) => (
                 <div key={s.label} className="flex flex-col items-center gap-2 bg-white px-6 py-10">
                   <p className="flex items-baseline gap-1">
-                    <span className="text-5xl font-bold text-fr-teal">{s.value}</span>
+                    <CountUp
+                      to={s.to}
+                      prefix={s.prefix}
+                      suffix={s.suffix}
+                      className="text-5xl font-bold text-fr-teal"
+                    />
                     <span className="font-mono text-sm font-medium text-fr-teal">{s.unit}</span>
                   </p>
                   <p className="text-sm text-fr-muted">{s.label}</p>
@@ -138,12 +136,13 @@ export default function WholesalePage() {
         {/* ── PRODUCT SPECS ────────────────────────────────────── */}
         <section id="product" className="bg-fr-teal">
           <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-2 lg:items-center">
-            <div className="overflow-hidden rounded-3xl bg-white/5">
+            <div className="overflow-hidden rounded-3xl">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/assets/Image product stack.png"
                 alt="Flower Ranch longan retail packaging"
-                className="h-full w-full object-contain p-8"
+                className="w-full object-cover"
+                style={{ aspectRatio: "4 / 5" }}
               />
             </div>
             <div>
@@ -179,12 +178,12 @@ export default function WholesalePage() {
             </div>
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
               {QUALITY.map(({ icon: Icon, n, title, body }) => (
-                <div key={n} className="flex gap-5 rounded-3xl border border-fr-border bg-white p-7">
-                  <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-fr-wash text-fr-teal">
+                <div key={n} className="flex gap-5 rounded-3xl bg-white p-7 shadow-[0_18px_40px_-24px_rgba(0,70,85,0.35)] ring-1 ring-fr-border/60">
+                  <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-fr-wash text-fr-teal">
                     <Icon className="h-6 w-6" />
                   </span>
                   <div>
-                    <span className="font-mono text-xs font-medium text-fr-teal">{n}</span>
+                    <span className="font-mono text-xs font-medium text-[#33971f]">{n}</span>
                     <h3 className="mt-0.5 text-lg font-bold text-fr-ink">{title}</h3>
                     <p className="mt-1.5 text-sm leading-relaxed text-fr-muted">{body}</p>
                   </div>
@@ -211,7 +210,7 @@ export default function WholesalePage() {
               </div>
               <div className="flex flex-col gap-5">
                 {VALUES.map((v) => (
-                  <div key={v.title} className="rounded-3xl border border-fr-border bg-white p-6">
+                  <div key={v.title} className="rounded-3xl bg-white p-6 shadow-[0_18px_40px_-24px_rgba(0,70,85,0.35)] ring-1 ring-fr-border/60">
                     <h3 className="text-xl font-bold text-fr-teal">{v.title}</h3>
                     <p className="mt-1.5 leading-relaxed text-fr-muted">{v.body}</p>
                   </div>
@@ -238,7 +237,7 @@ export default function WholesalePage() {
               </p>
             </div>
 
-            <form className="flex flex-col gap-4 rounded-3xl border border-fr-border bg-fr-cream p-7">
+            <form className="flex flex-col gap-4 rounded-3xl bg-fr-cream p-7 shadow-[0_18px_40px_-24px_rgba(0,70,85,0.35)] ring-1 ring-fr-border/60">
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="name" className="text-sm font-medium text-fr-ink">Full name</label>
                 <input id="name" name="name" type="text" autoComplete="name" className="h-12 rounded-full border border-fr-border bg-white px-5 text-fr-ink outline-none transition focus:border-fr-teal focus:ring-2 focus:ring-fr-lime/30" />

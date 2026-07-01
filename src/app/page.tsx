@@ -8,6 +8,7 @@ import { PostCard } from "@/components/store/post-card";
 import { SectionLabel } from "@/components/store/section-label";
 import { CountUp } from "@/components/store/count-up";
 import { OurStory } from "@/components/store/our-story";
+import { HowToEat } from "@/components/store/how-to-eat";
 import { HeroVideo } from "@/components/store/hero-video";
 import { InView } from "@/components/store/in-view";
 import { MeshBackground } from "@/components/store/mesh-background";
@@ -139,7 +140,12 @@ export default async function Home() {
         <section
           id="benefits"
           className="relative isolate overflow-hidden"
-          style={{ backgroundColor: "#f7faf0" }}
+          style={{
+            backgroundColor: "#f7faf0",
+            borderBottomLeftRadius: "2.5rem",
+            borderBottomRightRadius: "2.5rem",
+            zIndex: 40,
+          }}
         >
           <MeshBackground />
           {/* Subtle botanical accents in the corners (desktop) */}
@@ -253,7 +259,15 @@ export default async function Home() {
         </section>
 
         {/* ── PRODUCTS ─────────────────────────────────────────── */}
-        <section className="bg-white">
+        <section
+          className="relative bg-white"
+          style={{
+            marginTop: "-2.5rem",
+            borderBottomLeftRadius: "2.5rem",
+            borderBottomRightRadius: "2.5rem",
+            zIndex: 32,
+          }}
+        >
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <InView className="flex flex-wrap items-end justify-between gap-4">
               <div>
@@ -278,11 +292,22 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* ── HOW TO EAT LONGAN ────────────────────────────────── */}
+        <HowToEat />
+
         {/* ── OUR STORY (orchard video + journey, unified) ─────── */}
         <OurStory steps={deliverySteps} />
 
         {/* ── BLOG TEASER ──────────────────────────────────────── */}
-        <section className="relative isolate overflow-hidden bg-white">
+        <section
+          className="relative isolate overflow-hidden bg-white"
+          style={{
+            marginTop: "-2.5rem",
+            borderBottomLeftRadius: "2.5rem",
+            borderBottomRightRadius: "2.5rem",
+            zIndex: 8,
+          }}
+        >
           {/* Botanical accent (desktop) */}
           <CornerBotanical
             src="/assets/bg-asset-4.png"

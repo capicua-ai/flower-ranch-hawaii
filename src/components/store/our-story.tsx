@@ -19,7 +19,13 @@ export function OurStory({ steps }: { steps: DeliveryStep[] }) {
     <section
       id="story"
       className="relative isolate"
-      style={{ backgroundColor: "#fbfdf8" }}
+      style={{
+        backgroundColor: "#fbfdf8",
+        marginTop: "-2.5rem",
+        borderBottomLeftRadius: "2.5rem",
+        borderBottomRightRadius: "2.5rem",
+        zIndex: 16,
+      }}
     >
       <MeshBackground intensity={0.32} />
       <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">

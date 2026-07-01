@@ -13,9 +13,10 @@ const FOOTER_COLS = [
   {
     title: "Company",
     links: [
-      { label: "Our Story", href: "/#story" },
+      { label: "Our Process", href: "/#story" },
       { label: "Benefits", href: "/#benefits" },
       { label: "Blog", href: "/blog" },
+      { label: "Wholesale (B2B)", href: "/wholesale" },
     ],
   },
 ];
@@ -29,8 +30,8 @@ const SOCIALS = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-fr-teal text-white">
-      <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+    <footer className="relative bg-fr-teal text-white" style={{ marginTop: "-2.5rem", zIndex: 0 }}>
+      <div className="mx-auto max-w-7xl px-5 pb-14 pt-24 sm:px-8">
         <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
           <div className="max-w-xs">
             {/* eslint-disable-next-line @next/next/no-img-element */}
