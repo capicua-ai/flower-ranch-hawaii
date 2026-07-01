@@ -1,8 +1,5 @@
 import { SectionLabel } from "./section-label";
 import { InView } from "./in-view";
-import { VideoModalButton } from "./video-modal-button";
-
-const VIDEO_ID = "Ts7RPpYbi8c";
 
 const STEPS = [
   {
@@ -61,21 +58,32 @@ export function HowToEat() {
               key={step.title}
               className="flex flex-col rounded-2xl bg-white p-6 text-left shadow-[0_10px_30px_-18px_rgba(0,70,85,0.32)] ring-1 ring-fr-border"
             >
-              <span
-                className="flex items-center justify-center rounded-full font-heading text-lg font-bold text-[#33971f]"
-                style={{ width: "3rem", height: "3rem", backgroundColor: "#eef7e1" }}
+              {/* Step photo */}
+              <div
+                className="mb-5 overflow-hidden rounded-xl ring-1 ring-fr-border/60"
+                style={{ aspectRatio: "4 / 3" }}
               >
-                {i + 1}
-              </span>
-              <h3 className="mt-6 font-heading text-lg font-bold text-fr-teal">{step.title}</h3>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/assets/use${i + 1}.png`}
+                  alt={step.title}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex shrink-0 items-center justify-center rounded-full font-heading text-base font-bold text-[#33971f]"
+                  style={{ width: "2.25rem", height: "2.25rem", backgroundColor: "#eef7e1" }}
+                >
+                  {i + 1}
+                </span>
+                <h3 className="font-heading text-lg font-bold text-fr-teal">{step.title}</h3>
+              </div>
               <p className="mt-3 text-sm leading-relaxed text-fr-muted">{step.body}</p>
             </div>
           ))}
         </InView>
 
-        <div className="mt-12 flex justify-center">
-          <VideoModalButton videoId={VIDEO_ID} />
-        </div>
       </div>
     </section>
   );

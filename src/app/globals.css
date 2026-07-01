@@ -274,11 +274,10 @@ button.wf-btn-secondary:hover:not(:disabled) {
   .js .reveal {
     animation: fr-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
-  /* Smooth in-page anchor scrolling (nav links, scroll cue, #benefits, etc.) */
-  html {
-    scroll-behavior: smooth;
-  }
 }
+/* Smooth scrolling is applied ONLY to in-page anchor links (via the
+   SmoothAnchors handler), not globally — so page-navigation scroll-to-top and
+   programmatic scrolls stay instant. */
 
 /* ── Search takeover entrance ──────────────────────────────────────────────
    The navbar search field animates in via a one-shot keyframe rather than a

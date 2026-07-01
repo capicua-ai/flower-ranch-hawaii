@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
 import { SectionLabel } from "@/components/store/section-label";
 import { CountUp } from "@/components/store/count-up";
+import { MeshBackground } from "@/components/store/mesh-background";
 
 export const metadata: Metadata = {
   title: "Wholesale Longan — Flower Ranch Hawaii",
@@ -51,7 +52,7 @@ export default function WholesalePage() {
         <section className="relative isolate -mt-[68px] overflow-hidden sm:-mt-[72px]">
           <div className="absolute inset-0 -z-10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/hero-bg.png" alt="" className="h-full w-full object-cover" />
+            <img src="/assets/wholesalehero.png" alt="" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-fr-teal/85 via-fr-teal/65 to-fr-teal-deep/95" />
           </div>
           <div className="mx-auto max-w-7xl px-5 pb-24 pt-36 sm:px-8 sm:pb-32 sm:pt-44">
@@ -194,8 +195,9 @@ export default function WholesalePage() {
         </section>
 
         {/* ── VALUES ───────────────────────────────────────────── */}
-        <section className="bg-fr-wash">
-          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
+        <section className="relative isolate overflow-hidden" style={{ backgroundColor: "#f7faf0" }}>
+          <MeshBackground />
+          <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
               <div>
                 <SectionLabel>The Values</SectionLabel>

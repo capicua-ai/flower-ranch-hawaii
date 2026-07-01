@@ -3,6 +3,7 @@ import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/store/cart-context";
 import { CartDrawer } from "@/components/store/cart-drawer";
+import { SmoothAnchors } from "@/components/store/smooth-anchors";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -71,6 +72,7 @@ export default function RootLayout({
           {children}
           <CartDrawer />
         </CartProvider>
+        <SmoothAnchors />
       </body>
     </html>
   );
