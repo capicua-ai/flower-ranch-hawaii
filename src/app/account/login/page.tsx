@@ -46,7 +46,7 @@ export default async function LoginPage({
           aria-label="Flower Ranch Hawaii — home"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/assets/fr_logo_navbar.svg" alt="" className="h-12 w-auto" />
+          <img src="/assets/logo_web_blacktext.svg" alt="" className="h-12 w-auto" />
           <span className="sr-only">Flower Ranch Hawaii</span>
         </Link>
 
