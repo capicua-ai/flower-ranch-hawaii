@@ -1,6 +1,9 @@
 import Link from "next/link";
 
-const FOOTER_COLS = [
+const FOOTER_COLS: {
+  title: string;
+  links: { label: string; href: string; newTab?: boolean }[];
+}[] = [
   {
     title: "Shop",
     links: [
@@ -16,7 +19,7 @@ const FOOTER_COLS = [
       { label: "Our Process", href: "/#story" },
       { label: "Benefits", href: "/#benefits" },
       { label: "Blog", href: "/blog" },
-      { label: "Wholesale (B2B)", href: "/wholesale" },
+      { label: "Wholesale (B2B)", href: "/wholesale", newTab: true },
     ],
   },
 ];
@@ -28,7 +31,25 @@ const SOCIALS = [
   { label: "YouTube", href: "#", icon: "/assets/social-youtube.svg" },
 ];
 
-export function SiteFooter() {
+export function SiteFooter({ variant = "dtc" }: { variant?: "dtc" | "wholesale" }) {
+  // On the standalone wholesale (B2B) page, the self-referential "Wholesale"
+  // link becomes a cross-link back to the DTC retail store.
+  const cols =
+    variant === "wholesale"
+      ? FOOTER_COLS.map((col) =>
+          col.title === "Company"
+            ? {
+                ...col,
+                links: col.links.map((link) =>
+                  link.href === "/wholesale"
+                    ? { label: "Retail store", href: "/", newTab: true }
+                    : link,
+                ),
+              }
+            : col,
+        )
+      : FOOTER_COLS;
+
   return (
     <footer className="relative bg-fr-teal text-white" style={{ marginTop: "-2.5rem", zIndex: 0 }}>
       <div className="mx-auto max-w-7xl px-5 pb-14 pt-24 sm:px-8">
@@ -42,7 +63,7 @@ export function SiteFooter() {
           </div>
 
           <div className="flex flex-wrap gap-10 sm:gap-16">
-            {FOOTER_COLS.map((col) => (
+            {cols.map((col) => (
               <div key={col.title}>
                 <h2 className="font-mono text-xs uppercase tracking-widest text-fr-lime">
                   {col.title}
@@ -52,6 +73,8 @@ export function SiteFooter() {
                     <li key={link.href}>
                       <Link
                         href={link.href}
+                        target={link.newTab ? "_blank" : undefined}
+                        rel={link.newTab ? "noopener noreferrer" : undefined}
                         className="text-sm text-white/75 transition-colors hover:text-white"
                       >
                         {link.label}

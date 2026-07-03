@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ClipboardCheck, Leaf, ShieldCheck, Snowflake, Truck } from "lucide-react";
-import { SiteHeader } from "@/components/store/site-header";
+import { WholesaleHeader } from "@/components/store/wholesale-header";
 import { SiteFooter } from "@/components/store/site-footer";
 import { SectionLabel } from "@/components/store/section-label";
+import { Reveal } from "@/components/store/reveal";
 import { CountUp } from "@/components/store/count-up";
 import { MeshBackground } from "@/components/store/mesh-background";
 
@@ -46,46 +47,76 @@ const VALUES = [
 export default function WholesalePage() {
   return (
     <>
-      <SiteHeader />
+      <WholesaleHeader />
       <main>
         {/* ── HERO ─────────────────────────────────────────────── */}
-        <section className="relative isolate -mt-[68px] overflow-hidden sm:-mt-[72px]">
+        <section id="top" className="relative isolate -mt-[68px] flex min-h-[112vh] flex-col overflow-hidden sm:-mt-[72px]">
           <div className="absolute inset-0 -z-10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/wholesalehero.png" alt="" className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-b from-fr-teal/85 via-fr-teal/65 to-fr-teal-deep/95" />
+            <img
+              src="/assets/wholesalehero.png"
+              alt=""
+              className="h-full w-full scale-105 object-cover"
+            />
+            {/* Left-weighted scrim keeps the headline legible while the photo stays visible */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(0,54,63,0.94) 0%, rgba(0,54,63,0.72) 40%, rgba(0,54,63,0.28) 66%, rgba(0,54,63,0) 86%)",
+              }}
+            />
+            {/* Top + bottom darken for nav legibility and grounding */}
+            <div className="absolute inset-0 bg-gradient-to-b from-fr-teal-deep/55 via-transparent to-fr-teal-deep/85" />
+            {/* On-brand lime glow for depth */}
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(80% 110% at 8% 26%, rgba(142,216,95,0.20), transparent 55%)",
+              }}
+            />
           </div>
-          <div className="mx-auto max-w-7xl px-5 pb-24 pt-36 sm:px-8 sm:pb-32 sm:pt-44">
-            <span className="inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-1 font-mono text-xs uppercase tracking-widest text-white backdrop-blur">
-              For Wholesale Buyers
-            </span>
-            <h1 className="mt-5 max-w-3xl text-balance text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl">
-              Hawaiʻi's premier longan{" "}
-              <em className="font-medium not-italic text-fr-lime">orchard</em>
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/85">
-              We supply wholesale buyers and partners with Hawaiʻi's first premium longan — backed by
-              a story no import brand can match.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="#contact"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-lime px-7 text-sm font-semibold text-fr-teal-deep shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105"
-              >
-                Request wholesale pricing <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="#product"
-                className="inline-flex h-12 items-center justify-center rounded-full border border-white/40 px-7 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-              >
-                See specs
-              </Link>
-            </div>
+          <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-24 pt-36 sm:px-8 sm:pb-28 sm:pt-44">
+            <Reveal>
+              <span className="inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-1 font-mono text-xs uppercase tracking-widest text-white backdrop-blur">
+                For Wholesale Buyers
+              </span>
+            </Reveal>
+            <Reveal delay={120}>
+              <h1 className="mt-6 max-w-3xl text-balance font-heading text-5xl font-bold leading-[1.02] tracking-tight text-white drop-shadow-sm sm:text-6xl lg:text-7xl">
+                Hawaiʻi&rsquo;s premier longan{" "}
+                <em className="font-medium not-italic text-fr-lime">orchard</em>
+              </h1>
+            </Reveal>
+            <Reveal delay={240}>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
+                We supply wholesale buyers and partners with Hawaiʻi&rsquo;s first premium longan —
+                backed by a story no import brand can match.
+              </p>
+            </Reveal>
+            <Reveal delay={360}>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <Link
+                  href="#contact"
+                  className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-lime px-7 text-sm font-semibold text-fr-teal-deep shadow-xl shadow-fr-teal-deep/30 transition-all hover:-translate-y-0.5 hover:brightness-105 [&_svg]:transition-transform group-hover:[&_svg]:translate-x-0.5"
+                >
+                  Request wholesale pricing <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="#product"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-white/40 bg-white/5 px-7 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/15"
+                >
+                  See specs
+                </Link>
+              </div>
+            </Reveal>
           </div>
         </section>
 
         {/* ── OPPORTUNITY + STATS ──────────────────────────────── */}
-        <section className="bg-white">
+        <section id="opportunity" className="bg-white">
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
               <div>
@@ -127,6 +158,37 @@ export default function WholesalePage() {
           </div>
         </section>
 
+        {/* ── STORY ────────────────────────────────────────────── */}
+        <section id="story" className="bg-fr-cream">
+          <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-2 lg:items-center">
+            <div className="overflow-hidden rounded-3xl shadow-[0_18px_40px_-24px_rgba(0,70,85,0.35)] ring-1 ring-fr-border/60">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/assets/hero-bg.png"
+                alt="The Flower Ranch orchard on the Hāmākua Coast"
+                className="w-full object-cover"
+                style={{ aspectRatio: "4 / 3" }}
+              />
+            </div>
+            <div>
+              <SectionLabel>The Story</SectionLabel>
+              <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
+                Five decades rooted in <em className="font-medium not-italic text-[#33971f]">Hawaiian soil</em>
+              </h2>
+              <p className="mt-4 leading-relaxed text-fr-muted">
+                For over fifty years, our family has farmed the volcanic ridges of the Hāmākua Coast on
+                Hawaiʻi Island. That heritage — the rich soil, the mountain water, and the patience it
+                takes to grow fruit this good — is what sets our longan apart from any import.
+              </p>
+              <p className="mt-3 leading-relaxed text-fr-muted">
+                Every cluster is hand-harvested and handled with the same care that has carried our name
+                for three generations. Partner with Flower Ranch Hawaii and you bring that story to your
+                shelves.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* ── MARQUEE ──────────────────────────────────────────── */}
         <div className="overflow-hidden bg-fr-lime py-4">
           <p className="text-center font-mono text-sm font-medium uppercase tracking-widest text-fr-teal-deep">
@@ -140,7 +202,7 @@ export default function WholesalePage() {
             <div className="overflow-hidden rounded-3xl">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/assets/Image product stack.png"
+                src="/assets/productsectionimage.png"
                 alt="Flower Ranch longan retail packaging"
                 className="w-full object-cover"
                 style={{ aspectRatio: "4 / 5" }}
@@ -169,7 +231,7 @@ export default function WholesalePage() {
         </section>
 
         {/* ── QUALITY ──────────────────────────────────────────── */}
-        <section className="bg-white">
+        <section id="quality" className="bg-white">
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <div className="max-w-2xl">
               <SectionLabel>The Quality</SectionLabel>
@@ -195,7 +257,7 @@ export default function WholesalePage() {
         </section>
 
         {/* ── VALUES ───────────────────────────────────────────── */}
-        <section className="relative isolate overflow-hidden" style={{ backgroundColor: "#f7faf0" }}>
+        <section id="values" className="relative isolate overflow-hidden" style={{ backgroundColor: "#f7faf0" }}>
           <MeshBackground />
           <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24">
             <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
@@ -291,7 +353,7 @@ export default function WholesalePage() {
           </div>
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter variant="wholesale" />
     </>
   );
 }
