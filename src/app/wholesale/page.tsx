@@ -223,6 +223,13 @@ export default function WholesalePage() {
                   </div>
                 ))}
               </dl>
+
+              <a
+                href="#contact"
+                className="group mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-fr-lime px-7 text-sm font-semibold text-fr-teal-deep shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105 [&_svg]:transition-transform group-hover:[&_svg]:translate-x-0.5"
+              >
+                Request pricing <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
           </div>
         </section>
