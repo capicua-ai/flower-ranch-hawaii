@@ -164,7 +164,7 @@ export default function WholesalePage() {
             <div className="overflow-hidden rounded-3xl shadow-[0_18px_40px_-24px_rgba(0,70,85,0.35)] ring-1 ring-fr-border/60">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/assets/hero-bg.png"
+                src="/assets/fivedecades.png"
                 alt="The Flower Ranch orchard on the Hāmākua Coast"
                 className="w-full object-cover"
                 style={{ aspectRatio: "4 / 3" }}
