@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ClipboardCheck, Leaf, ShieldCheck, Snowflake, Truck } from "lucide-react";
+import { ArrowRight, ChevronDown, ClipboardCheck, Leaf, ShieldCheck, Snowflake, Truck } from "lucide-react";
 import { WholesaleHeader } from "@/components/store/wholesale-header";
 import { SiteFooter } from "@/components/store/site-footer";
 import { SectionLabel } from "@/components/store/section-label";
 import { Reveal } from "@/components/store/reveal";
 import { CountUp } from "@/components/store/count-up";
 import { MeshBackground } from "@/components/store/mesh-background";
+import { Marquee } from "@/components/store/marquee";
 
 export const metadata: Metadata = {
   title: "Wholesale Longan — Flower Ranch Hawaii",
@@ -190,11 +191,7 @@ export default function WholesalePage() {
         </section>
 
         {/* ── MARQUEE ──────────────────────────────────────────── */}
-        <div className="overflow-hidden bg-fr-lime py-4">
-          <p className="text-center font-mono text-sm font-medium uppercase tracking-widest text-fr-teal-deep">
-            Craft · Transparency · Hawaiian-grown · Regenerative · Single-orchard · Cold-chain
-          </p>
-        </div>
+        <Marquee />
 
         {/* ── PRODUCT SPECS ────────────────────────────────────── */}
         <section id="product" className="bg-fr-teal">
@@ -264,7 +261,7 @@ export default function WholesalePage() {
               <div>
                 <SectionLabel>The Values</SectionLabel>
                 <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
-                  Why choose <em className="font-medium not-italic text-[#33971f]">Flower Ranch Hawaii</em>?
+                  Why choose <em className="font-medium not-italic text-[#33971f]">Flower Ranch Hawaii?</em>
                 </h2>
                 <p className="mt-4 leading-relaxed text-fr-muted">
                   Our longan is organically grown and carefully harvested, ensuring every piece
@@ -317,26 +314,38 @@ export default function WholesalePage() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="businessType" className="text-sm font-medium text-fr-ink">Business type</label>
-                  <select id="businessType" name="businessType" defaultValue="" className="h-12 rounded-full border border-fr-border bg-white px-4 text-fr-ink outline-none transition focus:border-fr-teal focus:ring-2 focus:ring-fr-lime/30">
-                    <option value="" disabled>Select…</option>
-                    <option>Grocery / Retail</option>
-                    <option>Food Distributor</option>
-                    <option>Food Service / Restaurant</option>
-                    <option>Specialty / Natural</option>
-                    <option>eCommerce / DTC</option>
-                    <option>Other</option>
-                  </select>
+                  <div className="relative">
+                    <select id="businessType" name="businessType" defaultValue="" className="h-12 w-full appearance-none rounded-full border border-fr-border bg-white px-5 pr-11 text-fr-ink outline-none transition focus:border-fr-teal focus:ring-2 focus:ring-fr-lime/30">
+                      <option value="" disabled>Select…</option>
+                      <option>Grocery / Retail</option>
+                      <option>Food Distributor</option>
+                      <option>Food Service / Restaurant</option>
+                      <option>Specialty / Natural</option>
+                      <option>eCommerce / DTC</option>
+                      <option>Other</option>
+                    </select>
+                    <ChevronDown
+                      aria-hidden
+                      className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-fr-muted"
+                    />
+                  </div>
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="volume" className="text-sm font-medium text-fr-ink">Estimated volume</label>
-                  <select id="volume" name="volume" defaultValue="" className="h-12 rounded-full border border-fr-border bg-white px-4 text-fr-ink outline-none transition focus:border-fr-teal focus:ring-2 focus:ring-fr-lime/30">
-                    <option value="" disabled>Select…</option>
-                    <option>1–5 cases</option>
-                    <option>5–20 cases</option>
-                    <option>20–100 cases</option>
-                    <option>100+ cases</option>
-                    <option>Not sure yet</option>
-                  </select>
+                  <div className="relative">
+                    <select id="volume" name="volume" defaultValue="" className="h-12 w-full appearance-none rounded-full border border-fr-border bg-white px-5 pr-11 text-fr-ink outline-none transition focus:border-fr-teal focus:ring-2 focus:ring-fr-lime/30">
+                      <option value="" disabled>Select…</option>
+                      <option>1–5 cases</option>
+                      <option>5–20 cases</option>
+                      <option>20–100 cases</option>
+                      <option>100+ cases</option>
+                      <option>Not sure yet</option>
+                    </select>
+                    <ChevronDown
+                      aria-hidden
+                      className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-fr-muted"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="flex flex-col gap-1.5">

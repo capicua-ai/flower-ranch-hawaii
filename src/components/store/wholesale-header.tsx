@@ -54,6 +54,8 @@ export function WholesaleHeader() {
           <div className="flex items-center gap-1">
             <Link
               href="/products"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group ml-1 hidden h-10 items-center gap-2 rounded-full bg-fr-lime px-5 text-sm font-semibold text-fr-teal-deep transition-all hover:-translate-y-0.5 hover:brightness-105 sm:inline-flex [&_svg]:transition-transform group-hover:[&_svg]:translate-x-0.5"
             >
               See our products <ArrowRight className="h-4 w-4" />
@@ -90,6 +92,8 @@ export function WholesaleHeader() {
               <li>
                 <Link
                   href="/products"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setOpen(false)}
                   className="mt-1 block rounded-full bg-fr-lime px-3 py-3 text-center text-base font-semibold text-fr-teal-deep"
                 >
