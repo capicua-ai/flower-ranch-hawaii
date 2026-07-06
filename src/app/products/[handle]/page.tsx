@@ -88,15 +88,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
               )}
 
               <div className="mt-7">
-                <ProductBuyButtons
-                  product={{
-                    slug: product.slug,
-                    name: product.name,
-                    price: product.price,
-                    priceNote: product.priceNote,
-                    image: product.image,
-                  }}
-                />
+                {product.merchandiseId ? (
+                  <ProductBuyButtons
+                    merchandiseId={product.merchandiseId}
+                    availableForSale={product.inStock}
+                  />
+                ) : null}
               </div>
 
               <p className="mt-4 inline-flex items-center gap-1.5 text-sm text-fr-muted">

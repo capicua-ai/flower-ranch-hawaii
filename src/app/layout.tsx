@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { CartProvider } from "@/components/store/cart-context";
-import { CartDrawer } from "@/components/store/cart-drawer";
+import { CartProviderShell } from "@/components/store/cart-provider-shell";
 import { SmoothAnchors } from "@/components/store/smooth-anchors";
+import { getServerCart } from "@/lib/get-server-cart";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -15,7 +15,6 @@ const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-// Editorial display serif for headings (warm, high-contrast — premium DTC feel).
 const fraunces = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
@@ -49,11 +48,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const initialCart = await getServerCart();
+
   return (
     <html
       lang="en"
@@ -61,17 +62,17 @@ export default function RootLayout({
       className={`${inter.variable} ${jetBrainsMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <head>
-        {/* Mark JS as available so scroll-reveal hiding only applies with JS on
-            (prevents content being stuck hidden for no-JS/crawlers). */}
         <script
           dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }}
         />
+        <script
+          type="module"
+          src="https://cdn.shopify.com/storefront/standard-actions.js"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="flex min-h-full flex-col">
-        <CartProvider>
-          {children}
-          <CartDrawer />
-        </CartProvider>
+        <CartProviderShell initialCart={initialCart ?? undefined}>{children}</CartProviderShell>
         <SmoothAnchors />
       </body>
     </html>

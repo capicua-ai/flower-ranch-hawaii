@@ -1,20 +1,6 @@
-import type { Metadata } from "next";
-import { SiteHeader } from "@/components/store/site-header";
-import { SiteFooter } from "@/components/store/site-footer";
-import { CheckoutClient } from "@/components/store/checkout-client";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Checkout — Flower Ranch Hawaii",
-};
-
+/** Legacy preview checkout — Shopify checkout is handled at `/checkout` via Hydrogen. */
 export default function CheckoutPage() {
-  return (
-    <>
-      <SiteHeader />
-      <main className="bg-white">
-        <CheckoutClient />
-      </main>
-      <SiteFooter />
-    </>
-  );
+  redirect("/cart");
 }

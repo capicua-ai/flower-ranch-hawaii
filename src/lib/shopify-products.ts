@@ -20,6 +20,11 @@ const PRODUCT_CARD_FIELDS = gql(`
         currencyCode
       }
     }
+    variants(first: 1) {
+      nodes {
+        id
+      }
+    }
     tagline: metafield(namespace: "custom", key: "tagline") {
       value
     }
@@ -77,12 +82,21 @@ export const PRODUCT_DETAIL_QUERY = gql(
             currencyCode
           }
         }
-        variants(first: 100) {
-          nodes {
-            availableForSale
-          }
+      variants(first: 1) {
+        nodes {
+          id
+          availableForSale
         }
-        tagline: metafield(namespace: "custom", key: "tagline") {
+      }
+      selectedOrFirstAvailableVariant(
+        selectedOptions: []
+        ignoreUnknownOptions: true
+        caseInsensitiveMatch: true
+      ) {
+        id
+        availableForSale
+      }
+      tagline: metafield(namespace: "custom", key: "tagline") {
           value
         }
         priceNote: metafield(namespace: "custom", key: "price_note") {
@@ -147,6 +161,7 @@ function toProductCard(
     description: string;
     featuredImage?: { url: string; altText?: string | null } | null;
     priceRange: { minVariantPrice: { amount: string; currencyCode: string } };
+    variants?: { nodes?: { id: string }[] } | null;
     tagline?: { value: string } | null;
     priceNote?: { value: string } | null;
   },
@@ -162,6 +177,7 @@ function toProductCard(
     description: node.description,
     specs: [],
     inStock: true,
+    merchandiseId: node.variants?.nodes?.[0]?.id,
   };
 }
 
@@ -173,6 +189,7 @@ type ShopifyProductDetail = {
   images?: { nodes?: { url: string; altText?: string | null }[] } | null;
   priceRange: { minVariantPrice: { amount: string; currencyCode: string } };
   variants?: { nodes?: { availableForSale: boolean }[] } | null;
+  selectedOrFirstAvailableVariant?: { id: string; availableForSale: boolean } | null;
   tagline?: { value: string } | null;
   priceNote?: { value: string } | null;
   specs?: unknown;
@@ -184,7 +201,9 @@ function toProductDetail(node: ShopifyProductDetail): Product {
     (node.featuredImage?.url ? [node.featuredImage.url] : [FALLBACK_IMAGE]);
 
   const inStock =
-    node.variants?.nodes?.some((variant) => variant.availableForSale) ?? false;
+    node.selectedOrFirstAvailableVariant?.availableForSale ??
+    node.variants?.nodes?.some((variant) => variant.availableForSale) ??
+    false;
 
   return {
     slug: node.handle,
@@ -197,6 +216,7 @@ function toProductDetail(node: ShopifyProductDetail): Product {
     description: node.description,
     specs: parseSpecsFromMetaobjects(node.specs),
     inStock,
+    merchandiseId: node.selectedOrFirstAvailableVariant?.id,
   };
 }
 

@@ -12,14 +12,6 @@ import { CardAddButton } from "./card-add-button";
  * outside the link so it adds to the cart instead of navigating.
  */
 export function ProductCard({ product }: { product: Product }) {
-  const cartProduct = {
-    slug: product.slug,
-    name: product.name,
-    price: product.price,
-    priceNote: product.priceNote,
-    image: product.image,
-  };
-
   return (
     <div className="group flex flex-col">
       <Link
@@ -48,7 +40,7 @@ export function ProductCard({ product }: { product: Product }) {
         </p>
       </Link>
 
-      <CardAddButton product={cartProduct} />
+      <CardAddButton product={product} />
 
       <Link
         href={`/products/${product.slug}`}
