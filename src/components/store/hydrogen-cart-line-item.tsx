@@ -34,7 +34,8 @@ export function HydrogenCartLineItem({ line }: CartLineItemProps) {
   const handle = merchandise?.product?.handle;
   const imageUrl = merchandise?.image?.url ?? "/assets/longan-fruit.png";
   const optionLabel = merchandise?.selectedOptions
-    ?.map((option) => option.value)
+    ?.filter((option) => option.value !== "Default Title")
+    .map((option) => option.value)
     .filter(Boolean)
     .join(" · ");
 
