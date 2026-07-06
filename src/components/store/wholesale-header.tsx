@@ -31,7 +31,7 @@ export function WholesaleHeader() {
             aria-label="Flower Ranch Hawaii — wholesale"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/logo_web_blacktext.svg" alt="" className="h-10 w-auto" />
+            <img src="/assets/logo.svg" alt="" className="h-10 w-auto" />
             <span className="sr-only">Flower Ranch Hawaii wholesale</span>
           </Link>
 

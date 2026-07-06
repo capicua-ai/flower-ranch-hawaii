@@ -30,7 +30,7 @@ export function SiteHeader() {
         <nav className="relative flex h-14 items-center justify-between gap-3 rounded-full border border-fr-border/70 bg-white/85 pl-5 pr-3 shadow-lg shadow-black/5 backdrop-blur-xl">
           <Link href="/" className="flex shrink-0 items-center" aria-label="Flower Ranch Hawaii — home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/logo_web_blacktext.svg" alt="" className="h-10 w-auto" />
+            <img src="/assets/logo.svg" alt="" className="h-10 w-auto" />
             <span className="sr-only">Flower Ranch Hawaii</span>
           </Link>
 

@@ -56,7 +56,7 @@ export function SiteFooter({ variant = "dtc" }: { variant?: "dtc" | "wholesale" 
         <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
           <div className="max-w-xs">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/logo_web_white.svg" alt="Flower Ranch Hawaii" className="h-12 w-auto" />
+            <img src="/assets/logo_white.svg" alt="Flower Ranch Hawaii" className="h-12 w-auto" />
             <p className="mt-4 text-sm leading-relaxed text-white/70">
               Fresh, hand-harvested Hawaiian longan grown on the Hamakua Coast in Hilo, Hawaiʻi.
             </p>
