@@ -6,21 +6,16 @@ import { SiteHeader } from "@/components/store/site-header";
 import { SiteFooter } from "@/components/store/site-footer";
 import { SectionLabel } from "@/components/store/section-label";
 import { ProductBuyButtons } from "@/components/store/product-buy-buttons";
-import { getProductBySlug, getProducts } from "@/lib/store-data";
+import { getShopifyProductByHandle } from "@/lib/shopify-products";
 
 interface ProductPageProps {
-  params: Promise<{ slug: string }>;
-}
-
-export async function generateStaticParams() {
-  const products = await getProducts();
-  return products.map((p) => ({ slug: p.slug }));
+  params: Promise<{ handle: string }>;
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const product = await getProductBySlug(slug);
-  if (!product) return { title: "Product not found — Flower Ranch Hawaii" };
+  const { handle } = await params;
+  const { product, errors } = await getShopifyProductByHandle(handle);
+  if (errors || !product) return { title: "Product not found — Flower Ranch Hawaii" };
   return {
     title: `${product.name} — Flower Ranch Hawaii`,
     description: product.description,
@@ -28,8 +23,14 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = await params;
-  const product = await getProductBySlug(slug);
+  const { handle } = await params;
+  const { product, errors } = await getShopifyProductByHandle(handle);
+
+  if (errors) {
+    console.error("[hydrogen] Product query failed", errors);
+    throw new Error("Product query failed");
+  }
+
   if (!product) notFound();
 
   return (

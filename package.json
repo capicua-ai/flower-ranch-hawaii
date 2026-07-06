@@ -17,11 +17,14 @@
     "test:coverage": "vitest run --coverage",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "check:graphql": "gql.tada check",
+    "typecheck": "tsc && gql.tada check",
     "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
+    "@shopify/hydrogen": "0.0.0-preview-0c3bff8-20260618001533",
     "@souped-tools/auth-nextjs": "^0.4.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -51,6 +54,7 @@
     "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
+    "gql.tada": "^1.11.2",
     "jsdom": "^29.0.2",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.7.3",
