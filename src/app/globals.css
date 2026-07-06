@@ -447,4 +447,8 @@ body:has(dialog#cart-drawer[open]) {
     font-family: var(--font-display);
     letter-spacing: -0.015em;
   }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    @apply cursor-pointer;
+  }
 }
