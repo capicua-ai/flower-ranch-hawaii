@@ -408,20 +408,22 @@ dialog.fr-cart-drawer[open] {
 }
 
 dialog.fr-cart-drawer::backdrop {
-  background: rgb(0 0 0 / 0);
+  @apply bg-transparent backdrop-blur-none;
   transition:
     background-color 250ms ease-out,
+    backdrop-filter 250ms ease-out,
+    -webkit-backdrop-filter 250ms ease-out,
     overlay 250ms allow-discrete,
     display 250ms allow-discrete;
 }
 
 dialog.fr-cart-drawer[open]::backdrop {
-  background: rgb(0 0 0 / 0.3);
+  @apply bg-fr-teal-deep/40 backdrop-blur-sm;
 }
 
 @starting-style {
   dialog.fr-cart-drawer[open]::backdrop {
-    background: rgb(0 0 0 / 0);
+    @apply bg-transparent backdrop-blur-none;
   }
 }
 
