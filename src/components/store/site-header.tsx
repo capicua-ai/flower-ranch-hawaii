@@ -2,31 +2,33 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, ShoppingBag, User, X } from "lucide-react";
-import { useCart } from "./cart-context";
+
+import { useCart } from "@/lib/cart";
+import { CART_DRAWER_ID, openCartDrawer } from "@/lib/cart-drawer";
 
 const NAV_LINKS = [
   { label: "Benefits", href: "/#benefits" },
   { label: "Our Process", href: "/#story" },
   { label: "Blog", href: "/blog" },
-  // Wholesale (B2B) route exists at /wholesale but is hidden from nav for now.
 ];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const { count, openCart } = useCart();
+  const [hasHydrated, setHasHydrated] = useState(false);
+  const totalQuantity = useCart((state) => state.data.totalQuantity);
+  const displayCount = totalQuantity > 99 ? "99+" : String(totalQuantity);
   const pathname = usePathname();
 
-  // Active = real-page links matching the current route. In-page anchors
-  // (Our Process / Benefits, which are "/#…") are not marked active.
+  useEffect(() => setHasHydrated(true), []);
+
   const isActive = (href: string) =>
     !href.startsWith("/#") && href !== "/" && (pathname === href || pathname.startsWith(`${href}/`));
 
   return (
     <header className="sticky top-0 z-50 px-4 pt-3 sm:pt-4">
       <div className="mx-auto max-w-7xl">
-        {/* Floating pill */}
         <nav className="relative flex h-14 items-center justify-between gap-3 rounded-full border border-fr-border/70 bg-white/85 pl-5 pr-3 shadow-lg shadow-black/5 backdrop-blur-xl">
           <Link href="/" className="flex shrink-0 items-center" aria-label="Flower Ranch Hawaii — home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -66,19 +68,33 @@ export function SiteHeader() {
             >
               <User className="h-5 w-5" />
             </Link>
-            <button
-              type="button"
-              onClick={openCart}
-              aria-label={`Cart${count > 0 ? ` (${count} items)` : ""}`}
-              className="relative inline-flex h-10 w-10 items-center justify-center rounded-full text-fr-ink/75 transition-colors hover:bg-fr-wash hover:text-fr-lime"
-            >
-              <ShoppingBag className="h-5 w-5" />
-              {count > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-fr-lime px-1 text-[11px] font-bold text-fr-teal-deep">
-                  {count}
-                </span>
-              )}
-            </button>
+
+            {hasHydrated ? (
+              <button
+                type="button"
+                onClick={openCartDrawer}
+                aria-controls={CART_DRAWER_ID}
+                aria-haspopup="dialog"
+                aria-label={`Cart${totalQuantity > 0 ? ` (${totalQuantity} items)` : ""}`}
+                className="relative inline-flex h-10 w-10 items-center justify-center rounded-full text-fr-ink/75 transition-colors hover:bg-fr-wash hover:text-fr-lime"
+              >
+                <ShoppingBag className="h-5 w-5" />
+                {totalQuantity > 0 ? (
+                  <span className="absolute -right-0.5 -top-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-fr-lime px-1 text-[11px] font-bold text-fr-teal-deep">
+                    {displayCount}
+                  </span>
+                ) : null}
+              </button>
+            ) : (
+              <Link
+                href="/cart"
+                aria-label="Cart"
+                className="relative inline-flex h-10 w-10 items-center justify-center rounded-full text-fr-ink/75 transition-colors hover:bg-fr-wash hover:text-fr-lime"
+              >
+                <ShoppingBag className="h-5 w-5" />
+              </Link>
+            )}
+
             <Link
               href="/products"
               className="ml-1 hidden h-10 items-center rounded-full bg-fr-lime px-5 text-sm font-semibold text-fr-teal-deep transition-all hover:-translate-y-0.5 hover:brightness-105 sm:inline-flex"
@@ -97,7 +113,7 @@ export function SiteHeader() {
           </div>
         </nav>
 
-        {open && (
+        {open ? (
           <nav
             className="mt-2 rounded-3xl border border-fr-border/70 bg-white/95 p-3 shadow-lg shadow-black/5 backdrop-blur-xl lg:hidden"
             aria-label="Mobile"
@@ -133,7 +149,7 @@ export function SiteHeader() {
               </li>
             </ul>
           </nav>
-        )}
+        ) : null}
       </div>
     </header>
   );

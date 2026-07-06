@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/store/site-footer";
 import { SectionLabel } from "@/components/store/section-label";
 import { ProductCard } from "@/components/store/product-card";
 import { CornerBotanical } from "@/components/store/corner-botanical";
-import { getProducts } from "@/lib/store-data";
+import { getShopifyProducts } from "@/lib/shopify-products";
 
 export const metadata: Metadata = {
   title: "Shop Fresh Hawaiian Longan & Lychee — Flower Ranch Hawaii",
@@ -20,7 +20,7 @@ export default async function ProductsPage({
 }) {
   const { q } = await searchParams;
   const query = (q ?? "").trim();
-  const all = await getProducts();
+  const all = await getShopifyProducts();
   const products = query
     ? all.filter((p) =>
         `${p.name} ${p.tagline} ${p.description}`.toLowerCase().includes(query.toLowerCase()),

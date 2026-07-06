@@ -17,9 +17,9 @@ import {
   getBenefits,
   getDeliverySteps,
   getPosts,
-  getProducts,
   getSiteSettings,
 } from "@/lib/store-data";
+import { getShopifyProducts } from "@/lib/shopify-products";
 
 /** Connector words that drop to a translucent tone in the two-tone hero headline. */
 const HERO_STOPWORDS = new Set([
@@ -67,7 +67,7 @@ function HeroHeadline({ title }: { title: string }) {
 export default async function Home() {
   const [settings, products, benefits, deliverySteps, posts] = await Promise.all([
     getSiteSettings(),
-    getProducts(),
+    getShopifyProducts(),
     getBenefits(),
     getDeliverySteps(),
     getPosts(),

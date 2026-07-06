@@ -20,6 +20,8 @@ export interface Product {
   description: string;
   specs: ProductSpec[];
   inStock: boolean;
+  /** First variant GID for add-to-cart until full variant selection ships. */
+  merchandiseId?: string;
 }
 
 export interface BlogPost {
