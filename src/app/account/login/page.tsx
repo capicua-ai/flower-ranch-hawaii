@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getCurrentSession } from "@/lib/auth";
 
 export const metadata: Metadata = {
@@ -30,9 +30,9 @@ export default async function LoginPage({
 
   const { return_to } = await searchParams;
   const dest = safeReturnTo(return_to);
-  // The actual credential entry happens on the hosted Souped login; these
-  // buttons route there. The email/password fields below are presentational
-  // for now (the visual matches a standard storefront sign-in).
+  // Credential entry happens on Souped's secure hosted sign-in (email one-time
+  // code). This branded screen is the app-native lead-in; the CTA hands off to
+  // the OAuth flow. We never collect credentials in-app.
   const loginHref = `/api/auth/login?return_to=${encodeURIComponent(dest)}`;
 
   return (
@@ -40,11 +40,11 @@ export default async function LoginPage({
       className="flex min-h-screen flex-col items-center justify-center px-5 py-16"
       style={{ backgroundColor: "#fbfdf8" }}
     >
-      <div className="w-full max-w-md rounded-2xl border border-fr-border bg-white p-8 shadow-[0_24px_60px_-34px_rgba(0,70,85,0.4)] sm:p-10">
+      <div className="w-full max-w-md rounded-2xl border border-fr-border bg-white p-8 text-center shadow-[0_24px_60px_-34px_rgba(0,70,85,0.4)] sm:p-10">
         {/* Logo */}
         <Link
           href="/"
-          className="mx-auto flex w-fit items-center justify-center"
+          className="mx-auto flex w-fit items-center justify-center rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fr-lime"
           aria-label="Flower Ranch Hawaii — home"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -52,67 +52,33 @@ export default async function LoginPage({
           <span className="sr-only">Flower Ranch Hawaii</span>
         </Link>
 
-        <h1 className="mt-6 text-center font-heading text-3xl font-bold tracking-tight text-fr-ink">
-          Sign in
+        <h1 className="mt-6 font-heading text-3xl font-bold tracking-tight text-fr-ink">
+          Sign in to your account
         </h1>
-        <p className="mt-2 text-center text-sm text-fr-muted">
-          Welcome back — sign in to your account.
+        <p className="mt-3 text-sm leading-relaxed text-fr-muted">
+          We&rsquo;ll email you a one-time code — no password to remember. Sign in to
+          track your orders and manage your account.
         </p>
 
-        {/* Form (presentational for now — buttons route to secure sign-in) */}
-        <div className="mt-8 space-y-5">
-          <div>
-            <label htmlFor="email" className="mb-2 block text-sm font-medium text-fr-ink">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              autoComplete="email"
-              placeholder="you@email.com"
-              className="h-12 w-full rounded-xl border border-fr-border bg-white px-4 text-sm text-fr-ink outline-none transition-colors placeholder:text-fr-muted/70 focus:border-fr-teal focus:ring-2 focus:ring-fr-lime/40"
-            />
-          </div>
-
-          <div>
-            <div className="mb-2 flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium text-fr-ink">
-                Password
-              </label>
-              <a href={loginHref} className="text-sm text-fr-muted transition-colors hover:text-fr-teal">
-                Forgot password?
-              </a>
-            </div>
-            <input
-              id="password"
-              type="password"
-              autoComplete="current-password"
-              placeholder="••••••••"
-              className="h-12 w-full rounded-xl border border-fr-border bg-white px-4 text-sm text-fr-ink outline-none transition-colors placeholder:text-fr-muted/70 focus:border-fr-teal focus:ring-2 focus:ring-fr-lime/40"
-            />
-          </div>
-        </div>
-
-        {/* Actions — site button language (rounded pills, brand colors) */}
+        {/* Primary action — hands off to the secure Souped sign-in */}
         <a
           href={loginHref}
-          className="mt-7 flex h-12 w-full items-center justify-center rounded-full bg-fr-lime text-sm font-semibold text-fr-teal-deep shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-lime"
+          className="mt-8 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-fr-lime text-sm font-semibold text-fr-teal-deep shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-lime"
         >
-          Sign in
+          Continue to sign in
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </a>
-        <a
-          href={loginHref}
-          className="mt-3 flex h-12 w-full items-center justify-center rounded-full border border-fr-border bg-white text-sm font-semibold text-fr-teal transition-colors hover:bg-fr-wash"
-        >
-          Create account
-        </a>
+
+        <p className="mt-4 text-xs leading-relaxed text-fr-muted">
+          New here? Continue and create your account in the same step.
+        </p>
       </div>
 
       <Link
         href="/"
-        className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-fr-ink/70 transition-colors hover:text-fr-teal"
+        className="mt-8 inline-flex items-center gap-2 rounded-lg text-sm font-medium text-fr-ink/70 transition-colors hover:text-fr-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fr-lime"
       >
-        <ArrowLeft className="h-4 w-4" />
+        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         Back to store
       </Link>
     </main>
