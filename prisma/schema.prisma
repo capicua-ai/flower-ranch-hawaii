@@ -110,3 +110,14 @@ model DeliveryStep {
 
   @@map("delivery_steps")
 }
+
+/// "How to eat longan" step cards on the home page. Editable via Chalk.
+model HowToEatStep {
+  id    String @id @default(cuid())
+  title String
+  body  String
+  image String // image URL (e.g. /assets/use1.png)
+  order Int    @default(0)
+
+  @@map("how_to_eat_steps")
+}

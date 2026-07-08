@@ -176,6 +176,13 @@ const deliverySteps = [
   { id: "step-5", title: "Delivered Fresh", body: "Straight to your home.", icon: "Home", order: 5 },
 ];
 
+const howToEatSteps = [
+  { id: "eat-1", title: "Twist & crack", body: "Hold the fruit and gently squeeze near the stem until the thin, leathery shell splits open.", image: "/assets/use1.png", order: 1 },
+  { id: "eat-2", title: "Peel the shell", body: "Peel back the tan skin to reveal the glossy, translucent flesh — the classic “dragon eye.”", image: "/assets/use2.png", order: 2 },
+  { id: "eat-3", title: "Enjoy the flesh", body: "Pop the juicy, floral-sweet flesh into your mouth — think grape crossed with lychee.", image: "/assets/use3.png", order: 3 },
+  { id: "eat-4", title: "Discard the seed", body: "Eat around the single shiny black seed in the center and set it aside — it isn’t edible.", image: "/assets/use4.png", order: 4 },
+];
+
 async function main() {
   await db.siteSettings.upsert({
     where: { id: siteSettings.id },
@@ -199,12 +206,17 @@ async function main() {
     await db.deliveryStep.upsert({ where: { id: s.id }, create: s, update: s });
   }
 
+  for (const s of howToEatSteps) {
+    await db.howToEatStep.upsert({ where: { id: s.id }, create: s, update: s });
+  }
+
   const counts = {
     siteSettings: await db.siteSettings.count(),
     products: await db.product.count(),
     blogPosts: await db.blogPost.count(),
     benefits: await db.benefit.count(),
     deliverySteps: await db.deliveryStep.count(),
+    howToEatSteps: await db.howToEatStep.count(),
   };
   console.log("Seed complete:", counts);
 }

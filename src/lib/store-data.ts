@@ -44,6 +44,12 @@ export interface DeliveryStep {
   icon: string;
 }
 
+export interface HowToEatStep {
+  title: string;
+  body: string;
+  image: string;
+}
+
 export interface SiteSettings {
   heroBadge: string;
   heroTitle: string;
@@ -146,4 +152,9 @@ export async function getBenefits(): Promise<Benefit[]> {
 export async function getDeliverySteps(): Promise<DeliveryStep[]> {
   const rows = await db.deliveryStep.findMany({ orderBy: { order: "asc" } });
   return rows.map((r) => ({ title: r.title, body: r.body, icon: r.icon }));
+}
+
+export async function getHowToEatSteps(): Promise<HowToEatStep[]> {
+  const rows = await db.howToEatStep.findMany({ orderBy: { order: "asc" } });
+  return rows.map((r) => ({ title: r.title, body: r.body, image: r.image }));
 }

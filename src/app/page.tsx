@@ -16,6 +16,7 @@ import { CornerBotanical } from "@/components/store/corner-botanical";
 import {
   getBenefits,
   getDeliverySteps,
+  getHowToEatSteps,
   getPosts,
   getProducts,
   getSiteSettings,
@@ -65,11 +66,12 @@ function HeroHeadline({ title }: { title: string }) {
 }
 
 export default async function Home() {
-  const [settings, products, benefits, deliverySteps, posts] = await Promise.all([
+  const [settings, products, benefits, deliverySteps, howToEatSteps, posts] = await Promise.all([
     getSiteSettings(),
     getProducts(),
     getBenefits(),
     getDeliverySteps(),
+    getHowToEatSteps(),
     getPosts(),
   ]);
 
@@ -299,7 +301,7 @@ export default async function Home() {
         </section>
 
         {/* ── HOW TO EAT LONGAN ────────────────────────────────── */}
-        <HowToEat />
+        <HowToEat steps={howToEatSteps} />
 
         {/* ── OUR STORY (orchard video + journey, unified) ─────── */}
         <OurStory steps={deliverySteps} />
