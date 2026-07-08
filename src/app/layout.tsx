@@ -27,7 +27,10 @@ const SITE_TITLE = "Flower Ranch Hawaii — Fresh Hawaiian Longan";
 const SITE_DESCRIPTION =
   "Fresh, hand-harvested Hawaiian longan grown on the Hamakua Coast. Shop fresh longan and lychee, or partner with us for premium wholesale supply.";
 
+const SITE_URL = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
   icons: {

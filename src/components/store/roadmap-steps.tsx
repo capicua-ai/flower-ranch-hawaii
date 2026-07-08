@@ -23,6 +23,8 @@ export function RoadmapSteps({ steps }: { steps: DeliveryStep[] }) {
     const el = olRef.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // Reduced-motion: reveal immediately (client-only check).
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setInView(true);
       return;
     }

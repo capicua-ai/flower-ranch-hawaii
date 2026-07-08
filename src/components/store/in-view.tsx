@@ -22,6 +22,8 @@ export function InView({ children, className = "", delay = 0 }: InViewProps) {
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // Reduced-motion: reveal immediately (client-only check).
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShown(true);
       return;
     }

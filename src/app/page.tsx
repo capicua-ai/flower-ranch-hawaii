@@ -105,18 +105,24 @@ export default async function Home() {
             {/* Headline → subtitle → CTAs, vertically centered in the tall hero */}
             <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-24 pt-36 sm:px-8">
               <Reveal>
-                <h1 className="max-w-4xl font-heading text-[3rem] font-semibold leading-[0.96] tracking-tight drop-shadow-sm sm:text-7xl lg:text-[5.5rem]">
+                <span className="inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-1 font-mono text-xs uppercase tracking-widest text-white backdrop-blur">
+                  {settings.heroBadge}
+                </span>
+              </Reveal>
+
+              <Reveal delay={120}>
+                <h1 className="mt-6 max-w-4xl font-heading text-[3rem] font-semibold leading-[0.96] tracking-tight drop-shadow-sm sm:text-7xl lg:text-[5.5rem]">
                   <HeroHeadline title={settings.heroTitle} />
                 </h1>
               </Reveal>
 
-              <Reveal delay={200}>
+              <Reveal delay={260}>
                 <p className="mt-7 max-w-lg text-lg leading-relaxed text-white/85">
                   {settings.heroSubtitle}
                 </p>
               </Reveal>
 
-              <Reveal delay={340}>
+              <Reveal delay={380}>
                 <div className="mt-10 flex flex-wrap items-center gap-3">
                   <Link
                     href="/products"

@@ -6,6 +6,8 @@ import { getCurrentSession } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Sign in — Flower Ranch Hawaii",
+  // Sign-in screen — keep it out of the index.
+  robots: { index: false, follow: false },
 };
 
 /** Only allow internal, non-auth paths as a post-login destination. */

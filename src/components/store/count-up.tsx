@@ -29,6 +29,8 @@ export function CountUp({ to, prefix = "", suffix = "", duration = 1400, classNa
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
+      // Reduced-motion: jump straight to the final value (client-only check).
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setValue(to);
       setDone(true);
       return;

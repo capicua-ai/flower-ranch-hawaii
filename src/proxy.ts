@@ -48,6 +48,11 @@ export const proxy = withSoupedAuth(
       "/checkout",
       "/assets/:path*",
       "/favicon.svg",
+      "/favicon.ico",
+      // SEO/crawler endpoints — must be reachable without a session, or the
+      // wide auth matcher redirects them to login and crawlers get nothing.
+      "/robots.txt",
+      "/sitemap.xml",
     ],
   },
   passthrough,

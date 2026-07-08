@@ -8,6 +8,8 @@ import { requireUser } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Your Account — Flower Ranch Hawaii",
+  // Authenticated page — never index. Defense-in-depth alongside the proxy gate.
+  robots: { index: false, follow: false },
 };
 
 export default async function AccountPage() {

@@ -123,7 +123,7 @@ export default function WholesalePage() {
               <div>
                 <SectionLabel>The Opportunity</SectionLabel>
                 <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
-                  There's a business opportunity in{" "}
+                  There&rsquo;s a business opportunity in{" "}
                   <em className="font-medium not-italic text-[#33971f]">longan</em>
                 </h2>
               </div>
@@ -294,10 +294,10 @@ export default function WholesalePage() {
             <div>
               <SectionLabel>The Next Step</SectionLabel>
               <h2 className="mt-3 text-4xl font-bold tracking-tight text-fr-ink sm:text-5xl">
-                Let's cultivate something lasting <em className="font-medium not-italic text-[#33971f]">together</em>
+                Let&rsquo;s cultivate something lasting <em className="font-medium not-italic text-[#33971f]">together</em>
               </h2>
               <p className="mt-4 max-w-md text-lg leading-relaxed text-fr-muted">
-                Tell us about your buying program and we'll route you to Hawaiʻi's premier longan
+                Tell us about your buying program and we&rsquo;ll route you to Hawaiʻi&rsquo;s premier longan
                 orchard.
               </p>
               <p className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-fr-teal">
